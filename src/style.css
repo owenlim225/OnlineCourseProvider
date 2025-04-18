@@ -1,0 +1,174 @@
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateX(50px);}
+  to {opacity: 1; transform: translateX(0);}
+}
+
+@keyframes fadeOut {
+  from {opacity: 1; transform: translateX(0);}
+  to {opacity: 0; transform: translateX(50px);}
+}
+
+.text-huge-title {
+    --text-huge : 10.8rem;
+    font-size   : var(--text-huge);
+    line-height : 1.0740;
+    margin-top  : 0;
+}
+
+.body-color {
+    background-color: #0e0f0f;
+    color: #fff;
+    margin: 0;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+  }
+
+.fa-custom-logo {
+    width: 64px;  /* Match small FA icons */
+    height: auto; /* Keep proportion */
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+
+.card:hover {
+    transform: translateY(-5px); /* Slight lift */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Add depth */
+    transition: all 0.3s ease-in-out;
+}
+.card:hover .card-body h5 {
+    color: #007bff; /* Change title color on hover */
+    transition: color 0.3s;
+}
+
+
+/* ----------------------------------------------------------------------------------------------------- */
+
+/* From Uiverse.io by nathann09 */ 
+.form {
+    background-color: #fff;
+    display: block;
+    padding: 1rem;
+    max-width: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .form-title {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+    text-align: center;
+    color: #000;
+  }
+  
+  .input-container {
+    position: relative;
+  }
+  
+  .input-container input, .form button {
+    outline: none;
+    border: 1px solid #e5e7eb;
+    margin: 8px 0;
+  }
+  
+  .input-container input {
+    background-color: #fff;
+    padding: 1rem;
+    padding-right: 3rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    width: 100%; 
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+  
+  .submit {
+    display: block;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    background-color: #4F46E5;
+    color: #ffffff;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    width: 100%;
+    border-radius: 0.5rem;
+    text-transform: uppercase;
+  }
+  
+  .signup-link {
+    color: #6B7280;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    text-align: center;
+  }
+  
+  .signup-link a {
+    text-decoration: underline;
+  }
+
+
+/* ----------------------------------------------------------------------------------------------------- */
+
+
+.top-section {
+    background-color: #f8f9fa;
+    padding: 50px 0;
+    text-align: center;
+}
+.logo {
+    max-height: 50px;
+}
+.header_logo_text {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.btn-custom {
+    background-color: #ff6f61;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+.btn-custom:hover {
+    background-color: #ff4a3c;
+    color: white;
+}
+
+
+/* ----------------------------------------------------------------------------------------------------- */
+
+:root {
+    --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --heading-font: "Raleway",  sans-serif;
+    --nav-font: "Poppins",  sans-serif;
+  }
+
+/* Hero section */
+.hero {
+    min-height: 32vh; /* Fill the screen vertically */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 {
+    font-size: 8rem;
+    font-weight: 700;
+    line-height: 1.2;
+    font-family: 'DM Serif Display', serif; 
+    font-size: 8rem; 
+    font-weight: 700; 
+    line-height: 1.2;
+}
+
+  @media (min-width: 768px) {
+    .hero h1 {
+      font-size: 4rem;
+    }
+  }
