@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_course"])) {
         $allowed_types = ["image/jpeg", "image/png", "image/gif"];
         if (in_array($file_type, $allowed_types) && $file_size <= 2 * 1024 * 1024) {
             $new_file_name = uniqid() . "_" . basename($file_name);
-            move_uploaded_file($file_tmp, "uploads/" . $new_file_name);
+            move_uploaded_file($file_tmp, "../../img/courses/" . $new_file_name);
             $image = $new_file_name;
         } else {
             $message = "<div class='error'>⚠️ Invalid file. Ensure it is JPEG, PNG, or GIF and under 2MB.</div>";
@@ -48,6 +48,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_course"])) {
         
         if ($stmt->execute()) {
             $message = "<div class='success'>✅ Course updated successfully!</div>";
+
+            $sql = "SELECT course_id, course_title, description, instructor, image, price FROM courses WHERE course_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $course_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $course = $result->fetch_assoc();
         } else {
             $message = "<div class='error'>⚠️ Error updating course: " . $stmt->error . "</div>";
         }
@@ -72,10 +79,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_course"])) {
                 <div class="w-100 d-flex flex-column align-items-center gap-3">
                     <img src="../../img/logo.png" alt="logo" class="img-fluid" style="max-width: 80px;">
                     <div class="d-flex flex-column gap-3 w-100">
-                        <a href="../admin/dashboard.php" class="text-light text-decoration-none">Dashboard</a>
-                        <a href="../admin/users.php" class="text-light text-decoration-none">Users</a>
-                        <a href="../admin/courses.php" class="text-warning fw-bold fs-4 text-decoration-none">Courses</a>
-                        <a href="../admin/order.php" class="text-light text-decoration-none">Orders</a>
+                        <a href="../../admin/dashboard.php" class="text-light text-decoration-none">Dashboard</a>
+                        <a href="../../admin/users.php" class="text-light text-decoration-none">Users</a>
+                        <a href="../../admin/courses.php" class="text-warning fw-bold fs-4 text-decoration-none">Courses</a>
+                        <a href="../../admin/order.php" class="text-light text-decoration-none">Orders</a>
                     </div>
                 </div>
                 <a class="text-danger text-decoration-none fw-bold" href="../func/logout.php">Logout</a>

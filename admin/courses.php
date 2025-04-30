@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_course"])) {
                 $sql = "INSERT INTO courses (course_id, course_title, description, instructor, price, image) 
                         VALUES (?, ?, ?, ?, ?, ?)";
                 $stmt = $conn->prepare($sql);
-                $stmt->bind_param("sssdss", $course_id, $course_title, $description, $instructor, $price, $image_name);
+                $stmt->bind_param("ssssss", $course_id, $course_title, $description, $instructor, $price, $image_name);
 
                 if ($stmt->execute()) {
                     $_SESSION['message'] = "<div id='message-box' class='success'>✅ Course added successfully!</div>";
@@ -115,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_course"])) {
                             <textarea name="description" class="form-control border-0 border-bottom" required placeholder="Description"></textarea>
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="instructor" class="form-control border-0 border-bottom" required placeholder="Category">
+                            <input type="text" name="instructor" class="form-control border-0 border-bottom" required placeholder="Instructor">
                         </div>
                         <div class="mb-3">
                             <input type="file" name="image" class="form-control border-0 border-bottom" required>
