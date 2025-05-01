@@ -72,8 +72,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="src/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 </head>
 
-
-
 <body>
 <!-- Navbar -->
 <div class="container-fluid p-0">
