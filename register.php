@@ -76,9 +76,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
     <link rel="stylesheet" href="src/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Vendor CSS Files -->
+    <link href="src/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 </head>
 
 <body>
+<!-- Navbar -->
+<div class="container-fluid p-0">
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-black bg-opacity-95 fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="img/logo.png" alt="logo" class="fa-custom-logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 me-5">
+                    <li class="nav-item ms-4">
+                        <a class="nav-link active" aria-current="page" href="index.php"></i>Home</a>
+                    </li>
+                    <li class="nav-item ms-4">
+                        <a class="nav-link" href="index.php#about-me">About me</a>
+                    </li>
+                    <li class="nav-item ms-4">
+                        <a class="nav-link" href="index.php#courses">Courses</a>
+                    </li>
+                    
+                </ul>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.php">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.php">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
 <!-- Register Form -->
 <div class="row justify-content-center d-flex align-items-center vh-100">
     <div class="col-md-4 bg-white p-4 rounded shadow-lg text-center" style="box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
@@ -117,6 +155,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
         <p class="mt-4">Already have an account? <br><a href="login.php">Login</a></p>
     </div>
 </div>
+
+<!-- footer-->
+ <?php include 'src/footer.php'; ?>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
