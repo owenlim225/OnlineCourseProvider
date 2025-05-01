@@ -264,7 +264,7 @@ if (isset($_SESSION['email'])) {
                                     
                                     if ($already_purchased) {
                                         // If already purchased, show "View Course" button instead of "Buy"
-                                        echo "<a href='checkout.php' class='btn btn-sm btn-primary py-2 px-5'>View Course</a>";
+                                        echo "<a href='under-construction.php' class='btn btn-sm btn-primary py-2 px-5'>View Course</a>";
                                     } else {
                                         // If not purchased, show normal buttons
                                         echo "<button type='button' class='btn btn-sm btn-success py-2 px-5' ";
