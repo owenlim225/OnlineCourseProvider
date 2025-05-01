@@ -124,6 +124,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
                     <li class="nav-item ms-4">
                         <a class="nav-link active" aria-current="page" href="home.php"></i>Home</a>
                     </li>
+                    <li class="nav-item ms-4">
+                        <a class="nav-link" href="home.php#courses">Courses</a>
+                    </li>
                 </ul>
 
                 
