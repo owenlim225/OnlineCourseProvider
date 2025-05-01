@@ -116,7 +116,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
     </nav>
 </div>
 
-
 <!-- Register Form -->
 <div class="row justify-content-center d-flex align-items-center vh-100">
     <div class="col-md-4 bg-white p-4 rounded shadow-lg text-center" style="box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
