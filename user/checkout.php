@@ -6,6 +6,8 @@ $user_id = isset($_GET["user_id"]) ? intval($_GET["user_id"]) : 0;
 $message = "";
 $user = null; // Ensure $user is defined
 
+
+
 // Ensure user is logged in before querying
 if (isset($_SESSION['email'])) {
     $sql = "SELECT * FROM user WHERE email = ?";
@@ -99,6 +101,9 @@ echo '];</script>';
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 me-5">
                     <li class="nav-item ms-4">
                         <a class="nav-link active" aria-current="page" href="home.php"></i>Home</a>
+                    </li>
+                    <li class="nav-item ms-4">
+                        <a class="nav-link" href="home.php#courses">Courses</a>
                     </li>
                 </ul>
 
@@ -215,7 +220,7 @@ echo '];</script>';
                                     <div class="d-flex justify-content-center align-items-center bg-light text-center" style="height: 300px;">
                                         <div>
                                             <p class="fs-4 text-muted">No courses in your cart</p>
-                                            <a href="courses.php" class="btn btn-primary">Browse Courses</a>
+                                            <a href="home.php#courses" class="btn btn-primary">Browse Courses</a>
                                         </div>
                                     </div>
                                 </div>
@@ -275,6 +280,15 @@ echo '];</script>';
                     </div>
 
                     <!-- second row — Customer Details & Payment Due -->
+                    <!-- Error message display -->
+                    <?php if (isset($_SESSION['error_message']) && !empty($_SESSION['error_message'])): ?>
+                        <div class="alert alert-danger">
+                            <?php 
+                                echo htmlspecialchars($_SESSION['error_message']); 
+                                unset($_SESSION['error_message']);
+                            ?>
+                        </div>
+                    <?php endif; ?>
                     <div class="col-12 bg-white p-4 rounded shadow mt-4">
                         <h3 class="mb-3 fw-bold mb-5">Customer Details</h3>
                         <form method="POST" action="../func/user/process_order.php" class="d-flex flex-column gap-3">
@@ -295,7 +309,7 @@ echo '];</script>';
                                     <label class="form-label">Mobile Number *</label>
                                     <div class="input-group">
                                         <span class="input-group-text">+63</span>
-                                        <input type="text" class="form-control" name="mobile" required>
+                                        <input type="text" class="form-control" name="mobile" required value="<?php echo isset($_SESSION['contact']) ? htmlspecialchars($_SESSION['contact']) : ''; ?>">
                                     </div>
                                 </div>
                                 <div class="mb-3">
