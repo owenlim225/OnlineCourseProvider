@@ -35,7 +35,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pay_now"])) {
 
     if (!in_array($paymentMethod, $allowedMethods)) {
         $_SESSION['error_message'] = "Invalid payment method selected";
-        header("Location: ../../src/user/checkout.php");
+        header("Location: ../../user/checkout.php");
+        exit();
+    }
+
+    // Check if cart is empty
+    $cart_length_query = "SELECT COUNT(*) AS cart_length FROM cart WHERE user_id = ? AND is_purchased = 0"; 
+    $cart_length_stmt = $conn->prepare($cart_length_query);
+    $cart_length_stmt->bind_param("i", $user_id);
+    $cart_length_stmt->execute();
+    $cart_length_result = $cart_length_stmt->get_result();
+    $cart_length = $cart_length_result->fetch_assoc()['cart_length'];
+
+    // If cart is empty, redirect back with error message
+    if ($cart_length <= 0) {
+        $_SESSION['error_message'] = "Your cart is empty.";
+        header("Location: ../../user/checkout.php");
         exit();
     }
 
