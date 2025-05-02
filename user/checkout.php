@@ -2,9 +2,34 @@
 session_start();
 include("../func/connections.php");
 
-$user_id = isset($_GET["user_id"]) ? intval($_GET["user_id"]) : 0;
+// $user_id = isset($_GET["user_id"]) ? intval($_GET["user_id"]) : 0;
+$user_id = $_SESSION['user_id'];
 $message = "";
 $user = null; // Ensure $user is defined
+
+if (isset($_GET['course_id'])) {
+    $course_id = $_GET['course_id'];
+
+    // Prevent duplicate cart entries
+    $check_query = "SELECT * FROM cart WHERE user_id = ? AND course_id = ? AND is_purchased = 0";
+    $stmt = $conn->prepare($check_query);
+    $stmt->bind_param("ii", $user_id, $course_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows == 0) {
+        // Insert new cart item
+        $query = "INSERT INTO cart (user_id, course_id, is_purchased, added_at) VALUES (?, ?, 0, NOW())";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("ii", $user_id, $course_id);
+        $stmt->execute();
+    }
+} else {
+    $response['message'] = 'Invalid request method.';
+    echo json_encode($response);
+}
+
+// Return JSON response
 
 
 
