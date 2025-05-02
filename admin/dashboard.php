@@ -135,7 +135,7 @@ $total_price = $purchase_result->fetch_assoc()['total_price'];
                 </div> -->
                 
                 <!-- Course List -->
-                <!-- <h1 class="text-center fw-bold my-5 text-primary">Course List</h1>
+                <h1 class="text-center fw-bold my-5 text-primary">Course List</h1>
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-10">
@@ -166,7 +166,7 @@ $total_price = $purchase_result->fetch_assoc()['total_price'];
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
     </div>
