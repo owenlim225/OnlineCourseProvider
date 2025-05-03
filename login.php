@@ -109,31 +109,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!-- login -->
 <main class="d-flex align-items-center justify-content-center vh-100">
-    <div class="col-md-4 bg-white p-4 rounded shadow-lg text-center">
-        <h2 class="mb-3 text-dark">Login</h2>
+    <div class="col-md-4 col-lg-4 bg-white p-5 rounded-4 shadow-lg text-center">
+        <h2 class="mb-4 text-black fw-bold">
+            <i class="bi bi-box-arrow-in-right me-2"></i> Login
+        </h2>
 
         <?php echo $message; ?>
 
-        <form class="form" method="POST" action="login.php">
+        <form method="POST" action="login.php">
             <!-- Email -->
-            <div class="mb-3">
-                <input type="email" name="email" class="form-control border-0 border-bottom" required placeholder="Email">
+            <div class="mb-3 text-start">
+                <label class="form-label text-black">Email</label>
+                <input type="email" name="email" class="form-control rounded-3 shadow-sm" required placeholder="example@mail.com">
             </div>
 
             <!-- Password -->
-            <div class="mb-3">
-                <input type="password" name="password" class="form-control border-0 border-bottom" placeholder="Password">
+            <div class="mb-4 text-start">
+                <label class="form-label text-black">Password</label>
+                <input type="password" name="password" class="form-control rounded-3 shadow-sm" required placeholder="Enter password">
             </div>
 
-            <button type="submit" class="btn btn-dark w-100 fw-bold my-3">Login</button>
+            <!-- Submit -->
+            <button type="submit" class="btn btn-dark w-100 fw-bold rounded-pill py-2">
+                <i class="bi bi-door-open me-1"></i> Login
+            </button>
         </form>
 
-        <p class="mt-4">
-            No account? <br>
-            <a href="register.php">Sign up</a>
+        <p class="mt-4 text-black">
+            No account?<br>
+            <a href="register.php" class="fw-semibold text-decoration-none">Sign up</a>
         </p>
     </div>
 </main>
+
 
 <!-- Footer -->
 <?php include 'src/footer.php'; ?>

@@ -17,15 +17,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
 
     // Validate fields
     if (empty($first_name) || empty($last_name) || empty($contact) || empty($email)) {
-        $_SESSION['message'] = "<div class='error'>⚠️ All fields are required except password.</div>";
+        $message = "<div class='alert alert-danger d-flex align-items-center' role='alert'><i class='bi bi-exclamation-triangle-fill me-2'></i><div>All fields are required except password.</div></div>";
+        $_SESSION['message'] = $message;
         header("Location: register.php");
         exit();
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION['message'] = "<div class='error'>⚠️ Invalid email format.</div>";
+        $message = "<div class='alert alert-danger d-flex align-items-center' role='alert'><i class='bi bi-exclamation-triangle-fill me-2'></i><div>Invalid email format.</div></div>";
+        $_SESSION['message'] = $message;
         header("Location: register.php");
         exit();
     } elseif (!empty($password) && (strlen($password) < 6 || $password !== $confirm_password)) {
-        $_SESSION['message'] = "<div class='error'>⚠️ Password must be at least 6 characters and match.</div>";
+        $message = "<div class='alert alert-danger d-flex align-items-center' role='alert'><i class='bi bi-exclamation-triangle-fill me-2'></i><div>Password must be at least 6 characters and match.</div></div>";
+        $_SESSION['message'] = $message;
         header("Location: register.php");
         exit();
     }
@@ -41,7 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $_SESSION['message'] = "<div class='error' style='background-color: red; color: white; padding: 10px; border-radius: 5px'>⚠️ Email already exists.</div>";
+        $message = "<div class='alert alert-danger d-flex align-items-center' role='alert'><i class='bi bi-exclamation-triangle-fill me-2'></i><div>Email already exists.</div></div>";
+        $_SESSION['message'] = $message;
         header("Location: register.php");
         exit();
     }
@@ -53,12 +57,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
     $stmt->bind_param("sssssi", $first_name, $last_name, $contact, $email, $hashed_password, $is_admin);
 
     if ($stmt->execute()) {
-        $_SESSION['message'] = "✅ Registered successfully!";
-        header("Location: login.php");
+        $message = "<div class='alert alert-success d-flex align-items-center' role='alert'><i class='bi bi-check-circle-fill me-2'></i><div>Registered successfully!</div></div>";
+        $_SESSION['message'] = $message;
+        header("Location: register.php");
         exit; // Always exit after a redirect
     }
     else {
-        $_SESSION['message'] = "<div class='error'>⚠️ Error adding user: " . $conn->error . "</div>";
+        $message = "<div class='alert alert-danger d-flex align-items-center' role='alert'><i class='bi bi-exclamation-triangle-fill me-2'></i><div>Error adding user: " . $conn->error . "</div></div>";
+        $_SESSION['message'] = $message;
         header("Location: register.php");
     }
     exit();
@@ -117,41 +123,64 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
 </div>
 
 <!-- Register Form -->
-<div class="row justify-content-center d-flex align-items-center vh-100">
-    <div class="col-md-4 bg-white p-4 rounded shadow-lg text-center" style="box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
-        <h2 class="mb-3 text-dark">Register</h2>
-        
+<div class="row justify-content-center align-items-center vh-100">
+    <div class="col-md-4 col-lg-4 bg-white p-5 rounded-4 shadow-lg text-center">
+        <h2 class="mb-4 text-black fw-bold">
+            <i class="bi bi-person-plus me-2"></i> Register
+        </h2>
+
         <?php echo $message; ?>
 
         <form action="register.php" method="POST">
-            <div class="mb-3" style="display: flex; gap: 10px;">
-                <input type="text" class="form-control border-0 border-bottom" name="first_name" required placeholder="First Name">
-                <input type="text" class="form-control border-0 border-bottom" name="last_name" required placeholder="Last Name">
+            <!-- First and Last Name -->
+            <div class="mb-3 d-flex gap-2 text-start">
+                <div class="w-100">
+                    <label class="form-label text-black">First Name</label>
+                    <input type="text" name="first_name" class="form-control rounded-3 shadow-sm" required placeholder="First Name">
+                </div>
+                <div class="w-100">
+                    <label class="form-label text-black">Last Name</label>
+                    <input type="text" name="last_name" class="form-control rounded-3 shadow-sm" required placeholder="Last Name">
+                </div>
             </div>
 
-            <div class="mb-3">
-                <input type="text" name="contact" class="form-control border-0 border-bottom" required placeholder="Contact Number">
+            <!-- Contact -->
+            <div class="mb-3 text-start">
+                <label class="form-label text-black">Contact Number</label>
+                <input type="text" name="contact" class="form-control rounded-3 shadow-sm" required placeholder="e.g. 09XXXXXXXXX" pattern="[0-9]{11}" title="Please enter a valid 11-digit contact number">
             </div>
 
-            <div class="mb-3">
-                <input type="email" name="email" class="form-control border-0 border-bottom" required placeholder="Email">
+            <!-- Email -->
+            <div class="mb-3 text-start">
+                <label class="form-label text-black">Email</label>
+                <input type="email" name="email" class="form-control rounded-3 shadow-sm" required placeholder="example@mail.com">
             </div>
 
-            <div class="mb-3">
-                <input type="password" name="password" class="form-control border-0 border-bottom" placeholder="Password">
+            <!-- Password -->
+            <div class="mb-3 text-start">
+                <label class="form-label text-black">Password</label>
+                <input type="password" name="password" class="form-control rounded-3 shadow-sm" required placeholder="Password">
             </div>
 
-            <div class="mb-3">
-                <input type="password" name="confirm_password" class="form-control border-0 border-bottom" placeholder="Retype Password">
+            <!-- Confirm Password -->
+            <div class="mb-4 text-start">
+                <label class="form-label text-black">Confirm Password</label>
+                <input type="password" name="confirm_password" class="form-control rounded-3 shadow-sm" required placeholder="Retype Password">
             </div>
 
-            <!-- Account Type (Hidden if not used in UI) -->
-            <input type="hidden" name="account_type" value="0"> 
+            <!-- Hidden account type -->
+            <input type="hidden" name="account_type" value="0">
 
-            <button type="submit" name="register" class="btn btn-dark w-100 fw-bold">Register</button>
+            <!-- Submit -->
+            <button type="submit" name="register" class="btn btn-dark w-100 fw-bold rounded-pill py-2">
+                <i class="bi bi-check2-circle me-1"></i> Register
+            </button>
         </form>
 
-        <p class="mt-4">Already have an account? <br><a href="login.php">Login</a></p>
+        <p class="mt-4 text-black">
+            Already have an account? <br>
+            <a href="login.php" class="fw-semibold text-decoration-none">Login</a>
+        </p>
     </div>
 </div>
 

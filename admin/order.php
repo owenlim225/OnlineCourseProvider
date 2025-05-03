@@ -128,57 +128,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
             <div class="col-md-10 offset-md-2">
                 <div class="container py-4">
 
-                    <!-- order list table -->
-                    <h1 class="text-center fw-bold my-5 text-primary">Orders List</h1>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-10">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-hover table-bordered shadow rounded">
-                                        <thead class="table-dark text-center">
-                                            <tr>
-                                                <th scope="col">Order_ID</th>
-                                                <th scope="col">User_ID</th>
-                                                <th scope="col">Full Name</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Contact</th>
-                                                <th scope="col">Country</th>
-                                                <th scope="col">MOP</th>
-                                                <th scope="col">Total amount</th>
-                                                <th scope="col">Order status</th>
-                                            </tr>
-                                        </thead>
+                <!-- Order List Table -->
+                <h1 class="text-center fw-bold my-5 text-primary">Orders List</h1>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+                    <?php
+                        $sql = "SELECT * FROM orders";
+                        $result = $conn->query($sql);
 
-                                        <tbody class="text-center">
-                                            <?php
-                                                // Fetch users
-                                                $sql = "SELECT * FROM orders";
-                                                $result = $conn->query($sql);
-
-                                                if ($result->num_rows > 0) {
-                                                    while ($row = $result->fetch_assoc()) {  
-                                                        echo "<tr>
-                                                            <td class='fw-bold'>{$row['order_id']}</td>
-                                                            <td class='fw-bold'>{$row['user_id']}</td>
-                                                            <td>{$row['full_name']}</td>
-                                                            <td>{$row['email']}</td>
-                                                            <td>{$row['mobile']}</td>
-                                                            <td>{$row['country']}</td>
-                                                            <td>{$row['payment_method']}</td>
-                                                            <td>₱" . number_format($row['total_amount'], 2) . "</td>
-                                                            <td>{$row['order_status']}</td>
-                                                        </tr>";
-                                                    }
-                                                } else {
-                                                    echo "<tr><td colspan='5' class='text-center text-muted'>No users found.</td></tr>";
-                                                }
-                                            ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                // Bootstrap badge classes for status
+                                $statusClass = match(strtolower($row['order_status'])) {
+                                    'pending' => 'bg-warning text-dark',
+                                    'completed' => 'bg-success',
+                                    'cancelled' => 'bg-danger',
+                                    default => 'bg-secondary'
+                                };
+                                
+                                echo "<div class='col'>
+                                    <div class='card border-0 shadow-lg h-100 rounded-4'>
+                                        <div class='card-body'>
+                                            <h5 class='card-title fw-bold mb-1'>Order #{$row['order_id']}</h5>
+                                            <p class='card-text'>User ID: {$row['user_id']}<br>
+                                            Full Name: {$row['full_name']}<br>
+                                            Email: {$row['email']}<br>
+                                            Contact: {$row['mobile']}<br>
+                                            Country: {$row['country']}<br>
+                                            MOP: {$row['payment_method']}<br>
+                                            Total Amount: ₱" . number_format($row['total_amount'], 2) . "</p>
+                                            <span class='badge {$statusClass} px-3 py-2 rounded-pill'>{$row['order_status']}</span>
+                                        </div>
+                                    </div>
+                                </div>";
+                            }
+                        } else {
+                            echo "<div class='col'><div class='card border-0 shadow-lg h-100 rounded-4'><div class='card-body'><p class='text-muted'>No orders found.</p></div></div></div>";
+                        }
+                    ?>
                 </div>
             </div>
         </div>

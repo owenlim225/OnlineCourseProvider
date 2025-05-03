@@ -38,11 +38,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
 
     // Validate required fields
     if (empty($first_name) || empty($last_name) || empty($contact) || empty($new_email)) {
-        $message = "<div class='error'>⚠️ All fields are required except password.</div>";
+        $message = '<div class="alert alert-danger d-flex align-items-center" role="alert"><i class="bi bi-exclamation-triangle-fill me-2"></i><div>All fields are required except password.</div></div>';
     } elseif (!filter_var($new_email, FILTER_VALIDATE_EMAIL)) {
-        $message = "<div class='error'>⚠️ Invalid email format.</div>";
+        $message = '<div class="alert alert-danger d-flex align-items-center" role="alert"><i class="bi bi-exclamation-triangle-fill me-2"></i><div>Invalid email format.</div></div>';
     } elseif (!empty($new_password) && (strlen($new_password) < 6 || $new_password !== $confirm_password)) {
-        $message = "<div class='error'>⚠️ Password must be at least 6 characters and match.</div>";
+        $message = '<div class="alert alert-danger d-flex align-items-center" role="alert"><i class="bi bi-exclamation-triangle-fill me-2"></i><div>Password must be at least 6 characters and match.</div></div>';
     }
 
     if (empty($message)) {
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
         $check_result = $stmt->get_result();
 
         if ($check_result->num_rows > 0) {
-            $message = "<div class='error'>⚠️ Email is already taken.</div>";
+            $message = '<div class="alert alert-danger d-flex align-items-center" role="alert"><i class="bi bi-exclamation-triangle-fill me-2"></i><div>Email is already taken.</div></div>';
         } else {
             // Prepare dynamic update query
             $updates = "first_name=?, last_name=?, contact=?, email=?, is_admin=?";
@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
             $stmt->bind_param($types, ...$params);
 
             if ($stmt->execute()) {
-                $message = "<div class='success'>✅ User updated successfully!</div>";
+                $message = '<div class="alert alert-success d-flex align-items-center" role="alert"><i class="bi bi-check-circle-fill me-2"></i><div>✅ User updated successfully!</div></div>';
                 // Refresh user data
                 $user['first_name'] = $first_name;
                 $user['last_name'] = $last_name;
@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
                 $user['email'] = $new_email;
                 $user['is_admin'] = $is_admin;
             } else {
-                $message = "<div class='error'>⚠️ Error updating user.</div>";
+                $message = '<div class="alert alert-danger d-flex align-items-center" role="alert"><i class="bi bi-exclamation-triangle-fill me-2"></i><div>Error updating user.</div></div>';
             }
         }
     }
@@ -162,45 +162,71 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
             <div class="col-md-10 offset-md-2">
                 <div class="container py-4">
                     <div class="row justify-content-center">
-                        <div class="col-md-4 bg-white p-4 rounded shadow-lg mt-4 text-center">
-                            <h2 class="mb-3 text-dark">Edit User</h2>
+                        <div class="col-md-6 col-lg-5 bg-white p-5 rounded-4 shadow-lg mt-5">
+                            <h2 class="mb-4 text-center text-black fw-bold">
+                                <i class="bi bi-pencil-square me-2"></i> Edit User
+                            </h2>
+
                             <?php echo $message; ?>
 
                             <form action="edit-user.php?user_id=<?php echo $user_id; ?>" method="POST">
-                                <div class="mb-3 d-flex gap-2">
-                                    <input type="text" class="form-control border-0 border-bottom" name="first_name" required value="<?php echo htmlspecialchars($user['first_name']); ?>">
-                                    <input type="text" class="form-control border-0 border-bottom" name="last_name" required value="<?php echo htmlspecialchars($user['last_name']); ?>">
+                                <!-- Full Name -->
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <label class="form-label text-black">First Name</label>
+                                        <input type="text" class="form-control rounded-3 shadow-sm" name="first_name" required value="<?php echo htmlspecialchars($user['first_name']); ?>">
+                                    </div>
+                                    <div class="col">
+                                        <label class="form-label text-black">Last Name</label>
+                                        <input type="text" class="form-control rounded-3 shadow-sm" name="last_name" required value="<?php echo htmlspecialchars($user['last_name']); ?>">
+                                    </div>
                                 </div>
 
+                                <!-- Contact -->
                                 <div class="mb-3">
-                                    <input type="text" name="contact" class="form-control border-0 border-bottom" required value="<?php echo htmlspecialchars($user['contact']); ?>">
+                                    <label class="form-label text-black">Contact Number</label>
+                                    <input type="text" name="contact" class="form-control rounded-3 shadow-sm" required value="<?php echo htmlspecialchars($user['contact']); ?>">
                                 </div>
 
+                                <!-- Email -->
                                 <div class="mb-3">
-                                    <input type="email" name="email" class="form-control border-0 border-bottom" required value="<?php echo htmlspecialchars($user['email']); ?>">
+                                    <label class="form-label text-black">Email Address</label>
+                                    <input type="email" name="email" class="form-control rounded-3 shadow-sm" required value="<?php echo htmlspecialchars($user['email']); ?>">
                                 </div>
 
+                                <!-- Password -->
                                 <div class="mb-3">
-                                    <input type="password" name="password" class="form-control border-0 border-bottom" placeholder="New Password">
+                                    <label class="form-label text-black">New Password</label>
+                                    <input type="password" name="password" class="form-control rounded-3 shadow-sm" placeholder="New Password">
                                 </div>
 
+                                <!-- Confirm Password -->
                                 <div class="mb-3">
-                                    <input type="password" name="confirm_password" class="form-control border-0 border-bottom" placeholder="Retype Password">
+                                    <label class="form-label text-black">Retype Password</label>
+                                    <input type="password" name="confirm_password" class="form-control rounded-3 shadow-sm" placeholder="Retype Password">
                                 </div>
 
-                                <div class="mb-3">
-                                    <label class="form-label text-dark">Account Type:</label>
-                                    <select name="is_admin" class="form-select border-0 border-bottom">
+                                <!-- Account Type -->
+                                <div class="mb-4">
+                                    <label class="form-label text-black">Account Type</label>
+                                    <select name="is_admin" class="form-select rounded-3 shadow-sm">
                                         <option value="1" <?php echo ($user['is_admin'] == 1) ? 'selected' : ''; ?>>Admin</option>
                                         <option value="0" <?php echo ($user['is_admin'] == 0) ? 'selected' : ''; ?>>User</option>
                                     </select>
                                 </div>
 
-                                <button type="submit" name="update_user" class="btn btn-dark w-100 fw-bold">Update User</button>
+                                <!-- Submit -->
+                                <button type="submit" name="update_user" class="btn btn-dark w-100 fw-bold rounded-pill py-2">
+                                    <i class="bi bi-save2-fill me-1"></i> Update User
+                                </button>
                             </form>
 
-                            <p class="mt-5"><a href="../../admin/users.php">Back to Users</a></p>
+                            <p class="mt-4 text-center">
+                                <a href="../../admin/users.php" class="text-decoration-none fw-semibold text-black">← Back to Users</a>
+                            </p>
                         </div>
+                    </div>
+
                     </div>
                 </div>
 </main>

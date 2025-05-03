@@ -8,8 +8,11 @@ if (!isset($_SESSION["is_admin"]) || $_SESSION["is_admin"] != 1) {
     exit();
 }
 
-
 $message = "";
+if (isset($_SESSION["message"])) {
+    $message = $_SESSION["message"];
+    unset($_SESSION["message"]);
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
     $first_name = trim($_POST["first_name"]);
@@ -22,11 +25,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
 
     // Validate fields
     if (empty($first_name) || empty($last_name) || empty($contact) || empty($email)) {
-        $message = "<div class='error'>⚠️ All fields are required except password.</div>";
+        $message = "<div class='alert alert-danger'>⚠️ All fields are required except password.</div>";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $message = "<div class='error'>⚠️ Invalid email format.</div>";
+        $message = "<div class='alert alert-danger'>⚠️ Invalid email format.</div>";
     } elseif (!empty($password) && (strlen($password) < 6 || $password !== $confirm_password)) {
-        $message = "<div class='error'>⚠️ Password must be at least 6 characters and match.</div>";
+        $message = "<div class='alert alert-danger'>⚠️ Password must be at least 6 characters and match.</div>";
     } else {
         // Hash password if provided
         $hashed_password = !empty($password) ? password_hash($password, PASSWORD_DEFAULT) : null;
@@ -39,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
-            $message = "<div class='error'>⚠️ Email already exists.</div>";
+            $message = "<div class='alert alert-danger'>⚠️ Email already exists.</div>";
         } else {
             // Insert user into database
             $sql = "INSERT INTO user (first_name, last_name, contact, email, password, is_admin) 
@@ -48,13 +51,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
             $stmt->bind_param("sssssi", $first_name, $last_name, $contact, $email, $hashed_password, $is_admin);
 
             if ($stmt->execute()) {
-                $message = "<div class='success'>✅ User added successfully!</div>";
+                $message = "<div class='alert alert-success d-flex align-items-center' role='alert'><i class='fa-solid me-2'></i><div>✅ User added successfully!</div></div>";
                 
             } else {
-                $message = "<div class='error'>⚠️ Error adding user: " . $conn->error . "</div>";
+                $message = "<div class='alert alert-danger'>⚠️ Error adding user: " . $conn->error . "</div>";
             }
         }
     }
+    $_SESSION["message"] = $message;
     header("Location: users.php");
     exit();
 }
@@ -130,12 +134,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
             <div class="container py-4">
 
                 <!-- add user -->
-                <div class="row justify-content-center">
+                <div class="row justify-content-center d-none" id="addUserForm">
                     <div class="col-md-6 col-lg-5 bg-white p-5 rounded-4 shadow-lg mt-5">
                         <h2 class="mb-4 text-center text-black fw-bold">
                             <i class="bi bi-person-plus-fill me-2"></i> Add New User
                         </h2>
-
+                        
                         <?php echo $message; ?>
 
                         <form action="users.php" method="POST">
@@ -164,15 +168,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
                             </div>
 
                             <!-- Password -->
-                            <div class="row mb-3">
-                                <div class="col-md-6 mb-3 mb-md-0">
-                                    <label class="form-label text-black">Password</label>
-                                    <input type="password" name="password" class="form-control rounded-3 shadow-sm" required placeholder="Enter password">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label text-black">Retype Password</label>
-                                    <input type="password" name="confirm_password" class="form-control rounded-3 shadow-sm" required placeholder="Confirm password">
-                                </div>
+                            <div class="mb-3">
+                                <label class="form-label text-black">Password</label>
+                                <input type="password" name="password" class="form-control rounded-3 shadow-sm" required placeholder="Enter password">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label text-black">Retype Password</label>
+                                <input type="password" name="confirm_password" class="form-control rounded-3 shadow-sm" required placeholder="Confirm password">
                             </div>
 
                             <!-- Account Type -->
@@ -192,6 +195,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
                         </form>
                     </div>
                 </div>
+
+                <div class="d-grid gap-2 col-4 mx-auto">
+                    <button type="button" class="btn btn-primary btn-dark fw-bold rounded-pill py-2 mt-5" id="showAddUserForm">
+                        <i class="bi bi-plus-circle me-1"></i> Add New User
+                    </button>
+                </div>
+
+                <?php if (!empty($message)): ?>
+                    <script>
+                        // Force the form to stay open if there's a message
+                        document.addEventListener('DOMContentLoaded', () => {
+                            const addUserForm = document.getElementById('addUserForm');
+                            const showAddUserForm = document.getElementById('showAddUserForm');
+                            
+                            if (addUserForm) {
+                                addUserForm.classList.remove('d-none'); // Show form
+                                showAddUserForm.innerHTML = '<i class="bi bi-x-circle me-1"></i> Cancel';
+                            }
+                        });
+                    </script>
+                <?php endif; ?>
+
+                <script>
+                    const addUserForm = document.getElementById('addUserForm');
+                    const showAddUserForm = document.getElementById('showAddUserForm');
+
+                    showAddUserForm.addEventListener('click', () => {
+                        addUserForm.classList.toggle('d-none');
+                        if (addUserForm.classList.contains('d-none')) {
+                            showAddUserForm.innerHTML = '<i class="bi bi-plus-circle me-1"></i> Add New User';
+                        } else {
+                            showAddUserForm.innerHTML = '<i class="bi bi-x-circle me-1"></i> Cancel';
+                        }
+                    });
+                </script>
 
 
 
