@@ -80,124 +80,161 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
 
 
 <body>
+
+    <!-- Top Navbar -->
+    <nav class="navbar sticky-top navbar-dark bg-dark d-md-none">
+        <div class="container-fluid">
+            <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar" aria-controls="mobileSidebar">
+            <i class="fas fa-bars"></i>
+            </button>
+            <span class="navbar-brand mx-auto">Users</span>
+        </div>
+    </nav>
+
+    <!-- Navbar -->
+    <!-- Desktop Sidebar (hidden on small screens) -->
+    <aside class="d-none d-md-block col-md-2 bg-dark text-white vh-100 position-fixed p-3">
+        <div class="text-center mb-4">
+            <img src="../img/logo.png" alt="logo" class="img-fluid" style="max-width: 80px;">
+        </div>
+        <div class="nav flex-column text-center gap-3">
+            <a href="../admin/dashboard.php" class="text-light text-decoration-none">Dashboard</a>
+            <a href="../admin/users.php" class="text-warning fw-bold fs-5 text-decoration-none">Users</a>
+            <a href="../admin/courses.php" class="text-light text-decoration-none">Courses</a>
+            <a href="../admin/order.php" class="text-light text-decoration-none">Orders</a>
+            <a class="text-danger text-decoration-none fw-bold mt-auto" href="../func/logout.php">Logout</a>
+        </div>
+    </aside>
+
+    <!-- Offcanvas Sidebar for Mobile -->
+    <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="mobileSidebarLabel">Menu</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column text-center gap-3">
+            <img src="../img/logo.png" alt="logo" class="img-fluid mb-3" style="max-width: 80px; margin: 0 auto;">
+            <a href="../admin/dashboard.php" class="text-light text-decoration-none">Dashboard</a>
+            <a href="../admin/users.php" class="text-warning fw-bold fs-5 text-decoration-none">Users</a>
+            <a href="../admin/courses.php" class="text-light text-decoration-none">Courses</a>
+            <a href="../admin/order.php" class="text-light text-decoration-none">Orders</a>
+            <a class="text-danger text-decoration-none fw-bold mt-auto" href="../func/logout.php">Logout</a>
+        </div>
+    </div>
+
 <main class="p-0">
     <div class="container-fluid">
-        <div class="row">
-            <!-- Navbar -->
-            <aside class="col-md-2 d-flex flex-column justify-content-between align-items-center bg-dark text-light text-center py-4 vh-100 position-fixed">
-                <div class="w-100 d-flex flex-column align-items-center gap-3">
-                    <img src="../img/logo.png" alt="logo" class="img-fluid" style="max-width: 80px;">
-                    <div class="d-flex flex-column gap-3 w-100">
-                        <a href="../admin/dashboard.php" class="text-light text-decoration-none">Dashboard</a>
-                        <a href="../admin/users.php" class="text-warning fw-bold fs-4 text-decoration-none">Users</a>
-                        <a href="../admin/courses.php" class="text-light text-decoration-none">Courses</a>
-                        <a href="../admin/order.php" class="text-light text-decoration-none">Orders</a>
+        <div class="row">            
+        <!-- Main Content -->
+        <div class="col-md-10 offset-md-2">
+            <div class="container py-4">
+
+                <!-- add user -->
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-5 bg-white p-5 rounded-4 shadow-lg mt-5">
+                        <h2 class="mb-4 text-center text-black fw-bold">
+                            <i class="bi bi-person-plus-fill me-2"></i> Add New User
+                        </h2>
+
+                        <?php echo $message; ?>
+
+                        <form action="users.php" method="POST">
+                            <!-- Full Name -->
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label class="form-label text-black">First Name</label>
+                                    <input type="text" class="form-control rounded-3 shadow-sm" name="first_name" required placeholder="e.g., John">
+                                </div>
+                                <div class="col">
+                                    <label class="form-label text-black">Last Name</label>
+                                    <input type="text" class="form-control rounded-3 shadow-sm" name="last_name" required placeholder="e.g., Doe">
+                                </div>
+                            </div>
+
+                            <!-- Contact -->
+                            <div class="mb-3">
+                                <label class="form-label text-black">Contact Number</label>
+                                <input type="text" name="contact" class="form-control rounded-3 shadow-sm" required placeholder="e.g., 09123456789">
+                            </div>
+
+                            <!-- Email -->
+                            <div class="mb-3">
+                                <label class="form-label text-black">Email Address</label>
+                                <input type="email" name="email" class="form-control rounded-3 shadow-sm" required placeholder="example@mail.com">
+                            </div>
+
+                            <!-- Password -->
+                            <div class="row mb-3">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <label class="form-label text-black">Password</label>
+                                    <input type="password" name="password" class="form-control rounded-3 shadow-sm" required placeholder="Enter password">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-black">Retype Password</label>
+                                    <input type="password" name="confirm_password" class="form-control rounded-3 shadow-sm" required placeholder="Confirm password">
+                                </div>
+                            </div>
+
+                            <!-- Account Type -->
+                            <div class="mb-4">
+                                <label class="form-label text-black">Account Type</label>
+                                <select name="account_type" class="form-select rounded-3 shadow-sm" required>
+                                    <option value="" disabled selected>Select account type</option>
+                                    <option value="1">Admin</option>
+                                    <option value="2">User</option>
+                                </select>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" name="add_user" class="btn btn-dark w-100 fw-bold rounded-pill py-2">
+                                <i class="bi bi-plus-circle me-1"></i> Add User
+                            </button>
+                        </form>
                     </div>
                 </div>
-                <a class="text-danger text-decoration-none fw-bold" href="../func/logout.php">Logout</a>
-            </aside>
-
-    <!-- Main Content -->
-    <div class="col-md-10 offset-md-2">
-        <div class="container py-4">
-
-            <!-- add user -->
-            <div class="row justify-content-center">
-                <div class="col-md-4 bg-white p-4 rounded shadow-lg mt-4 text-center" style="box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
-                    <h2 class="mb-3 text-dark">Add New User</h2>
-                    
-                    <?php echo $message; ?>
-
-                    <form action="users.php" method="POST">
-                        <!-- name -->
-                        <div class="mb-3" style="display: flex; gap: 10px;">
-                            <input type="text" class="form-control border-0 border-bottom" name="first_name" required placeholder="First Name" style="flex: 1;">
-                            <input type="text" class="form-control border-0 border-bottom" name="last_name" required placeholder="Last Name" style="flex: 1;">
-                        </div>
-
-                        <!-- contact -->
-                        <div class="mb-3">
-                            <input type="text" name="contact" class="form-control border-0 border-bottom" required placeholder="Contact Number">
-                        </div>
-
-                        <!-- email -->
-                        <div class="mb-3">
-                            <input type="email" name="email" class="form-control border-0 border-bottom" placeholder="Email" required >
-                        </div>
-
-                        <!-- password -->
-                        <div class="mb-3">
-                            <input type="password" name="password" class="form-control border-0 border-bottom" placeholder="Password" required>
-                        </div>
-
-                        <!-- confirm password -->
-                        <div class="mb-3">
-                            <input type="password" name="confirm_password" class="form-control border-0 border-bottom" placeholder="Retype Password" required>
-                        </div>
-
-                        <!-- account type -->
-                        <div class="mb-3">
-                            <label class="form-label text-dark">Account Type:</label>
-                            <select name="account_type" class="form-select border-0 border-bottom" required>
-                                <option value="1">Admin</option>
-                                <option value="2">User</option>
-                            </select>
-                        </div>
-                        <button type="submit" name="add_user" class="btn btn-dark w-100 fw-bold">➕ Add User</button>
-                    </form>
-                </div>
-            </div>
 
 
 
 
-            <!-- user list table -->
-            <h1 class="text-center fw-bold my-5 text-primary">Users List</h1>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-10">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover table-bordered shadow rounded">
-                                <thead class="table-dark text-center">
-                                    <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">First Name</th>
-                                        <th scope="col">Last Name</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Account Type</th>
-                                        <th scope="col">Actions</th>
-                                    </tr>
-                                </thead>
+                <!-- user list grid -->
+                <h1 class="text-center fw-bold my-5 text-primary">Users List</h1>
+                <div class="container">
+                    <div class="row">
+                        <?php
+                            // Fetch users
+                            $sql = "SELECT * FROM user";
+                            $result = $conn->query($sql);
 
-                                <tbody class="text-center">
-                                    <?php
-                                        // Fetch users
-                                        $sql = "SELECT * FROM user";
-                                        $result = $conn->query($sql);
-
-                                        if ($result->num_rows > 0) {
-                                            while ($row = $result->fetch_assoc()) {  
-                                                echo "<tr>
-                                                    <td class='fw-bold'>{$row['user_id']}</td>
-                                                    <td>{$row['first_name']}</td>
-                                                    <td>{$row['last_name']}</td>
-                                                    <td>{$row['email']}</td>
-                                                    <td>" . ($row['is_admin'] == 1 ? 'Admin' : 'User') . "</td>
-                                                    <td>
-                                                        <a href='../func/admin/edit-user.php?user_id={$row['user_id']}' class='btn btn-sm btn-outline-success'>✏️ Edit</a>
-                                                        <a href='../func/admin/delete-user.php?user_id={$row['user_id']}' class='btn btn-sm btn-outline-danger' 
-                                                            onclick='return confirm('Are you sure you want to delete this user?');'>🗑 Delete
-                                                        </a>
-                                                    </td>
-                                                </tr>";
-                                            }
-                                        } else {
-                                            echo "<tr><td colspan='5' class='text-center text-muted'>No users found.</td></tr>";
-                                        }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    $isAdmin = $row['is_admin'] == 1;
+                                    echo "
+                                    <div class='col-12 col-sm-6 col-md-4 col-lg-3 mb-4'>
+                                        <div class='card border-0 shadow-lg h-100 rounded-4 position-relative'>
+                                            <div class='card-body d-flex flex-column align-items-center text-center p-4'>
+                                                <div class='bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mb-3' style='width: 70px; height: 70px; font-size: 28px; font-weight: bold;'>
+                                                    " . strtoupper($row['first_name'][0]) . "
+                                                </div>
+                                                <h5 class='card-title fw-bold mb-1'>{$row['first_name']} {$row['last_name']}</h5>
+                                                <p class='text-muted mb-2 small'><i class='bi bi-envelope'></i> {$row['email']}</p>
+                                                <p class='text-muted mb-2 small'><i class='bi bi-envelope'></i> {$row['contact']}</p>
+                                                <span class='badge " . ($isAdmin ? "bg-gradient bg-success" : "bg-gradient bg-secondary") . " px-3 py-2 mb-3'>" . ($isAdmin ? 'Admin' : 'User') . "</span>
+                                                <div class='d-flex justify-content-center gap-2 mt-auto'>
+                                                    <a href='../func/admin/edit-user.php?user_id={$row['user_id']}' class='btn btn-sm btn-outline-success'>
+                                                        ✏️ Edit
+                                                    </a>
+                                                    <a href='../func/admin/delete-user.php?user_id={$row['user_id']}' class='btn btn-sm btn-outline-danger' onclick='return confirm(\"Are you sure you want to delete this user?\")'>
+                                                        🗑 Delete
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>";
+                                }
+                            } else {
+                                echo "<p class='text-center text-muted'>No users found.</p>";
+                            }
+                        ?>
                     </div>
                 </div>
             </div>

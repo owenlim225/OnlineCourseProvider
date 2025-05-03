@@ -78,96 +78,124 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_course"])) {
 
 
 <body>
+    <!-- Top Navbar -->
+    <nav class="navbar sticky-top navbar-dark bg-dark d-md-none">
+        <div class="container-fluid">
+            <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar" aria-controls="mobileSidebar">
+            <i class="fas fa-bars"></i>
+            </button>
+            <span class="navbar-brand mx-auto">Courses</span>
+        </div>
+    </nav>
+
+    <!-- Navbar -->
+    <!-- Desktop Sidebar (hidden on small screens) -->
+    <aside class="d-none d-md-block col-md-2 bg-dark text-white vh-100 position-fixed p-3">
+        <div class="text-center mb-4">
+            <img src="../img/logo.png" alt="logo" class="img-fluid" style="max-width: 80px;">
+        </div>
+        <div class="nav flex-column text-center gap-3">
+            <a href="../admin/dashboard.php" class="text-light text-decoration-none">Dashboard</a>
+            <a href="../admin/users.php" class="text-light text-decoration-none">Users</a>
+            <a href="../admin/courses.php" class="text-warning fw-bold fs-5 text-decoration-none">Courses</a>
+            <a href="../admin/order.php" class="text-light text-decoration-none">Orders</a>
+            <a class="text-danger text-decoration-none fw-bold mt-auto" href="../func/logout.php">Logout</a>
+        </div>
+    </aside>
+
+    <!-- Offcanvas Sidebar for Mobile -->
+    <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="mobileSidebarLabel">Menu</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column text-center gap-3">
+            <img src="../img/logo.png" alt="logo" class="img-fluid mb-3" style="max-width: 80px; margin: 0 auto;">
+            <a href="../admin/dashboard.php" class="text-light text-decoration-none">Dashboard</a>
+            <a href="../admin/users.php" class="text-light text-decoration-none">Users</a>
+            <a href="../admin/courses.php" class="text-warning fw-bold fs-5 text-decoration-none">Courses</a>
+            <a href="../admin/order.php" class="text-light text-decoration-none">Orders</a>
+            <a class="text-danger text-decoration-none fw-bold mt-auto" href="../func/logout.php">Logout</a>
+        </div>
+    </div>
+    
 <main class="p-0">
     <div class="container-fluid">
         <div class="row">
-            <!-- Navbar -->
-            <aside class="col-md-2 d-flex flex-column justify-content-between align-items-center bg-dark text-light text-center py-4 vh-100 position-fixed">
-                <div class="w-100 d-flex flex-column align-items-center gap-3">
-                    <img src="../img/logo.png" alt="logo" class="img-fluid" style="max-width: 80px;">
-                    <div class="d-flex flex-column gap-3 w-100">
-                        <a href="../admin/dashboard.php" class="text-light text-decoration-none">Dashboard</a>
-                        <a href="../admin/users.php" class="text-light text-decoration-none">Users</a>
-                        <a href="../admin/courses.php" class="text-warning fw-bold fs-4 text-decoration-none">Courses</a>
-                        <a href="../admin/order.php" class="text-light text-decoration-none">Orders</a>
+            <!-- Main Content -->
+            <div class="col-md-10 offset-md-2">
+                <div class="container py-4">
+
+                    <!-- Add Course -->
+                    <div class="row justify-content-center">
+                        <div class="col-md-4 bg-white p-4 rounded shadow-lg mt-4 text-center" 
+                            style="box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
+                            <h2 class="mb-3 text-dark">Add New Course</h2>
+                            
+                            <?php echo $message; ?>
+
+                            <form action="courses.php" method="POST" enctype="multipart/form-data">
+                                <div class="mb-3">
+                                    <input type="text" name="course_title" class="form-control border-0 border-bottom" required placeholder="Course Title">
+                                </div>
+                                <div class="mb-3">
+                                    <textarea name="description" class="form-control border-0 border-bottom" required placeholder="Description"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" name="instructor" class="form-control border-0 border-bottom" required placeholder="Instructor">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="file" name="image" class="form-control border-0 border-bottom" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="number" name="price" step="0.01" class="form-control border-0 border-bottom" required placeholder="Price">
+                                </div>
+                                <button type="submit" name="add_course" class="btn btn-dark w-100 fw-bold">➕ Add Course</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-                <a class="text-danger text-decoration-none fw-bold" href="../func/logout.php">Logout</a>
-            </aside>
 
-    <!-- Main Content -->
-    <div class="col-md-10 offset-md-2">
-        <div class="container py-4">
+                    <!-- Course List -->
+                    <h1 class="text-center fw-bold my-5 text-primary">Course List</h1>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-10">
+                                <div class="row">
+                                    <?php
+                                        // Fetch courses
+                                        $sql = "SELECT * FROM courses";
+                                        $result = $conn->query($sql);
 
-            <!-- Add Course -->
-            <div class="row justify-content-center">
-                <div class="col-md-4 bg-white p-4 rounded shadow-lg mt-4 text-center" 
-                    style="box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
-                    <h2 class="mb-3 text-dark">Add New Course</h2>
-                    
-                    <?php echo $message; ?>
-
-                    <form action="courses.php" method="POST" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <input type="text" name="course_title" class="form-control border-0 border-bottom" required placeholder="Course Title">
-                        </div>
-                        <div class="mb-3">
-                            <textarea name="description" class="form-control border-0 border-bottom" required placeholder="Description"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" name="instructor" class="form-control border-0 border-bottom" required placeholder="Instructor">
-                        </div>
-                        <div class="mb-3">
-                            <input type="file" name="image" class="form-control border-0 border-bottom" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="number" name="price" step="0.01" class="form-control border-0 border-bottom" required placeholder="Price">
-                        </div>
-                        <button type="submit" name="add_course" class="btn btn-dark w-100 fw-bold">➕ Add Course</button>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Course List -->
-            <h1 class="text-center fw-bold my-5 text-primary">Course List</h1>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-10">
-                        <div class="row">
-                            <?php
-                                // Fetch courses
-                                $sql = "SELECT * FROM courses";
-                                $result = $conn->query($sql);
-
-                                if ($result->num_rows > 0) {
-                                    while ($row = $result->fetch_assoc()) {  
-                                        echo "<div class='col-md-4 mb-4'>
-                                                <div class='card shadow-lg' style='width: 100%; height: 100%;'>
-                                                    <img src='../img/courses/{$row['image']}' alt='{$row['course_title']}' class='card-img-top' style='height: 200px; object-fit: cover;'>
-                                                    <div class='card-body text-center'>
-                                                        <h5 class='card-title'>{$row['course_title']}</h5>
-                                                        <p class='card-text text-muted fw-bold' style='font-size: 12px;'>{$row['instructor']}</p>
-                                                        <p class='card-text text-muted' style='font-size: 16px;'>{$row['description']}</p>
-                                                        <p class='card-text fw-bold'>₱" . number_format($row['price'], 2) . "</p>
-                                                        <a href='../func/admin/edit-course.php?course_id={$row['course_id']}' class='btn btn-sm btn-outline-success'>✏️ Edit</a>
-                                                        <a href='../func/admin/delete-course.php?course_id={$row['course_id']}' class='btn btn-sm btn-outline-danger' 
-                                                            onclick=\"return confirm('Are you sure you want to delete this course?');\">🗑 Delete
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>";
-                                    }
-                                } else {
-                                    echo "<p class='text-center text-muted'>No courses found.</p>";
-                                }
-                            ?>
+                                        if ($result->num_rows > 0) {
+                                            while ($row = $result->fetch_assoc()) {  
+                                                echo "<div class='col-md-4 mb-4'>
+                                                        <div class='card shadow-lg' style='width: 100%; height: 100%;'>
+                                                            <img src='../img/courses/{$row['image']}' alt='{$row['course_title']}' class='card-img-top' style='height: 200px; object-fit: cover;'>
+                                                            <div class='card-body text-center'>
+                                                                <h5 class='card-title'>{$row['course_title']}</h5>
+                                                                <p class='card-text text-muted fw-bold' style='font-size: 12px;'>{$row['instructor']}</p>
+                                                                <p class='card-text text-muted' style='font-size: 16px;'>{$row['description']}</p>
+                                                                <p class='card-text fw-bold'>₱" . number_format($row['price'], 2) . "</p>
+                                                                <a href='../func/admin/edit-course.php?course_id={$row['course_id']}' class='btn btn-sm btn-outline-success'>✏️ Edit</a>
+                                                                <a href='../func/admin/delete-course.php?course_id={$row['course_id']}' class='btn btn-sm btn-outline-danger' 
+                                                                    onclick=\"return confirm('Are you sure you want to delete this course?');\">🗑 Delete
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>";
+                                            }
+                                        } else {
+                                            echo "<p class='text-center text-muted'>No courses found.</p>";
+                                        }
+                                    ?>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </main>
 
 <!-- Course Card Template -->

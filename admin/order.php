@@ -80,74 +80,103 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
 
 
 <body>
+    <!-- Top Navbar -->
+    <nav class="navbar sticky-top navbar-dark bg-dark d-md-none">
+        <div class="container-fluid">
+            <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar" aria-controls="mobileSidebar">
+            <i class="fas fa-bars"></i>
+            </button>
+            <span class="navbar-brand mx-auto">Orders</span>
+        </div>
+    </nav>
+
+    <!-- Navbar -->
+    <!-- Desktop Sidebar (hidden on small screens) -->
+    <aside class="d-none d-md-block col-md-2 bg-dark text-white vh-100 position-fixed p-3">
+        <div class="text-center mb-4">
+            <img src="../img/logo.png" alt="logo" class="img-fluid" style="max-width: 80px;">
+        </div>
+        <div class="nav flex-column text-center gap-3">
+            <a href="../admin/dashboard.php" class="text-light text-decoration-none">Dashboard</a>
+            <a href="../admin/users.php" class="text-light text-decoration-none">Users</a>
+            <a href="../admin/courses.php" class="text-light text-decoration-none">Courses</a>
+            <a href="../admin/order.php" class="text-warning fw-bold fs-5 text-decoration-none">Orders</a>
+            <a class="text-danger text-decoration-none fw-bold mt-auto" href="../func/logout.php">Logout</a>
+        </div>
+    </aside>
+
+    <!-- Offcanvas Sidebar for Mobile -->
+    <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="mobileSidebarLabel">Menu</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column text-center gap-3">
+            <img src="../img/logo.png" alt="logo" class="img-fluid mb-3" style="max-width: 80px; margin: 0 auto;">
+            <a href="../admin/dashboard.php" class="text-light text-decoration-none">Dashboard</a>
+            <a href="../admin/users.php" class="text-light text-decoration-none">Users</a>
+            <a href="../admin/courses.php" class="text-light text-decoration-none">Courses</a>
+            <a href="../admin/order.php" class="text-warning fw-bold fs-5 text-decoration-none">Orders</a>
+            <a class="text-danger text-decoration-none fw-bold mt-auto" href="../func/logout.php">Logout</a>
+        </div>
+    </div>
+
 <main class="p-0">
     <div class="container-fluid">
         <div class="row">
-            <!-- Navbar -->
-            <aside class="col-md-2 d-flex flex-column justify-content-between align-items-center bg-dark text-light text-center py-4 vh-100 position-fixed">
-                <div class="w-100 d-flex flex-column align-items-center gap-3">
-                    <img src="../img/logo.png" alt="logo" class="img-fluid" style="max-width: 80px;">
-                    <div class="d-flex flex-column gap-3 w-100">
-                        <a href="../admin/dashboard.php" class="text-light text-decoration-none">Dashboard</a>
-                        <a href="../admin/users.php" class="text-light text-decoration-none">Users</a>
-                        <a href="../admin/courses.php" class="text-light text-decoration-none">Courses</a>
-                        <a href="../admin/order.php" class="text-warning fw-bold fs-4 text-decoration-none">Orders</a>
-                    </div>
-                </div>
-                <a class="text-danger text-decoration-none fw-bold" href="../func/logout.php">Logout</a>
-            </aside>
+            <!-- Main Content -->
+            <div class="col-md-10 offset-md-2">
+                <div class="container py-4">
 
-    <!-- Main Content -->
-    <div class="col-md-10 offset-md-2">
-        <div class="container py-4">
+                    <!-- order list table -->
+                    <h1 class="text-center fw-bold my-5 text-primary">Orders List</h1>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-10">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover table-bordered shadow rounded">
+                                        <thead class="table-dark text-center">
+                                            <tr>
+                                                <th scope="col">Order_ID</th>
+                                                <th scope="col">User_ID</th>
+                                                <th scope="col">Full Name</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Contact</th>
+                                                <th scope="col">Country</th>
+                                                <th scope="col">MOP</th>
+                                                <th scope="col">Total amount</th>
+                                                <th scope="col">Order status</th>
+                                            </tr>
+                                        </thead>
 
-            <!-- order list table -->
-            <h1 class="text-center fw-bold my-5 text-primary">Users List</h1>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-10">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover table-bordered shadow rounded">
-                                <thead class="table-dark text-center">
-                                    <tr>
-                                        <th scope="col">Order_ID</th>
-                                        <th scope="col">User_ID</th>
-                                        <th scope="col">Full Name</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Contact</th>
-                                        <th scope="col">Country</th>
-                                        <th scope="col">MOP</th>
-                                        <th scope="col">Total amount</th>
-                                        <th scope="col">Order status</th>
-                                    </tr>
-                                </thead>
+                                        <tbody class="text-center">
+                                            <?php
+                                                // Fetch users
+                                                $sql = "SELECT * FROM orders";
+                                                $result = $conn->query($sql);
 
-                                <tbody class="text-center">
-                                    <?php
-                                        // Fetch users
-                                        $sql = "SELECT * FROM orders";
-                                        $result = $conn->query($sql);
-
-                                        if ($result->num_rows > 0) {
-                                            while ($row = $result->fetch_assoc()) {  
-                                                echo "<tr>
-                                                    <td class='fw-bold'>{$row['order_id']}</td>
-                                                    <td class='fw-bold'>{$row['user_id']}</td>
-                                                    <td>{$row['full_name']}</td>
-                                                    <td>{$row['email']}</td>
-                                                    <td>{$row['mobile']}</td>
-                                                    <td>{$row['country']}</td>
-                                                    <td>{$row['payment_method']}</td>
-                                                    <td>₱" . number_format($row['total_amount'], 2) . "</td>
-                                                    <td>{$row['order_status']}</td>
-                                                </tr>";
-                                            }
-                                        } else {
-                                            echo "<tr><td colspan='5' class='text-center text-muted'>No users found.</td></tr>";
-                                        }
-                                    ?>
-                                </tbody>
-                            </table>
+                                                if ($result->num_rows > 0) {
+                                                    while ($row = $result->fetch_assoc()) {  
+                                                        echo "<tr>
+                                                            <td class='fw-bold'>{$row['order_id']}</td>
+                                                            <td class='fw-bold'>{$row['user_id']}</td>
+                                                            <td>{$row['full_name']}</td>
+                                                            <td>{$row['email']}</td>
+                                                            <td>{$row['mobile']}</td>
+                                                            <td>{$row['country']}</td>
+                                                            <td>{$row['payment_method']}</td>
+                                                            <td>₱" . number_format($row['total_amount'], 2) . "</td>
+                                                            <td>{$row['order_status']}</td>
+                                                        </tr>";
+                                                    }
+                                                } else {
+                                                    echo "<tr><td colspan='5' class='text-center text-muted'>No users found.</td></tr>";
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
