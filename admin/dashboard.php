@@ -125,40 +125,38 @@ $total_price = $purchase_result->fetch_assoc()['total_price'];
                 <h1 class="text-center fw-bold my-5 text-primary">Users List</h1>
                 <!-- Users Table -->
                 <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-10">
-                             <?php
-                                // Fetch users
-                                $sql = "SELECT * FROM user";
-                                $result = $conn->query($sql);
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
+                        <?php
+                            // Fetch users
+                            $sql = "SELECT * FROM user";
+                            $result = $conn->query($sql);
 
-                                if ($result->num_rows > 0) {
-                                    while ($row = $result->fetch_assoc()) {
-                                        $isAdmin = $row['is_admin'] == 1;
-                                        if ($isAdmin) {
-                                            continue;
-                                        }
-
-                                        echo "
-                                        <div class='col-12 col-sm-6 col-md-4 col-lg-3 mb-4'>
-                                            <div class='card border-0 shadow-lg h-100 rounded-4 position-relative'>
-                                                <div class='card-body d-flex flex-column align-items-center text-center p-4'>
-                                                    <div class='bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mb-3' style='width: 70px; height: 70px; font-size: 28px; font-weight: bold;'>
-                                                        " . strtoupper($row['first_name'][0]) . "
-                                                    </div>
-                                                    <h5 class='card-title fw-bold mb-1'>{$row['first_name']} {$row['last_name']}</h5>
-                                                    <p class='text-muted mb-1 small'><i class='bi bi-envelope'></i> {$row['email']}</p>
-                                                    <p class='text-muted mb-2 small'><i class='bi bi-envelope'></i> {$row['contact']}</p>
-                                                    <span class='badge " . ($isAdmin ? "bg-gradient bg-success" : "bg-gradient bg-secondary") . " px-3 py-2 mb-3'>" . ($isAdmin ? 'Admin' : 'User') . "</span>
-                                                </div>
-                                            </div>
-                                        </div>";
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    $isAdmin = $row['is_admin'] == 1;
+                                    if ($isAdmin) {
+                                        continue;
                                     }
-                                } else {
-                                    echo "<p class='text-center text-muted'>No users found.</p>";
+
+                                    echo "
+                                    <div>
+                                        <div class='card border-0 shadow-lg h-100 rounded-4 position-relative'>
+                                            <div class='card-body d-flex flex-column align-items-center text-center p-4'>
+                                                <div class='bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mb-3' style='width: 70px; height: 70px; font-size: 28px; font-weight: bold;'>
+                                                    " . strtoupper($row['first_name'][0]) . "
+                                                </div>
+                                                <h5 class='card-title fw-bold mb-1'>{$row['first_name']} {$row['last_name']}</h5>
+                                                <p class='text-muted mb-1 small'><i class='bi bi-envelope'></i> {$row['email']}</p>
+                                                <p class='text-muted mb-2 small'><i class='bi bi-envelope'></i> {$row['contact']}</p>
+                                                <span class='badge " . ($isAdmin ? "bg-gradient bg-success" : "bg-gradient bg-secondary") . " px-3 py-2 mb-3'>" . ($isAdmin ? 'Admin' : 'User') . "</span>
+                                            </div>
+                                        </div>
+                                    </div>";
                                 }
-                              ?>
-                        </div>
+                            } else {
+                                echo "<p class='text-center text-muted'>No users found.</p>";
+                            }
+                          ?>
                     </div>
                 </div>
                 

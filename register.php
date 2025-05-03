@@ -17,15 +17,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
 
     // Validate fields
     if (empty($first_name) || empty($last_name) || empty($contact) || empty($email)) {
-        $_SESSION['message'] = "<div class='error'>⚠️ All fields are required except password.</div>";
+        $message = "<div class='alert alert-danger d-flex align-items-center' role='alert'><i class='bi bi-exclamation-triangle-fill me-2'></i><div>All fields are required except password.</div></div>";
+        $_SESSION['message'] = $message;
         header("Location: register.php");
         exit();
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION['message'] = "<div class='error'>⚠️ Invalid email format.</div>";
+        $message = "<div class='alert alert-danger d-flex align-items-center' role='alert'><i class='bi bi-exclamation-triangle-fill me-2'></i><div>Invalid email format.</div></div>";
+        $_SESSION['message'] = $message;
         header("Location: register.php");
         exit();
     } elseif (!empty($password) && (strlen($password) < 6 || $password !== $confirm_password)) {
-        $_SESSION['message'] = "<div class='error'>⚠️ Password must be at least 6 characters and match.</div>";
+        $message = "<div class='alert alert-danger d-flex align-items-center' role='alert'><i class='bi bi-exclamation-triangle-fill me-2'></i><div>Password must be at least 6 characters and match.</div></div>";
+        $_SESSION['message'] = $message;
         header("Location: register.php");
         exit();
     }
@@ -41,7 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $_SESSION['message'] = "<div class='error' style='background-color: red; color: white; padding: 10px; border-radius: 5px'>⚠️ Email already exists.</div>";
+        $message = "<div class='alert alert-danger d-flex align-items-center' role='alert'><i class='bi bi-exclamation-triangle-fill me-2'></i><div>Email already exists.</div></div>";
+        $_SESSION['message'] = $message;
         header("Location: register.php");
         exit();
     }
@@ -53,12 +57,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
     $stmt->bind_param("sssssi", $first_name, $last_name, $contact, $email, $hashed_password, $is_admin);
 
     if ($stmt->execute()) {
-        $_SESSION['message'] = "✅ Registered successfully!";
-        header("Location: login.php");
+        $message = "<div class='alert alert-success d-flex align-items-center' role='alert'><i class='bi bi-check-circle-fill me-2'></i><div>Registered successfully!</div></div>";
+        $_SESSION['message'] = $message;
+        header("Location: register.php");
         exit; // Always exit after a redirect
     }
     else {
-        $_SESSION['message'] = "<div class='error'>⚠️ Error adding user: " . $conn->error . "</div>";
+        $message = "<div class='alert alert-danger d-flex align-items-center' role='alert'><i class='bi bi-exclamation-triangle-fill me-2'></i><div>Error adding user: " . $conn->error . "</div></div>";
+        $_SESSION['message'] = $message;
         header("Location: register.php");
     }
     exit();
@@ -141,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
             <!-- Contact -->
             <div class="mb-3 text-start">
                 <label class="form-label text-black">Contact Number</label>
-                <input type="text" name="contact" class="form-control rounded-3 shadow-sm" required placeholder="e.g. 09XXXXXXXXX">
+                <input type="text" name="contact" class="form-control rounded-3 shadow-sm" required placeholder="e.g. 09XXXXXXXXX" pattern="[0-9]{11}" title="Please enter a valid 11-digit contact number">
             </div>
 
             <!-- Email -->
