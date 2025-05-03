@@ -9,6 +9,11 @@ if (!isset($_SESSION["is_admin"]) || $_SESSION["is_admin"] != 1) {
 }
 
 $message = "";
+if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
+    unset($_SESSION['message']);  
+}
+
 
 // Handle Course Insert
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_course"])) {
@@ -53,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_course"])) {
     } else {
         $_SESSION['message'] = "<div id='message-box' class='error'>⚠️ Image is required.</div>";
     }
-    header("Location: courses.php");
+    header("Location: courses.php?");
     exit();
 }
 ?>
@@ -127,12 +132,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_course"])) {
                 <div class="container py-4">
 
                     <!-- Add Course -->
+                    <?php echo $message; ?>
                     <div class="row justify-content-center">
                         <div class="col-md-4 bg-white p-4 rounded shadow-lg mt-4 text-center" 
                             style="box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
                             <h2 class="mb-3 text-dark">Add New Course</h2>
                             
-                            <?php echo $message; ?>
 
                             <form action="courses.php" method="POST" enctype="multipart/form-data">
                                 <div class="mb-3">
