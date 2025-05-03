@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_course"])) {
             $result = $stmt->get_result();
 
             if ($result->num_rows > 0) {
-                $_SESSION['message'] = "<div id='message-box' class='error'>⚠️ Course ID already exists.</div>";
+                $message = "<div id='message-box' class='error'>⚠️ Course ID already exists.</div>";
             } else {
                 // Insert course into database
                 $sql = "INSERT INTO courses (course_id, course_title, description, instructor, price, image) 
@@ -47,17 +47,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_course"])) {
                 $stmt->bind_param("ssssss", $course_id, $course_title, $description, $instructor, $price, $image_name);
 
                 if ($stmt->execute()) {
-                    $_SESSION['message'] = "<div id='message-box' class='success'>✅ Course added successfully!</div>";
+                    $message = "<div id='message-box' class='success'>✅ Course added successfully!</div>";
                 } else {
-                    $_SESSION['message'] = "<div id='message-box' class='error'>⚠️ Error adding course.</div>";
+                    $message = "<div id='message-box' class='error'>⚠️ Error adding course.</div>";
                 }
             }
         } else {
-            $_SESSION['message'] = "<div id='message-box' class='error'>⚠️ Error uploading image.</div>";
+            $message = "<div id='message-box' class='error'>⚠️ Error uploading image.</div>";
         }
     } else {
-        $_SESSION['message'] = "<div id='message-box' class='error'>⚠️ Image is required.</div>";
+        $message = "<div id='message-box' class='error'>⚠️ Image is required.</div>";
     }
+    $_SESSION["message"] = $message;
     header("Location: courses.php?");
     exit();
 }
@@ -133,32 +134,89 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_course"])) {
 
                     <!-- Add Course -->
                     <?php echo $message; ?>
-                    <div class="row justify-content-center">
-                        <div class="col-md-4 bg-white p-4 rounded shadow-lg mt-4 text-center" 
-                            style="box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
-                            <h2 class="mb-3 text-dark">Add New Course</h2>
-                            
+                    <div class="row justify-content-center d-none" id="addCourseForm">
+                        <div class="col-md-6 col-lg-5 bg-white p-5 rounded-4 shadow-lg mt-5">
+                            <h2 class="mb-4 text-center text-black fw-bold">
+                                <i class="bi bi-journal-plus me-2"></i> Add New Course
+                            </h2>
+
+                            <?php echo $message; ?>
 
                             <form action="courses.php" method="POST" enctype="multipart/form-data">
+                                <!-- Course Title -->
                                 <div class="mb-3">
-                                    <input type="text" name="course_title" class="form-control border-0 border-bottom" required placeholder="Course Title">
+                                    <label class="form-label text-black">Course Title</label>
+                                    <input type="text" name="course_title" class="form-control rounded-3 shadow-sm" required placeholder="e.g., Introduction to Programming">
                                 </div>
+
+                                <!-- Description -->
                                 <div class="mb-3">
-                                    <textarea name="description" class="form-control border-0 border-bottom" required placeholder="Description"></textarea>
+                                    <label class="form-label text-black">Description</label>
+                                    <textarea name="description" class="form-control rounded-3 shadow-sm" rows="3" required placeholder="Course description here..."></textarea>
                                 </div>
+
+                                <!-- Instructor -->
                                 <div class="mb-3">
-                                    <input type="text" name="instructor" class="form-control border-0 border-bottom" required placeholder="Instructor">
+                                    <label class="form-label text-black">Instructor</label>
+                                    <input type="text" name="instructor" class="form-control rounded-3 shadow-sm" required placeholder="e.g., John Smith">
                                 </div>
+
+                                <!-- Image -->
                                 <div class="mb-3">
-                                    <input type="file" name="image" class="form-control border-0 border-bottom" required>
+                                    <label class="form-label text-black">Course Image</label>
+                                    <input type="file" name="image" class="form-control rounded-3 shadow-sm" required>
                                 </div>
-                                <div class="mb-3">
-                                    <input type="number" name="price" step="0.01" class="form-control border-0 border-bottom" required placeholder="Price">
+
+                                <!-- Price -->
+                                <div class="mb-4">
+                                    <label class="form-label text-black">Price</label>
+                                    <input type="number" name="price" step="0.01" class="form-control rounded-3 shadow-sm" required placeholder="e.g., 99.99">
                                 </div>
-                                <button type="submit" name="add_course" class="btn btn-dark w-100 fw-bold">➕ Add Course</button>
+
+                                <!-- Submit Button -->
+                                <button type="submit" name="add_course" class="btn btn-dark w-100 fw-bold rounded-pill py-2">
+                                    <i class="bi bi-plus-circle me-1"></i> Add Course
+                                </button>
                             </form>
                         </div>
                     </div>
+
+                    <!-- Trigger Button -->
+                    <div class="d-grid gap-2 col-4 mx-auto">
+                        <button type="button" class="btn btn-primary btn-dark fw-bold rounded-pill py-2 mt-5" id="showCourseForm">
+                            <i class="bi bi-plus-circle me-1"></i> Add New Course
+                        </button>
+                    </div>
+
+                    <?php if (!empty($message)): ?>
+                        <script>
+                            // Force the form to stay open if there's a message
+                            document.addEventListener('DOMContentLoaded', () => {
+                                const addCourseForm = document.getElementById('addCourseForm');
+                                const showCourseForm = document.getElementById('showCourseForm');
+                                
+                                if (addUserForm) {
+                                    addCourseForm.classList.remove('d-none'); // Show form
+                                    showCourseForm.innerHTML = '<i class="bi bi-x-circle me-1"></i> Cancel';
+                                }
+                            });
+                        </script>
+                    <?php endif; ?>
+
+                    <script>
+                        const addCourseForm = document.getElementById('addCourseForm');
+                        const showCourseForm = document.getElementById('showCourseForm');
+
+                        showCourseForm.addEventListener('click', () => {
+                            addCourseForm.classList.toggle('d-none');
+                            if (addCourseForm.classList.contains('d-none')) {
+                                showCourseForm.innerHTML = '<i class="bi bi-plus-circle me-1"></i> Add Course';
+                            } else {
+                                showCourseForm.innerHTML = '<i class="bi bi-x-circle me-1"></i> Cancel';
+                            }
+                        });
+                    </script>
+
 
                     <!-- Course List -->
                     <h1 class="text-center fw-bold my-5 text-primary">Course List</h1>
