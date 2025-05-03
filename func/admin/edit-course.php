@@ -68,26 +68,63 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_course"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Course</title>
+
+    <!-- css file -->
     <link rel="stylesheet" href="src/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- bootstrap css link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- font awesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
+
+    <!-- Top Navbar -->
+    <nav class="navbar navbar-dark sticky-top bg-dark d-md-none">
+        <div class="container-fluid">
+            <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar" aria-controls="mobileSidebar">
+            <i class="fas fa-bars"></i>
+            </button>
+            <span class="navbar-brand mx-auto">Courses</span>
+        </div>
+    </nav>
+
+    <!-- Navbar -->
+    <!-- Desktop Sidebar (hidden on small screens) -->
+    <aside class="d-none d-md-block col-md-2 bg-dark text-white vh-100 position-fixed p-3">
+        <div class="text-center mb-4">
+            <img src="../../img/logo.png" alt="logo" class="img-fluid" style="max-width: 80px;">
+        </div>
+        <div class="nav flex-column text-center gap-3">
+            <a href="../../admin/dashboard.php" class="text-light text-decoration-none">Dashboard</a>
+            <a href="../../admin/users.php" class="text-light text-decoration-none">Users</a>
+            <a href="../../admin/courses.php" class="text-warning fw-bold fs-5 text-decoration-none">Courses</a>
+            <a href="../../admin/order.php" class="text-light text-decoration-none">Orders</a>
+            <a class="text-danger text-decoration-none fw-bold mt-auto" href="../logout.php">Logout</a>
+        </div>
+    </aside>
+
+    <!-- Offcanvas Sidebar for Mobile -->
+    <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="mobileSidebarLabel">Menu</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column text-center gap-3">
+            <img src="../../img/logo.png" alt="logo" class="img-fluid mb-3" style="max-width: 80px; margin: 0 auto;">
+            <a href="../../admin/dashboard.php" class="text-light text-decoration-none">Dashboard</a>
+            <a href="../../admin/users.php" class="text-light text-decoration-none">Users</a>
+            <a href="../../admin/courses.php" class="text-warning fw-bold fs-5 text-decoration-none">Courses</a>
+            <a href="../../admin/order.php" class="text-light text-decoration-none">Orders</a>
+            <a class="text-danger text-decoration-none fw-bold mt-auto" href="../logout.php">Logout</a>
+        </div>
+    </div>
+
 <main class="p-0">
     <div class="container-fluid">
         <div class="row">
-            <aside class="col-md-2 d-flex flex-column justify-content-between align-items-center bg-dark text-light text-center py-4 vh-100 position-fixed">
-                <div class="w-100 d-flex flex-column align-items-center gap-3">
-                    <img src="../../img/logo.png" alt="logo" class="img-fluid" style="max-width: 80px;">
-                    <div class="d-flex flex-column gap-3 w-100">
-                        <a href="../../admin/dashboard.php" class="text-light text-decoration-none">Dashboard</a>
-                        <a href="../../admin/users.php" class="text-light text-decoration-none">Users</a>
-                        <a href="../../admin/courses.php" class="text-warning fw-bold fs-4 text-decoration-none">Courses</a>
-                        <a href="../../admin/order.php" class="text-light text-decoration-none">Orders</a>
-                    </div>
-                </div>
-                <a class="text-danger text-decoration-none fw-bold" href="../func/logout.php">Logout</a>
-            </aside>
-
             <div class="col-md-10 offset-md-2">
 
                 <div class="container py-4">

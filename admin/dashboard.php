@@ -46,47 +46,79 @@ $total_price = $purchase_result->fetch_assoc()['total_price'];
 
 
 <body>
-<!-- Navbar -->
-<aside class="col-md-2 d-flex flex-column justify-content-between align-items-center bg-dark text-light text-center py-4 vh-100 position-fixed">
-    <div class="w-100 d-flex flex-column align-items-center gap-3">
-        <img src="../img/logo.png" alt="logo" class="img-fluid" style="max-width: 80px;">
-        <div class="d-flex flex-column gap-3 w-100">
-            <a href="../admin/dashboard.php" class="text-warning fw-bold fs-4 text-decoration-none">Dashboard</a>
+
+    <!-- Top Navbar -->
+    <nav class="navbar navbar-dark sticky-top bg-dark d-md-none">
+    <div class="container-fluid">
+        <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar" aria-controls="mobileSidebar">
+        <i class="fas fa-bars"></i>
+        </button>
+        <span class="navbar-brand mx-auto">Dashboard</span>
+    </div>
+    </nav>
+
+    <!-- Navbar -->
+    <!-- Desktop Sidebar (hidden on small screens) -->
+    <aside class="d-none d-md-block col-md-2 bg-dark text-white vh-100 position-fixed p-3">
+        <div class="text-center mb-4">
+            <img src="../img/logo.png" alt="logo" class="img-fluid" style="max-width: 80px;">
+        </div>
+        <div class="nav flex-column text-center gap-3">
+            <a href="../admin/dashboard.php" class="text-warning fw-bold fs-5 text-decoration-none">Dashboard</a>
             <a href="../admin/users.php" class="text-light text-decoration-none">Users</a>
             <a href="../admin/courses.php" class="text-light text-decoration-none">Courses</a>
             <a href="../admin/order.php" class="text-light text-decoration-none">Orders</a>
+            <a class="text-danger text-decoration-none fw-bold mt-auto" href="../func/logout.php">Logout</a>
+        </div>
+    </aside>
+
+    <!-- Offcanvas Sidebar for Mobile -->
+    <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="mobileSidebarLabel">Menu</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column text-center gap-3">
+            <img src="../img/logo.png" alt="logo" class="img-fluid mb-3" style="max-width: 80px; margin: 0 auto;">
+            <a href="../admin/dashboard.php" class="text-warning fw-bold fs-5 text-decoration-none">Dashboard</a>
+            <a href="../admin/users.php" class="text-light text-decoration-none">Users</a>
+            <a href="../admin/courses.php" class="text-light text-decoration-none">Courses</a>
+            <a href="../admin/order.php" class="text-light text-decoration-none">Orders</a>
+            <a class="text-danger text-decoration-none fw-bold mt-auto" href="../func/logout.php">Logout</a>
         </div>
     </div>
-    <a class="text-danger text-decoration-none fw-bold" href="../func/logout.php">Logout</a>
-</aside>    
 
 <!-- main -->
-<main class="p-0">
-    <div class="container-fluid">
+<main class="col-md-10 offset-md-1 p-0">
+    <div class="container-fluid py-4">
         <div class="row">
             <div class="col-md-10 offset-md-2">
             <div class="container py-4">
-                <h1 class="text-center fw-bold m-5">Dashboard</h1>
+                <h1 class="text-center fw-bold mb-3 mb-md-5">Dashboard</h1>
 
 
-                
                 <!-- Dashboard Cards -->
-                <div class="row g-4 justify-content-center">
-                    <div class="col-sm-3 mx-2 bg-primary p-4 rounded shadow mt-4 text-white text-center">
-                        <span class="fs-2 fw-bold"><?php echo $total_users; ?></span>
-                        <h4 class="fw-bold">Total Users</h4>
+                <div class="row g-4">
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="bg-primary p-4 rounded shadow text-white text-center">
+                            <span class="fs-2 fw-bold"><?php echo $total_users; ?></span>
+                            <h4 class="fw-bold">Total Users</h4>
+                        </div>
                     </div>
-
-                    <div class="col-sm-3 mx-2 bg-warning p-4 rounded shadow mt-4 text-white text-center">
-                        <span class="fs-2 fw-bold"><?php echo $total_courses; ?></span>
-                        <h4 class="fw-bold">Total Courses</h4>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="bg-warning p-4 rounded shadow text-white text-center">
+                            <span class="fs-2 fw-bold"><?php echo $total_courses; ?></span>
+                            <h4 class="fw-bold">Total Courses</h4>
+                        </div>
                     </div>
-
-                    <div class="col-sm-3 mx-2 bg-danger p-4 rounded shadow mt-4 text-white text-center">
-                        <span class="fs-2 fw-bold">$<?php echo number_format($total_price, 2); ?></span>
-                        <h4 class="fw-bold">Total Revenue</h4>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="bg-danger p-4 rounded shadow text-white text-center">
+                            <span class="fs-2 fw-bold">$<?php echo number_format($total_price, 2); ?></span>
+                            <h4 class="fw-bold">Total Revenue</h4>
+                        </div>
                     </div>
                 </div>
+
 
 
 
