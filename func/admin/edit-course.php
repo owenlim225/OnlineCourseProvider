@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_course"])) {
             move_uploaded_file($file_tmp, "../../img/courses/" . $new_file_name);
             $image = $new_file_name;
         } else {
-            $message = "<div class='error'>⚠️ Invalid file. Ensure it is JPEG, PNG, or GIF and under 2MB.</div>";
+            $message = '<div class="alert alert-danger d-flex align-items-center" role="alert"><i class="bi bi-exclamation-triangle-fill me-2"></i><div>⚠️ Invalid file. Ensure it is JPEG, PNG, or GIF and under 2MB.</div></div>';
         }
     }
 
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_course"])) {
         $stmt->bind_param("sssisi", $course_title, $description, $instructor, $price, $image, $course_id);
         
         if ($stmt->execute()) {
-            $message = "<div class='success'>✅ Course updated successfully!</div>";
+            $message = '<div class="alert alert-success d-flex align-items-center" role="alert"><i class="bi bi-check-circle-fill me-2"></i><div>✅ Course updated successfully!</div></div>';
 
             $sql = "SELECT course_id, course_title, description, instructor, image, price FROM courses WHERE course_id = ?";
             $stmt = $conn->prepare($sql);
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_course"])) {
             $result = $stmt->get_result();
             $course = $result->fetch_assoc();
         } else {
-            $message = "<div class='error'>⚠️ Error updating course: " . $stmt->error . "</div>";
+            $message = '<div class="alert alert-danger d-flex align-items-center" role="alert"><i class="bi bi-exclamation-triangle-fill me-2"></i><div>⚠️ Error updating course: ' . $stmt->error . '</div></div>';
         }
         $stmt->close();
     }
@@ -129,32 +129,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_course"])) {
 
                 <div class="container py-4">
                     <div class="row justify-content-center">
-                        <div class="col-md-6 bg-white p-4 rounded shadow-lg mt-4 text-center">
-                            <h2 class="mb-3 text-dark">Edit Course</h2>
+                        <div class="col-md-6 col-lg-5 bg-white p-5 rounded-4 shadow-lg mt-5">
+                            <h2 class="mb-4 text-center text-black fw-bold">
+                                <i class="bi bi-pencil-square me-2"></i> Edit Course
+                            </h2>
+
                             <?php echo $message; ?>
+
                             <form action="edit-course.php?course_id=<?= $course_id; ?>" method="POST" enctype="multipart/form-data">
+                                <!-- Course Title -->
                                 <div class="mb-3">
-                                    <input type="text" name="course_title" class="form-control" required value="<?= htmlspecialchars($course['course_title'] ?? ''); ?>">
+                                    <label class="form-label text-black">Course Title</label>
+                                    <input type="text" name="course_title" class="form-control rounded-3 shadow-sm" required value="<?= htmlspecialchars($course['course_title'] ?? ''); ?>">
                                 </div>
+
+                                <!-- Description -->
                                 <div class="mb-3">
-                                    <textarea name="description" class="form-control" required><?= htmlspecialchars($course['description'] ?? ''); ?></textarea>
+                                    <label class="form-label text-black">Description</label>
+                                    <textarea name="description" class="form-control rounded-3 shadow-sm" required><?= htmlspecialchars($course['description'] ?? ''); ?></textarea>
                                 </div>
+
+                                <!-- Instructor -->
                                 <div class="mb-3">
-                                    <input type="text" name="instructor" class="form-control" required value="<?= htmlspecialchars($course['instructor'] ?? ''); ?>">
+                                    <label class="form-label text-black">Instructor</label>
+                                    <input type="text" name="instructor" class="form-control rounded-3 shadow-sm" required value="<?= htmlspecialchars($course['instructor'] ?? ''); ?>">
                                 </div>
+
+                                <!-- Image Upload -->
                                 <div class="mb-3">
-                                    <input type="file" name="image" class="form-control">
+                                    <label class="form-label text-black">Course Image</label>
+                                    <input type="file" name="image" class="form-control rounded-3 shadow-sm">
                                     <?php if (!empty($course['image'])): ?>
-                                        <img src="../../img/courses/<?= htmlspecialchars($course['image']); ?>" alt="Course Image" class="img-fluid mt-2" style="max-height: 200px; object-fit: cover;">
+                                        <img src="../../img/courses/<?= htmlspecialchars($course['image']); ?>" alt="Course Image" class="img-fluid mt-3 rounded shadow-sm" style="max-height: 200px; object-fit: cover;">
                                     <?php endif; ?>
                                 </div>
-                                <div class="mb-3">
-                                    <input type="number" name="price" step="0.01" class="form-control" required value="<?= htmlspecialchars($course['price'] ?? ''); ?>">
+
+                                <!-- Price -->
+                                <div class="mb-4">
+                                    <label class="form-label text-black">Price</label>
+                                    <input type="number" name="price" step="0.01" class="form-control rounded-3 shadow-sm" required value="<?= htmlspecialchars($course['price'] ?? ''); ?>">
                                 </div>
-                                <button type="submit" name="update_course" class="btn btn-dark w-100 fw-bold">➕ Update Course</button>
+
+                                <!-- Submit -->
+                                <button type="submit" name="update_course" class="btn btn-dark w-100 fw-bold rounded-pill py-2">
+                                    <i class="bi bi-save2-fill me-1"></i> Update Course
+                                </button>
                             </form>
-                            <p class="mt-5"><a href="../../admin/courses.php">Back to Courses</a></p>
+
+                            <p class="mt-4 text-center">
+                                <a href="../../admin/courses.php" class="text-decoration-none fw-semibold text-black">← Back to Courses</a>
+                            </p>
                         </div>
+                    </div>
+
                     </div>
                 </div>
             </div>
