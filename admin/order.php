@@ -128,53 +128,62 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
             <div class="col-md-10 offset-md-2">
                 <div class="container py-4">
 
-                    <!-- order list table -->
-                    <h1 class="text-center fw-bold my-5 text-primary">Orders List</h1>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-10">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-hover table-bordered shadow rounded">
-                                        <thead class="table-dark text-center">
-                                            <tr>
-                                                <th scope="col">Order_ID</th>
-                                                <th scope="col">User_ID</th>
-                                                <th scope="col">Full Name</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Contact</th>
-                                                <th scope="col">Country</th>
-                                                <th scope="col">MOP</th>
-                                                <th scope="col">Total amount</th>
-                                                <th scope="col">Order status</th>
-                                            </tr>
-                                        </thead>
+                    <!-- Order List Table -->
+                <h1 class="text-center fw-bold my-5 text-primary">Orders List</h1>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-11">
+                            <div class="card shadow-lg border-0">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover align-middle text-center">
+                                            <thead class="table-primary">
+                                                <tr>
+                                                    <th scope="col">Order ID</th>
+                                                    <th scope="col">User ID</th>
+                                                    <th scope="col">Full Name</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Contact</th>
+                                                    <th scope="col">Country</th>
+                                                    <th scope="col">MOP</th>
+                                                    <th scope="col">Total Amount</th>
+                                                    <th scope="col">Order Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                    $sql = "SELECT * FROM orders";
+                                                    $result = $conn->query($sql);
 
-                                        <tbody class="text-center">
-                                            <?php
-                                                // Fetch users
-                                                $sql = "SELECT * FROM orders";
-                                                $result = $conn->query($sql);
-
-                                                if ($result->num_rows > 0) {
-                                                    while ($row = $result->fetch_assoc()) {  
-                                                        echo "<tr>
-                                                            <td class='fw-bold'>{$row['order_id']}</td>
-                                                            <td class='fw-bold'>{$row['user_id']}</td>
-                                                            <td>{$row['full_name']}</td>
-                                                            <td>{$row['email']}</td>
-                                                            <td>{$row['mobile']}</td>
-                                                            <td>{$row['country']}</td>
-                                                            <td>{$row['payment_method']}</td>
-                                                            <td>₱" . number_format($row['total_amount'], 2) . "</td>
-                                                            <td>{$row['order_status']}</td>
-                                                        </tr>";
+                                                    if ($result->num_rows > 0) {
+                                                        while ($row = $result->fetch_assoc()) {
+                                                            // Bootstrap badge classes for status
+                                                            $statusClass = match(strtolower($row['order_status'])) {
+                                                                'pending' => 'bg-warning text-dark',
+                                                                'completed' => 'bg-success',
+                                                                'cancelled' => 'bg-danger',
+                                                                default => 'bg-secondary'
+                                                            };
+                                                            
+                                                            echo "<tr>
+                                                                <td class='fw-semibold'>{$row['order_id']}</td>
+                                                                <td class='fw-semibold'>{$row['user_id']}</td>
+                                                                <td>{$row['full_name']}</td>
+                                                                <td>{$row['email']}</td>
+                                                                <td>{$row['mobile']}</td>
+                                                                <td>{$row['country']}</td>
+                                                                <td>{$row['payment_method']}</td>
+                                                                <td><span class='fw-bold text-success'>₱" . number_format($row['total_amount'], 2) . "</span></td>
+                                                                <td><span class='badge {$statusClass} px-3 py-2 rounded-pill'>{$row['order_status']}</span></td>
+                                                            </tr>";
+                                                        }
+                                                    } else {
+                                                        echo "<tr><td colspan='9' class='text-muted'>No orders found.</td></tr>";
                                                     }
-                                                } else {
-                                                    echo "<tr><td colspan='5' class='text-center text-muted'>No users found.</td></tr>";
-                                                }
-                                            ?>
-                                        </tbody>
-                                    </table>
+                                                ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
