@@ -68,6 +68,7 @@ if (isset($_SESSION['email'])) {
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <!-- If the user is logged in -->
                 <?php if (isset($_SESSION["email"])): ?>
+
                     <!-- profile button -->
                     <li class="nav-item">
                         <a class="nav-link active text-warning" aria-current="page" href="profile.php">
@@ -76,6 +77,12 @@ if (isset($_SESSION['email'])) {
                             </i>
                         </a>
                     </li>
+
+                    <!-- cart button -->
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../user/cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
+                    </li>
+                    
                     <!-- Logout button -->
                     <li class="nav-item">
                     <a class="nav-link active text-danger" aria-current="page" href="../func/logout.php">Logout</a>
@@ -98,19 +105,8 @@ if (isset($_SESSION['email'])) {
 <!-- main -->
 <main class="main pt-5 mt-2 pb-5">
     <div class="container py-4 mb-5">
-        <h3 class="text-center fw-bold my-5 text-primary">Course List</h3>
-        <table class="table table-striped table-hover table-bordered shadow rounded">
-            <thead class="table-dark text-center">
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Course Title</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-
-            <tbody class="text-center">
+        <h3 class="text-center fw-bold my-5 text-primary">My Cart</h3>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
             <?php
                 // Fetch cart items with course details using JOIN
                 $user_id = $_SESSION['user_id']; // Make sure you have session_start() at the top of your file
@@ -125,24 +121,26 @@ if (isset($_SESSION['email'])) {
 
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {  
-                        echo "<tr>
-                            <td class='fw-bold'>{$row['course_id']}</td>
-                            <td><img src='../img/courses/{$row['image']}' alt='{$row['course_title']}' class='card-img-top' style='height: 100px; object-fit: cover;'></td>
-                            <td>{$row['course_title']}</td>
-                            <td>₱" . number_format($row['price'], 2) . "</td>
-                            <td class='text-center'>
-                                <a href='../func/user/delete-cart-item.php?course_id={$row['course_id']}' class='btn btn-sm btn-outline-danger' 
-                                    onclick=\"return confirm('Are you sure you want to delete this course?');\">🗑 Delete
-                                </a>
-                            </td>
-                        </tr>";
+                        echo "<div class='col'>
+                            <div class='card h-100'>
+                                <img src='../img/courses/{$row['image']}' alt='{$row['course_title']}' class='card-img-top' style='height: 200px; object-fit: cover;'>
+                                <div class='card-body'>
+                                    <h5 class='card-title'>{$row['course_title']}</h5>
+                                    <p class='card-text'>₱" . number_format($row['price'], 2) . "</p>
+                                    <div class='d-flex justify-content-between'>
+                                        <a href='../func/user/delete-cart-item.php?course_id={$row['course_id']}' class='btn btn-sm btn-outline-danger' 
+                                            onclick=\"return confirm('Are you sure you want to delete this course?');\">🗑 Delete
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>";
                     }
                 } else {
-                    echo "<tr><td colspan='5' class='text-center text-muted'>No courses in your cart.</td></tr>";
+                    echo "<div class='col-md-6 col-lg-4 offset-md-3 offset-lg-4 d-flex justify-content-center text-center text-muted'>No courses in your cart.</div>";
                 }
             ?>
-            </tbody>
-        </table>
+        </div>
     </div>
 </main>
 
