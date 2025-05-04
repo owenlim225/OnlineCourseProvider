@@ -185,7 +185,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
                                 <!-- Contact -->
                                 <div class="mb-3">
                                     <label class="form-label text-black">Contact Number</label>
-                                    <input type="text" name="contact" class="form-control rounded-3 shadow-sm" required value="<?php echo htmlspecialchars($user['contact']); ?>">
+                                    <input type="text" name="contact" class="form-control rounded-3 shadow-sm" required pattern="[0-9]{11}" maxlength="11" value="<?php echo htmlspecialchars($user['contact']); ?>" title="Please enter a valid 11-digit contact number">
                                 </div>
 
                                 <!-- Email -->

@@ -158,7 +158,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
                             <!-- Contact -->
                             <div class="mb-3">
                                 <label class="form-label text-black">Contact Number</label>
-                                <input type="text" name="contact" class="form-control rounded-3 shadow-sm" required placeholder="e.g., 09123456789">
+                                <input type="text" name="contact" class="form-control rounded-3 shadow-sm" required placeholder="e.g., 09123456789" pattern="[0-9]{11}" maxlength="11" title="Please enter a valid 11-digit contact number">
                             </div>
 
                             <!-- Email -->
@@ -235,7 +235,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
 
 
                 <!-- user list grid -->
-                <h1 class="text-center fw-bold my-5 text-primary">Users List</h1>
+                <h1 class="text-center fw-bold my-5 text-primary">User List</h1>
                 <div class="container">
                     <div class="row">
                         <?php
