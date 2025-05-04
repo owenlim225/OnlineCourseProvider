@@ -38,9 +38,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
 
     // Validate required fields
     if (empty($first_name) || empty($last_name) || empty($contact)) {
-        $message = "<div class='error'>⚠️ Name and contact fields are required.</div>";
+        $message = "<div class='alert alert-danger d-flex align-items-center' role='alert'><i class='bi me-2'></i><div>⚠️ Name and contact fields are required.</div></div>";
     } elseif (!empty($new_password) && (strlen($new_password) < 6 || $new_password !== $confirm_password)) {
-        $message = "<div class='error'>⚠️ Password must be at least 6 characters and match.</div>";
+        $message = "<div class='alert alert-danger d-flex align-items-center' role='alert'><i class='bi me-2'></i><div>⚠️ Password must be at least 6 characters and match.</div></div>";
     }
 
     if (empty($message)) {
@@ -72,13 +72,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
         $stmt->bind_param($types, ...$params);
 
         if ($stmt->execute()) {
-            $message = "<div class='success'>✅ Profile updated successfully!</div>";
+            $message = "<div class='alert alert-success d-flex align-items-center' role='alert'><i class='bi me-2'></i><div>✅ Profile updated successfully!</div></div>";
             // Refresh user data in session
             $_SESSION['first_name'] = $first_name;
             $_SESSION['last_name'] = $last_name;
             $_SESSION['contact'] = $contact;
         } else {
-            $message = "<div class='error'>⚠️ Error updating profile: " . $stmt->error . "</div>";
+            $message = "<div class='alert alert-danger d-flex align-items-center' role='alert'><i class='bi me-2'></i><div>⚠️ Error updating profile: " . $stmt->error . "</div></div>";
         }
     }
 }
@@ -165,10 +165,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
 <main class="main pt-5 mt-3 flex-grow-1">
     <div class="container py-4">
         <div class="row justify-content-center">
+
             <!-- Left column: User profile -->
             <div class="col-md-3 bg-white p-4 rounded shadow-lg mt-4 text-center">
                 <div class="profile-header d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="m-0">User Profile</h5>
+                    <h5 class="m-0 fw-bold">User Profile</h5>
                     <button id="editProfileBtn" class="btn btn-sm btn-outline-primary">
                         <i class="fas fa-pencil-alt me-1"></i> Edit Profile
                     </button>
@@ -214,8 +215,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="text" name="contact" id="contact" class="form-control" required value="<?php echo isset($_SESSION["contact"]) ? htmlspecialchars($_SESSION["contact"]) : ''; ?>">
+                            <input type="text" name="contact" id="contact" class="form-control" required value="<?php echo isset($_SESSION["contact"]) ? htmlspecialchars($_SESSION["contact"]) : ''; ?>" pattern="[0-9]{11}" maxlength="11" title="Please enter a valid 11-digit contact number">
                             <label for="contact">Contact Number</label>
+                            <div class="invalid-feedback">Please enter a valid 11-digit contact number</div>
                         </div>
 
                         <div class="form-floating mb-3">
@@ -268,7 +270,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
 
             <!-- Right column: User courses -->
             <div class="col-md-8 bg-white p-4 rounded shadow-lg mt-4 text-center">
-                <h2 class="mb-3 text-dark">My courses</h2>
+                <h2 class="mb-3 text-primary fw-bold">My courses</h2>
                 <div class="row justify-content-center">
                     <div class="col-lg-10">
                         <div class="row">

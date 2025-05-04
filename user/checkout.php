@@ -288,7 +288,11 @@ echo '];</script>';
                             while ($row = $result->fetch_assoc()) {  
                                 echo '<div class="d-flex justify-content-between mb-2">
                                     <span>' . $row['course_title'] . '</span>
-                                    <span class="fw-bold"> &#8369;' . number_format($row['price'], 2) . '</span>
+                                    <span class="fw-bold">
+                                        &#8369;' . number_format($row['price'], 2) . '
+                                        <a href="../func/user/delete-orderSum-item.php?course_id=' . $row['course_id'] . '" class="btn btn-sm btn-outline-danger ms-2"
+                                            onclick="return confirm(\'Are you sure you want to remove this course?\');">🗑</a>
+                                    </span>
                                 </div>';
                             }
                             echo '</div>';
