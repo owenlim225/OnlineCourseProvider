@@ -137,7 +137,7 @@ echo '];</script>';
                 <!-- If the user is logged in -->
                 <?php if (isset($_SESSION["email"])): ?>
                     <!-- profile button -->
-                    <li class="nav-item">
+                    <li class="nav-item me-4">
                         <a class="nav-link active text-warning" aria-current="page" href="profile.php">
                             <i>
                                 <?php echo isset($_SESSION["first_name"]) ? htmlspecialchars($_SESSION["first_name"]) : 'Profile'; ?>
@@ -145,11 +145,11 @@ echo '];</script>';
                         </a>
                     </li>
                     <!-- cart button -->
-                    <li class="nav-item">
+                    <li class="nav-item me-4">
                         <a class="nav-link active" aria-current="page" href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
                     </li>
                     <!-- Logout button -->
-                    <li class="nav-item">
+                    <li class="nav-item me-4">
                     <a class="nav-link active text-danger" aria-current="page" href="../func/logout.php">Logout</a>
                     </li>
 

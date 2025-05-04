@@ -30,24 +30,24 @@ if (session_status() == PHP_SESSION_NONE) {
                 <!-- If the user is logged in -->
                 <?php if (isset($_SESSION["user_id"])): ?>
                     <!-- cart button -->
-                    <li class="nav-item">
+                    <li class="nav-item me-4">
                         <a class="nav-link active" aria-current="page" href="../user/cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
                     </li>
                     <!-- profile button -->
-                    <li class="nav-item">
+                    <li class="nav-item me-4">
                         <a class="nav-link active" aria-current="page" href="../user/profile.php"><i class="fa-solid fa-house"></i></a>
                     </li>
                     <!-- profile button -->
-                    <li class="nav-item">
+                    <li class="nav-item me-4">
                     <a class="nav-link active text-danger" aria-current="page" href="func/logout.php">Logout</a>
                     </li>
 
                 <!-- If the user is not logged in -->
                 <?php else: ?>
-                    <li class="nav-item">
+                    <li class="nav-item me-4">
                         <a class="nav-link" href="login.php">Login</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item me-4">
                         <a class="nav-link" href="register.php">Register</a>
                     </li>
                 <?php endif; ?>

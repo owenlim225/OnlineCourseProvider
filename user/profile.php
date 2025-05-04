@@ -84,7 +84,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
 }
 ?>
 
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -108,8 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
     <!-- Vendor CSS Files -->
     <link href="../src/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   </head>
-<body>
-
+<body class="d-flex flex-column min-vh-100">
 
 <!-- navbar -->
 <div class="container-fluid p-0">
@@ -164,8 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
     </nav>
 </div>
 
-
-<main class="main pt-5 mt-3">
+<main class="main pt-5 mt-3 flex-grow-1">
     <div class="container py-4">
         <div class="row justify-content-center">
             <!-- Left column: User profile -->
@@ -269,7 +266,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
                 }
                 ?>
 
-
             <!-- Right column: User courses -->
             <div class="col-md-8 bg-white p-4 rounded shadow-lg mt-4 text-center">
                 <h2 class="mb-3 text-dark">My courses</h2>
@@ -312,15 +308,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
     </div>
 </main>
 
-
-
-
-
-
-
-
-
-
 <?php include 'footer.php'; ?>
 
 <script>
@@ -348,3 +335,4 @@ document.addEventListener('DOMContentLoaded', function() {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
+
