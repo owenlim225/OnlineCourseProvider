@@ -169,7 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
             <!-- Left column: User profile -->
             <div class="col-md-3 bg-white p-4 rounded shadow-lg mt-4 text-center">
                 <div class="profile-header d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="m-0">User Profile</h5>
+                    <h5 class="m-0 fw-bold">User Profile</h5>
                     <button id="editProfileBtn" class="btn btn-sm btn-outline-primary">
                         <i class="fas fa-pencil-alt me-1"></i> Edit Profile
                     </button>
@@ -270,7 +270,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
 
             <!-- Right column: User courses -->
             <div class="col-md-8 bg-white p-4 rounded shadow-lg mt-4 text-center">
-                <h2 class="mb-3 text-dark">My courses</h2>
+                <h2 class="mb-3 text-primary fw-bold">My courses</h2>
                 <div class="row justify-content-center">
                     <div class="col-lg-10">
                         <div class="row">

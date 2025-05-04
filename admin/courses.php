@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_course"])) {
             $result = $stmt->get_result();
 
             if ($result->num_rows > 0) {
-                $message = "<div id='message-box' class='error'>⚠️ Course ID already exists.</div>";
+                $message = '<div class="alert alert-danger d-flex align-items-center" role="alert"><i class="bi me-2"></i><div>⚠️ Course ID already exists.</div></div>';
             } else {
                 // Insert course into database
                 $sql = "INSERT INTO courses (course_id, course_title, description, instructor, price, image) 
@@ -47,16 +47,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_course"])) {
                 $stmt->bind_param("ssssss", $course_id, $course_title, $description, $instructor, $price, $image_name);
 
                 if ($stmt->execute()) {
-                    $message = "<div id='message-box' class='success'>✅ Course added successfully!</div>";
+                    $message = '<div class="alert alert-success d-flex align-items-center" role="alert"><i class="bi me-2"></i><div>✅ Course added successfully!</div></div>';
                 } else {
-                    $message = "<div id='message-box' class='error'>⚠️ Error adding course.</div>";
+                    $message = '<div class="alert alert-danger d-flex align-items-center" role="alert"><i class="bi me-2"></i><div>⚠️ Error adding course.</div></div>';
                 }
             }
         } else {
-            $message = "<div id='message-box' class='error'>⚠️ Error uploading image.</div>";
+            $message = '<div class="alert alert-danger d-flex align-items-center" role="alert"><i class="bi me-2"></i><div>⚠️ Error uploading image.</div></div>';
         }
     } else {
-        $message = "<div id='message-box' class='error'>⚠️ Image is required.</div>";
+        $message = '<div class="alert alert-danger d-flex align-items-center" role="alert"><i class="bi me-2"></i><div>⚠️ Image is required.</div></div>';
     }
     $_SESSION["message"] = $message;
     header("Location: courses.php?");
@@ -140,7 +140,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_course"])) {
                                 <i class="bi bi-journal-plus me-2"></i> Add New Course
                             </h2>
 
-                            <?php echo $message; ?>
+                            <?php //echo $message; ?>
 
                             <form action="courses.php" method="POST" enctype="multipart/form-data">
                                 <!-- Course Title -->
