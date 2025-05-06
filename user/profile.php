@@ -291,7 +291,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
                                                     <div class='course-card-body'>
                                                         <h5 class='course-title'>{$row['course_title']}</h5>
                                                         <p class='course-instructor'>{$row['instructor']}</p>
-                                                        <a href='under-construction.php' class='edit-button'>
+                                                        <a href='profile.php' class='edit-button'>
                                                             <span class='edit-icon'>✏️</span> Start Course
                                                         </a>
                                                     </div>

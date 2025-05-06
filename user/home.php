@@ -264,7 +264,7 @@ if (isset($_SESSION['email'])) {
                                     
                                     if ($already_purchased) {
                                         // If already purchased, show "View Course" button instead of "Buy"
-                                        echo "<a href='under-construction.php' class='btn btn-sm btn-primary py-2 px-5'>View Course</a>";
+                                        echo "<a href='home.php' class='btn btn-sm btn-primary py-2 px-5'>View Course</a>";
                                     } else {
                                         // If not purchased, show normal buttons
                                         echo "<button type='button' class='btn btn-sm btn-success py-2 px-5' ";
@@ -299,7 +299,7 @@ if (isset($_SESSION['email'])) {
                                             </div>
                                             <div class='modal-footer'>
                                                 <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
-                                                <a href='checkout.php' class='btn btn-primary'>View Course</a>
+                                                <a href='home.php' class='btn btn-primary'>View Course</a>
                                             </div>
                                         </div>
                                     </div>
