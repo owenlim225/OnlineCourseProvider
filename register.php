@@ -124,8 +124,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
 </div>
 
 <!-- Register Form -->
-<div class="row justify-content-center align-items-center vh-100">
-    <div class="col-md-4 col-lg-4 bg-white p-5 rounded-4 shadow-lg text-center">
+<div class="row justify-content-center align-items-center vh-100 mt-5">
+    <div class="col-md-8 col-lg-5 col-xl-4 bg-white p-5 rounded-4 shadow-lg text-center">
         <h2 class="mb-4 text-black fw-bold">
             <i class="bi bi-person-plus me-2"></i> Register
         </h2>
