@@ -71,7 +71,7 @@ include("func/connections.php");
 <div class="container">
   <div class="position-relative d-flex align-items-center gap-3 gap-md-5 mt-5 mb-md-5">
     <div class="flex-grow-1 border-top border-white opacity-50"></div>
-      
+
     <img src="img/gdc-logo.png" alt="" width="80" height="80" class="img-fluid">
 
     <div class="flex-grow-1 border-top border-white opacity-50"></div>
@@ -143,8 +143,6 @@ include("func/connections.php");
         <div class="mt-3 small fw-semibold">Games Developed</div>
       </div>
     </div>
-
-
 </div>
  </section>
 
@@ -262,9 +260,6 @@ include("func/connections.php");
 
   </div>
 </section>
-
-
-
 
 
 <!-- courses Section -->
