@@ -1,0 +1,74 @@
+.game-dev-promo {
+
+    color: white;
+    padding: 40px 20px;
+    max-width: 800px;
+    position: relative;
+}
+
+.promo-heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: left;
+}
+
+.promo-subheading {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #FFD700; /* Gold color */
+    line-height: 1.2;
+    text-align: left;
+}
+
+.promo-text {
+    font-size: 1.5rem;
+    margin: 20px 0;
+    line-height: 1.4;
+    text-align: left;
+}
+
+.highlight {
+    font-style: italic;
+    font-weight: bold;
+}
+
+.turn-career {
+    color: #FFD700;
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: left;
+}
+
+/* From Uiverse.io by barisdogansutcu */ 
+.btn-donate {
+    padding: 17px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    border: 0;
+    background-color: #FFD700;
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 15px;
+    transition: all 0.5s ease;
+    box-shadow: #FFD700 0px 7px 29px 0px;
+  }
+  
+  .btn-donate:hover {
+    letter-spacing: 3px;
+    background-color: hsl(0, 0%, 100%);
+    color: #FFD700;
+    box-shadow: rgb(255, 255, 255) 0px 7px 29px 0px;
+  }
+  
+  .btn-donate:active {
+    letter-spacing: 3px;
+    background-color: hsl(0, 0%, 0%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+    transform: translateY(10px);
+    transition: 100ms;
+  }
+  

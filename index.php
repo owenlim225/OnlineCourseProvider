@@ -17,6 +17,7 @@ include("func/connections.php");
     <!-- css file -->
     <link rel="stylesheet" href="src/style.css">
     <link rel="stylesheet" href="src/main.css" >
+    <link rel="stylesheet" href="src/hero.css" >
 
     <!-- bootstrap css link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -36,111 +37,93 @@ include("func/connections.php");
 
 <!-- main content -->
 <main class="main pt-5">
-
+ 
   <!-- Hero Section -->
   <section id="home" class="hero section dark-background mt-4 pt-7">
 
-    <img src="img/hero-img.jpg" alt="hero-bg" data-aos="fade-in">
+    <img src="img/hero-top.jpg" alt="hero-bg" data-aos="fade-in" class="img-fluid">
 
-    <div class="container d-flex flex-column align-items-center justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
-      <h2>I am Sherwin Limosnero</h2>
-      <p><span class="fs-5 text-warning fst-italic">Designer, Developer, Freelancer, Musician</span></p>
-    </div>
-
+    <div class="container">
+        <div class="game-dev-promo">
+            <div class="row">
+                <div class="col-12">
+                    <div class="promo-heading">BECOME A GAME DEV PRO.</div>
+                    <div class="promo-subheading">DISCOVER OUR SECRET ROADMAP TO TURN YOUR PASSION INTO PROFIT.</div>
+                    <div class="promo-text">
+                        People like us are <span class="highlight">making money creating games</span>, and doing what we love <span class="highlight">from anywhere, at anytime.</span>
+                        <br>
+                        <span class="highlight">You can do the same.</span>
+                    </div>
+                    <div class="turn-career">Turn game dev into a career</div>
+                    <a href="#courses"><button class="btn-donate">Enroll Now!</button></a>
+                </div>
+            </div>
+        </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about-me" class="about section">
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row gy-4 align-items-center">
-          <!-- Left Column: Image -->
-          <div class="col-md-4">
-              <img src="img/face.png" style="width: 80%; height: auto;" class="img-fluid align-items-center" alt="Profile Picture">
-          </div>       
 
-          <!-- Right Column: About Me -->
-          <div class="col-md-8 mt-1">
-            <div class="about-me">
-                  <h4>About Me</h4>
-                  <p>
-                      Hey there! I'm Sherwin Limosnero, a second-year Game Development student fueled by creativity and a passion for making fun, immersive experiences. 
-                  </p>
 
-                  <div class="skills-content skills-animation">
-                      <h5>Skills</h5>
-                      <div class="d-flex flex-wrap gap-2">
-                  <!-- Programming Languages -->
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" width="20" height="20" class="rounded" alt="C#" />
-                      <span>C#</span>
-                  </div>
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="20" height="20" class="rounded" alt="Python" />
-                      <span>Python</span>
-                  </div>
 
-                  <!-- Game Development -->
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Godot_icon.svg" width="20" height="20" class="rounded" alt="Godot" />
-                      <span>Godot</span>
-                  </div>
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" width="20" height="20" class="rounded" alt="Unity" />
-                      <span>Unity</span>
-                  </div>
 
-                  <!-- Frontend Development -->
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="20" height="20" class="rounded" alt="HTML5" />
-                      <span>HTML5</span>
-                  </div>
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="20" height="20" class="rounded" alt="CSS3" />
-                      <span>CSS3</span>
-                  </div>
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" width="20" height="20" class="rounded" alt="Tailwind CSS" />
-                      <span>Tailwind CSS</span>
-                  </div>
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" width="20" height="20" class="rounded" alt="Bootstrap" />
-                      <span>Bootstrap</span>
-                  </div>
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="20" height="20" class="rounded" alt="React" />
-                      <span>React</span>
-                  </div>
 
-                  <!-- Version Control -->
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="20" height="20" class="rounded" alt="Git" />
-                      <span>Git</span>
-                  </div>
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="20" height="20" class="rounded" alt="GitHub" />
-                      <span>GitHub</span>
-                  </div>
 
-                  <!-- Tools -->
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" width="20" height="20" class="rounded" alt="VS Code" />
-                      <span>VS Code</span>
-                  </div>
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" width="20" height="20" class="rounded" alt="Figma" />
-                      <span>Figma</span>
-                  </div>
+<section id="call-to-action-2" class="call-to-action-2 section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="advertise-1 d-flex flex-column flex-lg-row gap-4 align-items-center position-relative">
+
+          <div class="content-left flex-grow-1" data-aos="fade-right" data-aos-delay="200">
+            <span class="badge text-uppercase mb-2">Don't Miss</span>
+            <h2>Revolutionize Your Digital Experience Today</h2>
+            <p class="my-4">Strategia accelerates your business growth through innovative solutions and cutting-edge technology. Join thousands of satisfied customers who have transformed their operations.</p>
+
+            <div class="features d-flex flex-wrap gap-3 mb-4">
+              <div class="feature-item">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>Premium Support</span>
               </div>
-          </div>
+              <div class="feature-item">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>Cloud Integration</span>
+              </div>
+              <div class="feature-item">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>Real-time Analytics</span>
+              </div>
+            </div>
 
+            <div class="cta-buttons d-flex flex-wrap gap-3">
+              <a href="#" class="btn btn-primary">Start Free Trial</a>
+              <a href="#" class="btn btn-outline">Learn More</a>
             </div>
           </div>
+
+          <div class="content-right position-relative" data-aos="fade-left" data-aos-delay="300">
+            <img src="assets/img/misc/misc-1.webp" alt="Digital Platform" class="img-fluid rounded-4">
+            <div class="floating-card">
+              <div class="card-icon">
+                <i class="bi bi-graph-up-arrow"></i>
+              </div>
+              <div class="card-content">
+                <span class="stats-number">245%</span>
+                <span class="stats-text">Growth Rate</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="decoration">
+            <div class="circle-1"></div>
+            <div class="circle-2"></div>
+          </div>
+
         </div>
 
-    </div>
-  </section>
+      </div>
 
-  <!-- courses Section -->
+    </section><!-- /Call To Action 2 Section -->
+
+<!-- courses Section -->
   <section id="courses" class="services section">
 
     <!-- Section Title -->
