@@ -28,8 +28,13 @@ include("func/connections.php");
 
     <!-- Vendor CSS Files -->
     <link href="src/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   </head>
-<body>
+
+<body class="body-color index-page">
     
 <!-- Navbar -->
 <?php include 'src/header.php'; ?>
@@ -38,29 +43,100 @@ include("func/connections.php");
 <!-- main content -->
 <main class="main pt-5">
  
-  <!-- Hero Section -->
-  <section id="home" class="hero section dark-background mt-4 pt-7">
 
-    <img src="img/hero-top.jpg" alt="hero-bg" data-aos="fade-in" class="img-fluid">
 
-    <div class="container">
-        <div class="game-dev-promo">
-            <div class="row">
-                <div class="col-12">
-                    <div class="promo-heading">BECOME A GAME DEV PRO.</div>
-                    <div class="promo-subheading">DISCOVER OUR SECRET ROADMAP TO TURN YOUR PASSION INTO PROFIT.</div>
-                    <div class="promo-text">
-                        People like us are <span class="highlight">making money creating games</span>, and doing what we love <span class="highlight">from anywhere, at anytime.</span>
-                        <br>
-                        <span class="highlight">You can do the same.</span>
-                    </div>
-                    <div class="turn-career">Turn game dev into a career</div>
-                    <a href="#courses"><button class="btn-donate">Enroll Now!</button></a>
-                </div>
-            </div>
+<!-- Hero Section --> 
+<section id="home" class="container hero section dark-background mt-4 pt-7" style="padding: 2rem; max-width: fit-content;">
+
+<img src="img/hero-top.jpg" alt="hero-bg" data-aos="fade-in" class="img-fluid w-100 d-block">
+
+  <div class="container" style="padding: 1rem; max-width: fit-content;">
+    <div class="row col-12 col-md-6 col-lg-5">
+      <div class="px-5 px-md-4 px-lg-5">
+        <div class="w-100">
+          <h4 class="fw-bold">START YOUR GAME DEV JOURNEY</h4>
+          <div class="promo-subheading text-warning">DISCOVER OUR SECRET ROADMAP TO TURN YOUR PASSION INTO PROFIT.</div>
+          <div class="promo-text">
+            <span class="highlight">Learn how to make games, build your portfolio, and start earning—on your own time, from anywhere.</span>
+            <div class="turn-career">Join thousands of aspiring game developers taking the first step today.</div>
+            <a href="#courses"><button class="btn-donate">Enroll Now!</button></a>
+          </div>
         </div>
-  </section>
+      </div>
+    </div>
+  </div>
+</section>
 
+
+
+<!-- box with data -->
+<div class="container mt-5">
+  <div class="position-relative w-100 py-5" style="background-color:rgb(26, 28, 28);">
+    <!-- Decorative Borders -->
+    <span class="position-absolute top-0 bottom-0 start-0 end-0 pointer-events-none">
+      <!-- Left border -->
+      <div class="position-absolute top-0 bottom-0 start-0 d-flex align-items-center">
+        <div style="width: 2px; height: calc(100% - 68px); background-color: #686868;"></div>
+      </div>
+      <!-- Top border -->
+      <div class="position-absolute top-0 start-0 end-0 d-flex justify-content-center">
+        <div style="height: 2px; width: calc(100% - 68px); background-color: #686868;"></div>
+      </div>
+      <!-- Right border -->
+      <div class="position-absolute top-0 bottom-0 end-0 d-flex align-items-center">
+        <div style="width: 2px; height: calc(100% - 68px); background-color: #686868;"></div>
+      </div>
+      <!-- Bottom border -->
+      <div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-center">
+        <div style="height: 2px; width: calc(100% - 68px); background-color:#686868;"></div>
+      </div>
+
+      <!-- Corner SVGs -->
+      <svg class="position-absolute top-0 start-0" width="35" height="35" viewBox="0 0 35 35" fill="#686868" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
+      </svg>
+      <svg class="position-absolute bottom-0 start-0" style="transform: rotate(-90deg);" width="35" height="35" viewBox="0 0 35 35" fill="#686868">
+        <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
+      </svg>
+      <svg class="position-absolute top-0 end-0" style="transform: rotate(90deg);" width="35" height="35" viewBox="0 0 35 35" fill="#686868">
+        <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
+      </svg>
+      <svg class="position-absolute bottom-0 end-0" style="transform: rotate(180deg);" width="35" height="35" viewBox="0 0 35 35" fill="#686868">
+        <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
+      </svg>
+    </span>
+
+    <!-- Stats -->
+    <div class="row text-center text-warning">
+      <div class="col-md-4 mb-4 mb-md-0">
+        <div class="fw-bold display-4 ">2M+</div>
+        <div class="mt-3 small fw-semibold">Students worldwide</div>
+      </div>
+      <div class="col-md-4 mb-4 mb-md-0 ">
+        <div class="fw-bold display-4 ">150+</div>
+        <div class="mt-3 small fw-semibold">Countries &amp; Locations</div>
+      </div>
+      <div class="col-md-4 ">
+        <div class="fw-bold display-4 ">300k+</div>
+        <div class="mt-3 small fw-semibold">Positive Reviews</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- line breaker -->
+
+<div class="container">
+  <div class="position-relative d-flex align-items-center gap-3 gap-md-5 mt-5 mb-md-5">
+    <div class="flex-grow-1 border-top border-white opacity-50"></div>
+    
+    <img src="img/gdc logo.png" alt="" width="80" height="80" class="img-fluid">
+
+    <div class="flex-grow-1 border-top border-white opacity-50"></div>
+  </div>
+</div>
 
 
 
