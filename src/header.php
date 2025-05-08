@@ -19,7 +19,10 @@ if (session_status() == PHP_SESSION_NONE) {
                         <a class="nav-link active" aria-current="page" href="#home"></i>Home</a>
                     </li>
                     <li class="nav-item ms-4">
-                        <a class="nav-link" href="#about-me">About us</a>
+                        <a class="nav-link" href="#aboutus">About us</a>
+                    </li>
+                    <li class="nav-item ms-4">
+                        <a class="nav-link" href="#stats">Stats</a>
                     </li>
                     <li class="nav-item ms-4">
                         <a class="nav-link" href="#courses">Courses</a>
