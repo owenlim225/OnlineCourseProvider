@@ -4,18 +4,13 @@
         <!-- Logo -->
         <div class="mb-3">
             <a class="navbar-brand" href="#">
-                <img src="img/logo.png" alt="logo" class="fa-custom-logo">
+                <img src="img/UPHSL GDC logoo svg.png" alt="logo" class="fa-custom-logo">
             </a>
         </div>
 
         <!-- Copyright -->
-        <h5 class="fw-bold mb-1">© 2025 SHERWIN LIMOSNERO</h5>
+        <h5 class="fw-bold mb-1">© 2025 Kamiyon Studio</h5>
         <p class="fw-bold text-uppercase small mb-3">All Rights Reserved</p>
-
-        <!-- Support Button -->
-        <a href="#" class="btn btn-primary mb-3">
-            <i class="fa-solid fa-fire me-2"></i> Support my work
-        </a>
 
         <!-- Social Media Links -->
         <div class="d-flex justify-content-center gap-3 mt-3">

@@ -78,7 +78,75 @@ include("func/connections.php");
   </div>
 </div>
 
+<div class="col-12 text-center my-5" data-aos="fade-up" data-aos-delay="200">
+  <h2 class="fw-semibold text-white display-4 display-md-3 display-lg-2" style="word-break: break-word;">
+    We've Buffed <span class="text-warning"><i>2 Million+</i></span> Aspiring Game Devs
+  </h2>
+</div>
 
+<div class="col-12 text-center mb-4" data-aos="fade-up" data-aos-delay="300">
+  <span class="text-secondary fs-5 fs-md-4">
+    With courses in Unreal, Unity, Godot, Blender, and more, we've got you covered.
+  </span>
+</div>
+
+<!-- box with stats -->
+<section id="stats" style="background-color: #0e0f0f">
+ <div class="container" data-aos="fade-up" data-aos-delay="100">
+  <div class="position-relative w-100 py-5" style="background-color:rgb(26, 28, 28);">
+    <!-- Decorative Borders -->
+    <span class="position-absolute top-0 bottom-0 start-0 end-0 pointer-events-none">
+      <!-- Left border -->
+      <div class="position-absolute top-0 bottom-0 start-0 d-flex align-items-center">
+        <div style="width: 2px; height: calc(100% - 68px); background-color: #686868;"></div>
+      </div>
+      <!-- Top border -->
+      <div class="position-absolute top-0 start-0 end-0 d-flex justify-content-center">
+        <div style="height: 2px; width: calc(100% - 68px); background-color: #686868;"></div>
+      </div>
+      <!-- Right border -->
+      <div class="position-absolute top-0 bottom-0 end-0 d-flex align-items-center">
+        <div style="width: 2px; height: calc(100% - 68px); background-color: #686868;"></div>
+      </div>
+      <!-- Bottom border -->
+      <div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-center">
+        <div style="height: 2px; width: calc(100% - 68px); background-color:#686868;"></div>
+      </div>
+
+      <!-- Corner SVGs -->
+      <svg class="position-absolute top-0 start-0" width="35" height="35" viewBox="0 0 35 35" fill="#686868" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
+      </svg>
+      <svg class="position-absolute bottom-0 start-0" style="transform: rotate(-90deg);" width="35" height="35" viewBox="0 0 35 35" fill="#686868">
+        <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
+      </svg>
+      <svg class="position-absolute top-0 end-0" style="transform: rotate(90deg);" width="35" height="35" viewBox="0 0 35 35" fill="#686868">
+        <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
+      </svg>
+      <svg class="position-absolute bottom-0 end-0" style="transform: rotate(180deg);" width="35" height="35" viewBox="0 0 35 35" fill="#686868">
+        <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
+      </svg>
+    </span>
+
+    <!-- Stats -->
+    <div class="row text-center text-warning">
+      <div class="col-md-4 mb-4 mb-md-0">
+        <div class="fw-bold display-4">10+</div>
+        <div class="mt-3 small fw-semibold">Courses & Tutorials</div>
+      </div>
+      <div class="col-md-4 mb-4 mb-md-0">
+        <div class="fw-bold display-4">1.2M+</div>
+        <div class="mt-3 small fw-semibold">Active Students</div>
+      </div>
+      <div class="col-md-4">
+        <div class="fw-bold display-4">800+</div>
+        <div class="mt-3 small fw-semibold">Games Developed</div>
+      </div>
+    </div>
+
+
+</div>
+ </section>
 
 <!-- Mga picture ng tropa para maangas CTO -->
 <section id="aboutus" class="container section" style="background-color: #0e0f0f">
@@ -147,7 +215,7 @@ include("func/connections.php");
           </div>
 
           <div class="content-right flex-grow-1" data-aos="fade-right" data-aos-delay="200">
-            <span class="badge text-uppercase mb-2">Don't Miss</span>
+            <span class="badge text-uppercase mb-2 text-warning">Must have!</span>
             <h2 class="text-white">Code whatever you can imagine</h2>
             <p class="my-4">Learn game programming in c# so that you can bring your imagination to life. Have the freedom and confidence to make anything.</p>
           </div>
@@ -161,14 +229,14 @@ include("func/connections.php");
         </div>
       </div>
 
-      
+   
       <!-- #3 -->
       <div class="container col-12 call-to-action-2 gy-5" data-aos="fade-up" data-aos-delay="100">
         <div class="advertise-1 d-flex flex-column flex-lg-row gap-4 align-items-center position-relative p-5">
 
         
           <div class="content-left flex-grow-1" data-aos="fade-right" data-aos-delay="200">
-            <span class="badge text-uppercase mb-2">Don't Miss</span>
+            <span class="badge text-uppercase mb-2 text-danger">Limited Offer!</span>
             <h2 class="text-white">Build an audience & market your games</h2>
             <p class="my-4">Making fun and beautiful games is not enough. You need to learn how to build a following and market your game to make money.</p>
           </div>
@@ -196,63 +264,7 @@ include("func/connections.php");
 </section>
 
 
-<!-- box with stats -->
- <section id="stats">
- <div class="container mt-5" data-aos="fade-up" data-aos-delay="100">
-  <div class="position-relative w-100 py-5" style="background-color:rgb(26, 28, 28);">
-    <!-- Decorative Borders -->
-    <span class="position-absolute top-0 bottom-0 start-0 end-0 pointer-events-none">
-      <!-- Left border -->
-      <div class="position-absolute top-0 bottom-0 start-0 d-flex align-items-center">
-        <div style="width: 2px; height: calc(100% - 68px); background-color: #686868;"></div>
-      </div>
-      <!-- Top border -->
-      <div class="position-absolute top-0 start-0 end-0 d-flex justify-content-center">
-        <div style="height: 2px; width: calc(100% - 68px); background-color: #686868;"></div>
-      </div>
-      <!-- Right border -->
-      <div class="position-absolute top-0 bottom-0 end-0 d-flex align-items-center">
-        <div style="width: 2px; height: calc(100% - 68px); background-color: #686868;"></div>
-      </div>
-      <!-- Bottom border -->
-      <div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-center">
-        <div style="height: 2px; width: calc(100% - 68px); background-color:#686868;"></div>
-      </div>
 
-      <!-- Corner SVGs -->
-      <svg class="position-absolute top-0 start-0" width="35" height="35" viewBox="0 0 35 35" fill="#686868" xmlns="http://www.w3.org/2000/svg">
-        <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
-      </svg>
-      <svg class="position-absolute bottom-0 start-0" style="transform: rotate(-90deg);" width="35" height="35" viewBox="0 0 35 35" fill="#686868">
-        <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
-      </svg>
-      <svg class="position-absolute top-0 end-0" style="transform: rotate(90deg);" width="35" height="35" viewBox="0 0 35 35" fill="#686868">
-        <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
-      </svg>
-      <svg class="position-absolute bottom-0 end-0" style="transform: rotate(180deg);" width="35" height="35" viewBox="0 0 35 35" fill="#686868">
-        <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
-      </svg>
-    </span>
-
-    <!-- Stats -->
-    <div class="row text-center text-warning">
-      <div class="col-md-4 mb-4 mb-md-0">
-        <div class="fw-bold display-4">500+</div>
-        <div class="mt-3 small fw-semibold">Courses & Tutorials</div>
-      </div>
-      <div class="col-md-4 mb-4 mb-md-0">
-        <div class="fw-bold display-4">1.2M+</div>
-        <div class="mt-3 small fw-semibold">Active Students</div>
-      </div>
-      <div class="col-md-4">
-        <div class="fw-bold display-4">800+</div>
-        <div class="mt-3 small fw-semibold">Games Developed</div>
-      </div>
-    </div>
-
-
-</div>
- </section>
 
 
 <!-- courses Section -->
@@ -307,6 +319,53 @@ include("func/connections.php");
     </div>
   </section>
 
+
+
+  <!-- box with stats -->
+<section id="stats" style="background-color: #0e0f0f">
+ <div class="container" data-aos="fade-up" data-aos-delay="100">
+  <div class="position-relative w-100 py-5" style="background-color:rgb(26, 28, 28);">
+    <!-- Decorative Borders -->
+    <span class="position-absolute top-0 bottom-0 start-0 end-0 pointer-events-none">
+      <!-- Left border -->
+      <div class="position-absolute top-0 bottom-0 start-0 d-flex align-items-center">
+        <div style="width: 2px; height: calc(100% - 68px); background-color: #686868;"></div>
+      </div>
+      <!-- Top border -->
+      <div class="position-absolute top-0 start-0 end-0 d-flex justify-content-center">
+        <div style="height: 2px; width: calc(100% - 68px); background-color: #686868;"></div>
+      </div>
+      <!-- Right border -->
+      <div class="position-absolute top-0 bottom-0 end-0 d-flex align-items-center">
+        <div style="width: 2px; height: calc(100% - 68px); background-color: #686868;"></div>
+      </div>
+      <!-- Bottom border -->
+      <div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-center">
+        <div style="height: 2px; width: calc(100% - 68px); background-color:#686868;"></div>
+      </div>
+
+      <!-- Corner SVGs -->
+      <svg class="position-absolute top-0 start-0" width="35" height="35" viewBox="0 0 35 35" fill="#686868" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
+      </svg>
+      <svg class="position-absolute bottom-0 start-0" style="transform: rotate(-90deg);" width="35" height="35" viewBox="0 0 35 35" fill="#686868">
+        <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
+      </svg>
+      <svg class="position-absolute top-0 end-0" style="transform: rotate(90deg);" width="35" height="35" viewBox="0 0 35 35" fill="#686868">
+        <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
+      </svg>
+      <svg class="position-absolute bottom-0 end-0" style="transform: rotate(180deg);" width="35" height="35" viewBox="0 0 35 35" fill="#686868">
+        <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
+      </svg>
+    </span>
+
+    <!-- Stats -->
+    <div class="row text-center text-warning">
+      <div class="col-md-12 mb-4 mb-md-0">
+        <div class="fw-bold display-4">What are you waiting for?</div>
+
+      </div>
+
 </main>
 
 
@@ -316,90 +375,8 @@ include("func/connections.php");
 <!-- bootstrap js link -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-<footer id="footer" class="footer">
-
-<div class="container footer-top">
-  <div class="row gy-4">
-    <div class="col-lg-4 col-md-6 footer-about">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <span class="sitename">Blogy</span>
-      </a>
-      <div class="footer-contact pt-3">
-        <p>A108 Adam Street</p>
-        <p>New York, NY 535022</p>
-        <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-        <p><strong>Email:</strong> <span>info@example.com</span></p>
-      </div>
-      <div class="social-links d-flex mt-4">
-        <a href=""><i class="bi bi-twitter-x"></i></a>
-        <a href=""><i class="bi bi-facebook"></i></a>
-        <a href=""><i class="bi bi-instagram"></i></a>
-        <a href=""><i class="bi bi-linkedin"></i></a>
-      </div>
-    </div>
-
-    <div class="col-lg-2 col-md-3 footer-links">
-      <h4>Useful Links</h4>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About us</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Terms of service</a></li>
-        <li><a href="#">Privacy policy</a></li>
-      </ul>
-    </div>
-
-    <div class="col-lg-2 col-md-3 footer-links">
-      <h4>Our Services</h4>
-      <ul>
-        <li><a href="#">Web Design</a></li>
-        <li><a href="#">Web Development</a></li>
-        <li><a href="#">Product Management</a></li>
-        <li><a href="#">Marketing</a></li>
-        <li><a href="#">Graphic Design</a></li>
-      </ul>
-    </div>
-
-    <div class="col-lg-2 col-md-3 footer-links">
-      <h4>Hic solutasetp</h4>
-      <ul>
-        <li><a href="#">Molestiae accusamus iure</a></li>
-        <li><a href="#">Excepturi dignissimos</a></li>
-        <li><a href="#">Suscipit distinctio</a></li>
-        <li><a href="#">Dilecta</a></li>
-        <li><a href="#">Sit quas consectetur</a></li>
-      </ul>
-    </div>
-
-    <div class="col-lg-2 col-md-3 footer-links">
-      <h4>Nobis illum</h4>
-      <ul>
-        <li><a href="#">Ipsam</a></li>
-        <li><a href="#">Laudantium dolorum</a></li>
-        <li><a href="#">Dinera</a></li>
-        <li><a href="#">Trodelas</a></li>
-        <li><a href="#">Flexo</a></li>
-      </ul>
-    </div>
-
-  </div>
-</div>
-
-<div class="container copyright text-center mt-4">
-  <p>© <span>Copyright</span> <strong class="px-1 sitename">Blogy</strong> <span>All Rights Reserved</span></p>
-  <div class="credits">
-    <!-- All the links in the footer should remain intact. -->
-    <!-- You can delete the links only if you've purchased the pro version. -->
-    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-    <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-  </div>
-</div>
-
-</footer>
-
 <!-- Scroll Top -->
-<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center" style="background-color: #f0ad4e; color: #0e0f0f;"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Preloader -->
 <div id="preloader"></div>
