@@ -61,7 +61,7 @@ $total_price = $purchase_result->fetch_assoc()['total_price'];
     <!-- Desktop Sidebar (hidden on small screens) -->
     <aside class="d-none d-md-block col-md-2 bg-dark text-white vh-100 position-fixed p-3">
         <div class="text-center mb-4">
-            <img src="../img/logo.png" alt="logo" class="img-fluid" style="max-width: 80px;">
+            <img src="../img/gdc-logo.png" alt="logo" class="img-fluid" style="max-width: 80px;">
         </div>
         <div class="nav flex-column text-center gap-3">
             <a href="../admin/dashboard.php" class="text-warning fw-bold fs-5 text-decoration-none">Dashboard</a>
@@ -79,7 +79,7 @@ $total_price = $purchase_result->fetch_assoc()['total_price'];
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body d-flex flex-column text-center gap-3">
-            <img src="../img/logo.png" alt="logo" class="img-fluid mb-3" style="max-width: 80px; margin: 0 auto;">
+            <img src="../img/gdc-logo.png" alt="logo" class="img-fluid mb-3" style="max-width: 80px; margin: 0 auto;">
             <a href="../admin/dashboard.php" class="text-warning fw-bold fs-5 text-decoration-none">Dashboard</a>
             <a href="../admin/users.php" class="text-light text-decoration-none">Users</a>
             <a href="../admin/courses.php" class="text-light text-decoration-none">Courses</a>
