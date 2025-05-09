@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $message = "<div class='error' style='background-color: red; color: white; padding: 10px; border-radius: 5px'>⚠️ Invalid email or password!.</div>";
         }
     } else {
-        $message = "<div class='error'>⚠️ Incorrect username or password.</div>";
+        $message = "<div 'error' style='background-color: red; color: white; padding: 10px; border-radius: 5px'>⚠️ Incorrect email or password.</div>";
     }
 
     $stmt->close();
