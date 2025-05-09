@@ -41,7 +41,6 @@ if (isset($_SESSION['email'])) {
     }
 }
 
-// // Add this to start of pages where you need the cart count
 // function updateCartBadge($conn) {
 //     if (isset($_SESSION['user_id'])) {
 //         $user_id = $_SESSION['user_id'];
@@ -69,8 +68,10 @@ if (isset($_SESSION['email'])) {
     <title>Home</title>
     
     <!-- css file -->
-    <link href="../src/style.css" rel="stylesheet">
-    <link href="../src/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="../src/style.css">
+    <link rel="stylesheet" href="../src/main.css" >
+    <link rel="stylesheet" href="../src/hero.css" >
+    <link rel="stylesheet" href="../src/call-to-action.css" >
 
     <!-- bootstrap css link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -79,141 +80,261 @@ if (isset($_SESSION['email'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet">
 
-    <!-- Vendor CSS Files -->
+    <!-- Vendor CSS Files PARA maganda sir, sana may plus point sa effort <3 -->
     <link href="../src/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/aos/aos.css" rel="stylesheet">
+    <link href="vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   </head>
-<body>
+
+<body class="body-color index-page">
     
+  <!-- Navbar -->
+  <?php include 'header.php'; ?>
 
-<?php include 'header.php'; ?>
 
-
-<!-- main content -->
-<main class="main pt-5 mt-3">
-<!-- Full-width container for the welcome message -->
-<div class="container-fluid bg-black pt-5 pb-5 mt-6">
-    <div class="row justify-content-center">
-        <div class="col-12 text-center">
-            <h1 class="text-white">Welcome back, <?php echo isset($_SESSION["first_name"]) ? htmlspecialchars($_SESSION["first_name"]) : ''; ?>!</h1>
+  <!-- main content -->
+  <main class="main pt-5">
+    <!-- Full-width container for the welcome message -->
+    <div class="container-fluid bg-black pt-5 pb-5 mt-6">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <h1 class="text-white">Welcome back, <?php echo isset($_SESSION["first_name"]) ? htmlspecialchars($_SESSION["first_name"]) : ''; ?>!</h1>
+            </div>
         </div>
     </div>
-</div>
 
-  <!-- Hero Section -->
-  <section id="home" class="hero section dark-background">
-    
-    <img src="../img/hero-img.jpg" alt="hero-bg" data-aos="fade-in">
 
-    <div class="container d-flex flex-column align-items-center justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
-      <h2>I am Sherwin Limosnero</h2>
-      <p><span class="fs-5 text-warning fst-italic">Designer, Developer, Freelancer, Musician</span></p>
-    </div>
+    <!-- Hero Section --> 
+    <section id="home" class="container hero section dark-background mt-4 pt-7" style="padding: 2rem; max-width: fit-content;">
 
-  </section><!-- /Hero Section -->
+    <img src="../img/hero-top.jpg" alt="hero-bg" data-aos="fade-in" class="img-fluid w-100 d-block" data-aos="fade-up" data-aos-delay="100">
 
-  <!-- About Section -->
-  <section id="about-me" class="about section">
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row gy-4 align-items-center">
-          <!-- Left Column: Image -->
-          <div class="col-md-4">
-              <img src="../img/face.png" style="width: 80%; height: auto;" class="img-fluid align-items-center" alt="Profile Picture">
-          </div>       
-
-          <!-- Right Column: About Me -->
-          <div class="col-md-8">
-            <div class="about-me">
-                  <h4>About Me</h4>
-                  <p>
-                      Hey there! I'm Sherwin Limosnero, a second-year Game Development student fueled by creativity and a passion for making fun, immersive experiences. 
-                  </p>
-
-                  <div class="skills-content skills-animation">
-                      <h5>Skills</h5>
-                      <div class="d-flex flex-wrap gap-2">
-                  <!-- Programming Languages -->
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" width="20" height="20" class="rounded" alt="C#" />
-                      <span>C#</span>
-                  </div>
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="20" height="20" class="rounded" alt="Python" />
-                      <span>Python</span>
-                  </div>
-
-                  <!-- Game Development -->
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Godot_icon.svg" width="20" height="20" class="rounded" alt="Godot" />
-                      <span>Godot</span>
-                  </div>
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" width="20" height="20" class="rounded" alt="Unity" />
-                      <span>Unity</span>
-                  </div>
-
-                  <!-- Frontend Development -->
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="20" height="20" class="rounded" alt="HTML5" />
-                      <span>HTML5</span>
-                  </div>
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="20" height="20" class="rounded" alt="CSS3" />
-                      <span>CSS3</span>
-                  </div>
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" width="20" height="20" class="rounded" alt="Tailwind CSS" />
-                      <span>Tailwind CSS</span>
-                  </div>
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" width="20" height="20" class="rounded" alt="Bootstrap" />
-                      <span>Bootstrap</span>
-                  </div>
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="20" height="20" class="rounded" alt="React" />
-                      <span>React</span>
-                  </div>
-
-                  <!-- Version Control -->
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="20" height="20" class="rounded" alt="Git" />
-                      <span>Git</span>
-                  </div>
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="20" height="20" class="rounded" alt="GitHub" />
-                      <span>GitHub</span>
-                  </div>
-
-                  <!-- Tools -->
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" width="20" height="20" class="rounded" alt="VS Code" />
-                      <span>VS Code</span>
-                  </div>
-                  <div class="d-flex align-items-center gap-2 border rounded px-2 py-1 text-muted font-monospace hover-bg-light">
-                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" width="20" height="20" class="rounded" alt="Figma" />
-                      <span>Figma</span>
-                  </div>
+      <div class="container" style="padding: 1rem; max-width: fit-content;" data-aos="fade-up" data-aos-delay="100">
+        <div class="row col-12 col-md-6 col-lg-5">
+          <div class="px-5 px-md-4 px-lg-5">
+            <div class="w-100">
+              <h4 class="fw-bold">START YOUR GAME DEV JOURNEY</h4>
+              <div class="promo-subheading text-warning">DISCOVER OUR SECRET ROADMAP TO TURN YOUR PASSION INTO PROFIT.</div>
+              <div class="promo-text">
+                <span class="highlight">Learn how to make games, build your portfolio, and start earning—on your own time, from anywhere.</span>
+                <div class="turn-career">Join thousands of aspiring game developers taking the first step today.</div>
+                <a href="#courses"><button class="btn-donate">Enroll Now!</button></a>
               </div>
-          </div>
-
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-    </div>
-  </section>
 
-  <!-- courses Section -->
-  <section id="courses" class="services section">
-
-    <!-- Section Title -->
-    <div class="container section-title" data-aos="fade-up">
-      <h2>Courses</h2>
-      <p>Explore our wide range of courses designed to enhance your skills and knowledge in various domains.</p>
-    </div><!-- End Section Title -->
-
+    <!-- line breaker -->
     <div class="container">
-      <div class="row gy-4">
-        <?php
+      <div class="position-relative d-flex align-items-center gap-3 gap-md-5 mt-5 mb-md-5">
+        <div class="flex-grow-1 border-top border-white opacity-50"></div>
+
+        <img src="../img/gdc-logo.png" alt="" width="80" height="80" class="img-fluid">
+
+        <div class="flex-grow-1 border-top border-white opacity-50"></div>
+      </div>
+    </div>
+
+    <div class="col-12 text-center my-5" data-aos="fade-up" data-aos-delay="200">
+      <h2 class="fw-semibold text-white display-4 display-md-3 display-lg-2" style="word-break: break-word;">
+        We've Buffed <span class="text-warning"><i>2 Million+</i></span> Aspiring Game Devs
+      </h2>
+    </div>
+
+    <div class="col-12 text-center mb-4" data-aos="fade-up" data-aos-delay="300">
+      <span class="text-secondary fs-5 fs-md-4">
+        With courses in Unreal, Unity, Godot, Blender, and more, we've got you covered.
+      </span>
+    </div>
+
+    <!-- box with stats -->
+    <!-- <section id="stats" style="background-color: #0e0f0f">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="position-relative w-100 py-5" style="background-color:rgb(26, 28, 28);"> -->
+          <!-- Decorative Borders -->
+          <!-- <span class="position-absolute top-0 bottom-0 start-0 end-0 pointer-events-none"> -->
+            <!-- Left border -->
+            <!-- <div class="position-absolute top-0 bottom-0 start-0 d-flex align-items-center">
+              <div style="width: 2px; height: calc(100% - 68px); background-color: #686868;"></div>
+            </div> -->
+            <!-- Top border -->
+            <!-- <div class="position-absolute top-0 start-0 end-0 d-flex justify-content-center">
+              <div style="height: 2px; width: calc(100% - 68px); background-color: #686868;"></div>
+            </div> -->
+            <!-- Right border -->
+            <!-- <div class="position-absolute top-0 bottom-0 end-0 d-flex align-items-center">
+              <div style="width: 2px; height: calc(100% - 68px); background-color: #686868;"></div>
+            </div> -->
+            <!-- Bottom border -->
+            <!-- <div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-center">
+              <div style="height: 2px; width: calc(100% - 68px); background-color:#686868;"></div>
+            </div> -->
+
+            <!-- Corner SVGs -->
+            <!-- <svg class="position-absolute top-0 start-0" width="35" height="35" viewBox="0 0 35 35" fill="#686868" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
+            </svg>
+            <svg class="position-absolute bottom-0 start-0" style="transform: rotate(-90deg);" width="35" height="35" viewBox="0 0 35 35" fill="#686868">
+              <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
+            </svg>
+            <svg class="position-absolute top-0 end-0" style="transform: rotate(90deg);" width="35" height="35" viewBox="0 0 35 35" fill="#686868">
+              <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
+            </svg>
+            <svg class="position-absolute bottom-0 end-0" style="transform: rotate(180deg);" width="35" height="35" viewBox="0 0 35 35" fill="#686868">
+              <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
+            </svg>
+          </span> -->
+
+          <!-- Stats -->
+          <!-- <div class="row text-center text-warning">
+            <div class="col-md-4 mb-4 mb-md-0">
+              <div class="fw-bold display-4">10+</div>
+              <div class="mt-3 small fw-semibold">Courses & Tutorials</div>
+            </div>
+            <div class="col-md-4 mb-4 mb-md-0">
+              <div class="fw-bold display-4">1.2M+</div>
+              <div class="mt-3 small fw-semibold">Active Students</div>
+            </div>
+            <div class="col-md-4">
+              <div class="fw-bold display-4">800+</div>
+              <div class="mt-3 small fw-semibold">Games Developed</div>
+            </div>
+          </div>
+      </div>
+    </section> -->
+
+    <!-- Mga picture ng tropa para maangas CTO -->
+    <!-- <section id="aboutus" class="container section" style="background-color: #0e0f0f">
+      <div class="row "> -->
+
+          <!-- #1 -->
+          <!-- <div class="container call-to-action-2 " data-aos="fade-up" data-aos-delay="100">
+            <div class="advertise-1 d-flex flex-column flex-lg-row gap-4 align-items-center position-relative p-5">
+              <div class="content-left flex-grow-1" data-aos="fade-right" data-aos-delay="200">
+                <span class="badge text-uppercase mb-2">Don't Miss</span>
+                <h2 class="text-white">Create irresistible eye-popping games</h2>
+                <p class="my-4">Master 2D & 3D game art to make stunning creations. Stop labelling yourself as a "bad artist" and learn this fundamental pillar.</p> -->
+
+                <!-- <div class="features d-flex flex-wrap gap-3 mb-4">
+                  <div class="feature-item">
+                    <i class="bi bi-check-circle-fill"></i>
+                    <span>Premium Support</span>
+                  </div>
+                  <div class="feature-item">
+                    <i class="bi bi-check-circle-fill"></i>
+                    <span>Cloud Integration</span>
+                  </div>
+                  <div class="feature-item">
+                    <i class="bi bi-check-circle-fill"></i>
+                    <span>Real-time Analytics</span>
+                  </div>
+                </div> -->
+
+                <!-- <div class="cta-buttons d-flex flex-wrap gap-3">
+                  <a href="#" class="btn btn-primary">Start Free Trial</a>
+                  <a href="#" class="btn btn-outline">Learn More</a>
+                </div> 
+              </div> -->
+
+              <!-- <div class="content-right position-relative" data-aos="fade-left" data-aos-delay="300" style="height: 400px;">
+                <img src="img/blogs/img5.jpg" style="height: 100%; width: auto; object-fit: contain;" alt="Digital Platform" class="img-fluid rounded-4">
+                <div class="floating-card">
+                  <div class="card-icon">
+                    <i class="bi bi-graph-up-arrow"></i>
+                  </div>
+                  <div class="card-content">
+                    <span class="stats-number">90% Discount</span>
+                    <span class="stats-text">For UPHSL Students</span>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="decoration">
+                <div class="circle-1"></div>
+                <div class="circle-2"></div>
+              </div>
+            </div>
+          </div> -->
+
+          <!-- #2 -->
+          <!-- <div class="container call-to-action-2 gy-5" data-aos="fade-up" data-aos-delay="100">
+            <div class="advertise-1 d-flex flex-column flex-lg-row gap-4 align-items-center position-relative p-5">
+
+              <div class="col-auto d-flex align-items-center" data-aos="fade-left" data-aos-delay="300">
+                <img src="img/blogs/img1.jpg" style="height: 200px; width: auto; object-fit: contain;" alt="Digital Platform" class="img-fluid rounded-4">
+              </div>
+
+              <div class="col-auto d-flex align-items-center" data-aos="fade-left" data-aos-delay="300">
+                <img src="img/blogs/img2.jpg" style="height: 200px; width: auto; object-fit: contain;" alt="Digital Platform" class="img-fluid rounded-4">
+              </div>
+
+              <div class="content-right flex-grow-1" data-aos="fade-right" data-aos-delay="200">
+                <span class="badge text-uppercase mb-2 text-warning">Must have!</span>
+                <h2 class="text-white">Code whatever you can imagine</h2>
+                <p class="my-4">Learn game programming in c# so that you can bring your imagination to life. Have the freedom and confidence to make anything.</p>
+              </div>
+
+
+
+              <div class="decoration">
+                <div class="circle-1"></div>
+                <div class="circle-2"></div>
+              </div>
+            </div>
+          </div> -->
+
+      
+          <!-- #3 -->
+          <!-- <div class="container col-12 call-to-action-2 gy-5" data-aos="fade-up" data-aos-delay="100">
+            <div class="advertise-1 d-flex flex-column flex-lg-row gap-4 align-items-center position-relative p-5">
+
+            
+              <div class="content-left flex-grow-1" data-aos="fade-right" data-aos-delay="200">
+                <span class="badge text-uppercase mb-2 text-danger">Limited Offer!</span>
+                <h2 class="text-white">Build an audience & market your games</h2>
+                <p class="my-4">Making fun and beautiful games is not enough. You need to learn how to build a following and market your game to make money.</p>
+              </div>
+
+              <div class="col-auto d-flex align-items-center" data-aos="fade-left" data-aos-delay="300">
+                <img src="img/blogs/img3.jpg" style="height: 200px; width: auto; object-fit: contain;" alt="Digital Platform" class="img-fluid rounded-4">
+              </div>
+
+              <div class="col-auto d-flex align-items-center" data-aos="fade-left" data-aos-delay="300">
+                <img src="img/blogs/img4.jpg" style="height: 200px; width: auto; object-fit: contain;" alt="Digital Platform" class="img-fluid rounded-4">
+              </div>
+
+
+
+
+              <div class="decoration">
+                <div class="circle-1"></div>
+                <div class="circle-2"></div>
+              </div>
+            </div>
+          </div>
+
+
+      </div>
+    </section> -->
+
+    <!-- courses Section -->
+    <section id="courses" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Courses</h2>
+        <p>Explore our wide range of courses designed to enhance your skills and knowledge in various domains.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+        <div class="row gy-4">
+          <?php
             // Fetch courses
             $sql = "SELECT * FROM courses";
             $result = $conn->query($sql);
@@ -264,7 +385,7 @@ if (isset($_SESSION['email'])) {
                                     
                                     if ($already_purchased) {
                                         // If already purchased, show "View Course" button instead of "Buy"
-                                        echo "<a href='under-construction.php' class='btn btn-sm btn-primary py-2 px-5'>View Course</a>";
+                                        echo "<a href='home.php' class='btn btn-sm btn-primary py-2 px-5'>View Course</a>";
                                     } else {
                                         // If not purchased, show normal buttons
                                         echo "<button type='button' class='btn btn-sm btn-success py-2 px-5' ";
@@ -299,7 +420,7 @@ if (isset($_SESSION['email'])) {
                                             </div>
                                             <div class='modal-footer'>
                                                 <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
-                                                <a href='checkout.php' class='btn btn-primary'>View Course</a>
+                                                <a href='home.php' class='btn btn-primary'>View Course</a>
                                             </div>
                                         </div>
                                     </div>
@@ -312,20 +433,84 @@ if (isset($_SESSION['email'])) {
                 echo "<p class='text-center text-muted'>No courses found.</p>";
             }
             ?>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
+
+
+    <!-- box with stats -->
+    <section id="stats" style="background-color: #0e0f0f">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="position-relative w-100 py-5" style="background-color:rgb(26, 28, 28);">
+          <!-- Decorative Borders -->
+          <span class="position-absolute top-0 bottom-0 start-0 end-0 pointer-events-none">
+            <!-- Left border -->
+            <div class="position-absolute top-0 bottom-0 start-0 d-flex align-items-center">
+              <div style="width: 2px; height: calc(100% - 68px); background-color: #686868;"></div>
+            </div>
+            <!-- Top border -->
+            <div class="position-absolute top-0 start-0 end-0 d-flex justify-content-center">
+              <div style="height: 2px; width: calc(100% - 68px); background-color: #686868;"></div>
+            </div>
+            <!-- Right border -->
+            <div class="position-absolute top-0 bottom-0 end-0 d-flex align-items-center">
+              <div style="width: 2px; height: calc(100% - 68px); background-color: #686868;"></div>
+            </div>
+            <!-- Bottom border -->
+            <div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-center">
+              <div style="height: 2px; width: calc(100% - 68px); background-color:#686868;"></div>
+            </div>
+
+            <!-- Corner SVGs -->
+            <svg class="position-absolute top-0 start-0" width="35" height="35" viewBox="0 0 35 35" fill="#686868" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
+            </svg>
+            <svg class="position-absolute bottom-0 start-0" style="transform: rotate(-90deg);" width="35" height="35" viewBox="0 0 35 35" fill="#686868">
+              <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
+            </svg>
+            <svg class="position-absolute top-0 end-0" style="transform: rotate(90deg);" width="35" height="35" viewBox="0 0 35 35" fill="#686868">
+              <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
+            </svg>
+            <svg class="position-absolute bottom-0 end-0" style="transform: rotate(180deg);" width="35" height="35" viewBox="0 0 35 35" fill="#686868">
+              <path d="M2 35H0V18.988L18.988 0H35v2H20L2 20v15ZM14.7 0 0 14.7V0h14.7ZM6.387 6.388V.875L.875 6.388h5.513Z"/>
+            </svg>
+          </span>
+
+          <!-- Stats -->
+          <div class="row text-center text-warning">
+            <div class="col-md-12 mb-4 mb-md-0">
+              <div class="fw-bold display-4">What are you waiting for?</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 </main>
 
 
 <?php include 'footer.php'; ?>
 
-<!-- toast container -->
-<div id="toastContainer" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"></div>
-
 <!-- bootstrap js link -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center" style="background-color: #f0ad4e; color: #0e0f0f;"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Preloader -->
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<!-- <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+<script src="vendor/php-email-form/validate.js"></script>
+<script src="vendor/aos/aos.js"></script>
+<script src="vendor/swiper/swiper-bundle.min.js"></script>
+<script src="vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="vendor/glightbox/js/glightbox.min.js"></script>
+
+<!-- Main JS File -->
+<script src="../js/main.js"></script>
+
 
 <script>
     document.querySelectorAll('.add-to-cart').forEach(button => {
@@ -444,7 +629,7 @@ function showToast(type, message) {
     // Create toast element
     const toast = document.createElement('div');
     toast.className = 'toast show';
-    toast.style.minWidth = '250px';
+    toast.style.minWidth = '250px'; 
     
     // Set color based on type
     let bgColor, textColor, icon;
@@ -474,7 +659,7 @@ function showToast(type, message) {
     toast.style.color = textColor;
     toast.style.borderRadius = '4px';
     toast.style.padding = '15px';
-    toast.style.marginBottom = '10px';
+    toast.style.marginBottom = '50px';
     toast.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
     toast.style.display = 'flex';
     toast.style.alignItems = 'center';

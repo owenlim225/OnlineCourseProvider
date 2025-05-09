@@ -33,7 +33,7 @@ include("../func/connections.php");
 <div class="container-fluid p-0">
     <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-black bg-opacity-95 fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="home.php"><img src="../img/logo.png" alt="logo" class="fa-custom-logo"></a>
+            <a class="navbar-brand" href="home.php"><img src="../img/gdc-logo.png" alt="logo" class="fa-custom-logo"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -41,6 +41,9 @@ include("../func/connections.php");
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 me-5">
                     <li class="nav-item ms-4">
                         <a class="nav-link active" aria-current="page" href="home.php"></i>Home</a>
+                    </li>
+                    <li class="nav-item ms-4">
+                        <a class="nav-link" href="home.php#courses">Courses</a>
                     </li>
                 </ul>
 

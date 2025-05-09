@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
 <div class="container-fluid p-0">
     <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-black bg-opacity-95 fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="img/logo.png" alt="logo" class="fa-custom-logo"></a>
+            <a class="navbar-brand" href="#"><img src="img/gdc-logo.png" alt="logo" class="fa-custom-logo"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
                         <a class="nav-link active" aria-current="page" href="index.php"></i>Home</a>
                     </li>
                     <li class="nav-item ms-4">
-                        <a class="nav-link" href="index.php#about-me">About me</a>
+                        <a class="nav-link" href="index.php#aboutus">About us</a>
                     </li>
                     <li class="nav-item ms-4">
                         <a class="nav-link" href="index.php#courses">Courses</a>
@@ -124,8 +124,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
 </div>
 
 <!-- Register Form -->
-<div class="row justify-content-center align-items-center vh-100">
-    <div class="col-md-4 col-lg-4 bg-white p-5 rounded-4 shadow-lg text-center">
+<div class="row justify-content-center align-items-center vh-100 mt-5">
+    <div class="col-md-8 col-lg-5 col-xl-4 bg-white p-5 rounded-4 shadow-lg text-center">
         <h2 class="mb-4 text-black fw-bold">
             <i class="bi bi-person-plus me-2"></i> Register
         </h2>
@@ -160,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
             <!-- Password -->
             <div class="mb-3 text-start">
                 <label class="form-label text-black">Password</label>
-                <input type="password" name="password" class="form-control rounded-3 shadow-sm" required placeholder="Password">
+                <input type="password" name="password" class="form-control rounded-3 shadow-sm" required placeholder="Password" minlength="6">
             </div>
 
             <!-- Confirm Password -->

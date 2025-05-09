@@ -4,7 +4,7 @@
         <!-- Logo -->
         <div class="mb-3">
             <a class="navbar-brand" href="#">
-                <img src="../img/logo.png" alt="logo" class="fa-custom-logo">
+                <img src="../img/gdc-logo.png" alt="logo" class="fa-custom-logo">
             </a>
         </div>
 
