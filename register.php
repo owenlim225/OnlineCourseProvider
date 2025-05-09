@@ -160,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
             <!-- Password -->
             <div class="mb-3 text-start">
                 <label class="form-label text-black">Password</label>
-                <input type="password" name="password" class="form-control rounded-3 shadow-sm" required placeholder="Password">
+                <input type="password" name="password" class="form-control rounded-3 shadow-sm" required placeholder="Password" minlength="6">
             </div>
 
             <!-- Confirm Password -->
