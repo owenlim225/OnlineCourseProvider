@@ -1,3 +1,4 @@
+
 @keyframes fadeIn {
   from {opacity: 0; transform: translateX(50px);}
   to {opacity: 1; transform: translateX(0);}
@@ -14,6 +15,13 @@
     line-height : 1.0740;
     margin-top  : 0;
 }
+
+body {
+    background-color: #282c39;
+    color: #fff;
+    margin: 0;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+  }
 
 .body-color {
     background-color: #0e0f0f;
@@ -172,3 +180,6 @@
       font-size: 4rem;
     }
   }
+
+
+  
