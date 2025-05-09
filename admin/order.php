@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
     <!-- Desktop Sidebar (hidden on small screens) -->
     <aside class="d-none d-md-block col-md-2 bg-dark text-white vh-100 position-fixed p-3">
         <div class="text-center mb-4">
-            <img src="../img/logo.png" alt="logo" class="img-fluid" style="max-width: 80px;">
+            <img src="../img/gdc-logo.png" alt="logo" class="img-fluid" style="max-width: 80px;">
         </div>
         <div class="nav flex-column text-center gap-3">
             <a href="../admin/dashboard.php" class="text-light text-decoration-none">Dashboard</a>
@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body d-flex flex-column text-center gap-3">
-            <img src="../img/logo.png" alt="logo" class="img-fluid mb-3" style="max-width: 80px; margin: 0 auto;">
+            <img src="../img/gdc-logo.png" alt="logo" class="img-fluid mb-3" style="max-width: 80px; margin: 0 auto;">
             <a href="../admin/dashboard.php" class="text-light text-decoration-none">Dashboard</a>
             <a href="../admin/users.php" class="text-light text-decoration-none">Users</a>
             <a href="../admin/courses.php" class="text-light text-decoration-none">Courses</a>
@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
 
                 <!-- Order List Table -->
                 <h1 class="text-center fw-bold my-5 text-primary">Orders List</h1>
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     <?php
                         $sql = "SELECT * FROM orders";
                         $result = $conn->query($sql);
