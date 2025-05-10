@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_course"])) {
     <!-- Desktop Sidebar (hidden on small screens) -->
     <aside class="d-none d-md-block col-md-2 bg-dark text-white vh-100 position-fixed p-3">
         <div class="text-center mb-4">
-            <img src="../img/logo.png" alt="logo" class="img-fluid" style="max-width: 80px;">
+            <img src="../img/gdc-logo.png" alt="logo" class="img-fluid" style="max-width: 80px;">
         </div>
         <div class="nav flex-column text-center gap-3">
             <a href="../admin/dashboard.php" class="text-light text-decoration-none">Dashboard</a>
@@ -116,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_course"])) {
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body d-flex flex-column text-center gap-3">
-            <img src="../img/logo.png" alt="logo" class="img-fluid mb-3" style="max-width: 80px; margin: 0 auto;">
+            <img src="../img/gdc-logo.png" alt="logo" class="img-fluid mb-3" style="max-width: 80px; margin: 0 auto;">
             <a href="../admin/dashboard.php" class="text-light text-decoration-none">Dashboard</a>
             <a href="../admin/users.php" class="text-light text-decoration-none">Users</a>
             <a href="../admin/courses.php" class="text-warning fw-bold fs-5 text-decoration-none">Courses</a>
@@ -164,8 +164,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_course"])) {
                                 <!-- Image -->
                                 <div class="mb-3">
                                     <label class="form-label text-black">Course Image</label>
-                                    <input type="file" name="image" class="form-control rounded-3 shadow-sm" required>
+                                    <input type="file" name="image" class="form-control rounded-3 shadow-sm" required id="imageInput">
+                                    <img src="" alt="Preview" class="img-fluid mt-2 d-none" id="imagePreview" style="max-width: 200px; max-height: 200px;">
                                 </div>
+
+                                <script>
+                                    const imageInput = document.getElementById('imageInput');
+                                    const imagePreview = document.getElementById('imagePreview');
+
+                                    imageInput.addEventListener('change', () => {
+                                        if (imageInput.files.length > 0) {
+                                            const file = imageInput.files[0];
+                                            const reader = new FileReader();
+                                            reader.onload = (e) => {
+                                                imagePreview.src = e.target.result;
+                                                imagePreview.classList.remove('d-none');
+                                            };
+                                            reader.readAsDataURL(file);
+                                        } else {
+                                            imagePreview.classList.add('d-none');
+                                        }
+                                    });
+                                </script>
 
                                 <!-- Price -->
                                 <div class="mb-4">
