@@ -38,11 +38,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
 
     // Validate required fields
     if (empty($first_name) || empty($last_name) || empty($contact) || empty($new_email)) {
-        $message = '<div class="alert alert-danger d-flex align-items-center" role="alert"><i class="bi bi-exclamation-triangle-fill me-2"></i><div>All fields are required except password.</div></div>';
+        $message = '<div class="alert alert-danger d-flex align-items-center" role="alert"><i class="bi bi-exclamation-triangle-fill me-2"></i><div>⚠️ All fields are required with valuesexcept password.</div></div>';
     } elseif (!filter_var($new_email, FILTER_VALIDATE_EMAIL)) {
-        $message = '<div class="alert alert-danger d-flex align-items-center" role="alert"><i class="bi bi-exclamation-triangle-fill me-2"></i><div>Invalid email format.</div></div>';
+        $message = '<div class="alert alert-danger d-flex align-items-center" role="alert"><i class="bi bi-exclamation-triangle-fill me-2"></i><div>⚠️ Invalid email format.</div></div>';
     } elseif (!empty($new_password) && (strlen($new_password) < 6 || $new_password !== $confirm_password)) {
-        $message = '<div class="alert alert-danger d-flex align-items-center" role="alert"><i class="bi bi-exclamation-triangle-fill me-2"></i><div>Password must be at least 6 characters and match.</div></div>';
+        $message = '<div class="alert alert-danger d-flex align-items-center" role="alert"><i class="bi bi-exclamation-triangle-fill me-2"></i><div>⚠️ Password must be at least 6 characters and match.</div></div>';
     }
 
     if (empty($message)) {
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
         $check_result = $stmt->get_result();
 
         if ($check_result->num_rows > 0) {
-            $message = '<div class="alert alert-danger d-flex align-items-center" role="alert"><i class="bi bi-exclamation-triangle-fill me-2"></i><div>Email is already taken.</div></div>';
+            $message = '<div class="alert alert-danger d-flex align-items-center" role="alert"><i class="bi bi-exclamation-triangle-fill me-2"></i><div>⚠️ Email is already taken.</div></div>';
         } else {
             // Prepare dynamic update query
             $updates = "first_name=?, last_name=?, contact=?, email=?, is_admin=?";
@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
                 $user['email'] = $new_email;
                 $user['is_admin'] = $is_admin;
             } else {
-                $message = '<div class="alert alert-danger d-flex align-items-center" role="alert"><i class="bi bi-exclamation-triangle-fill me-2"></i><div>Error updating user.</div></div>';
+                $message = '<div class="alert alert-danger d-flex align-items-center" role="alert"><i class="bi bi-exclamation-triangle-fill me-2"></i><div>⚠️ Error updating user.</div></div>';
             }
         }
     }
