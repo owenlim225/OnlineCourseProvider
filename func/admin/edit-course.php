@@ -158,9 +158,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_course"])) {
                                 <!-- Image Upload -->
                                 <div class="mb-3">
                                     <label class="form-label text-black">Course Image</label>
-                                    <input type="file" name="image" class="form-control rounded-3 shadow-sm">
+                                    <input type="file" name="image" class="form-control rounded-3 shadow-sm" onchange="document.getElementById('courseImagePreview').src = window.URL.createObjectURL(this.files[0])">
                                     <?php if (!empty($course['image'])): ?>
-                                        <img src="../../img/courses/<?= htmlspecialchars($course['image']); ?>" alt="Course Image" class="img-fluid mt-3 rounded shadow-sm" style="max-height: 200px; object-fit: cover;">
+                                        <img id="courseImagePreview" src="../../img/courses/<?= htmlspecialchars($course['image']); ?>" alt="Course Image" class="img-fluid mt-3 rounded shadow-sm" style="max-height: 200px; object-fit: cover;">
                                     <?php endif; ?>
                                 </div>
 
@@ -191,3 +191,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_course"])) {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

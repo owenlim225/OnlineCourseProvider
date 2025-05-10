@@ -8,12 +8,14 @@ if (!isset($_SESSION["is_admin"]) || $_SESSION["is_admin"] != 1) {
     exit();
 }
 
+// Display message
 $message = "";
 if (isset($_SESSION["message"])) {
     $message = $_SESSION["message"];
     unset($_SESSION["message"]);
 }
 
+// Add user
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
     $first_name = trim($_POST["first_name"]);
     $last_name = trim($_POST["last_name"]);
@@ -31,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
     } elseif (!empty($password) && (strlen($password) < 6 || $password !== $confirm_password)) {
         $message = "<div class='alert alert-danger'>⚠️ Password must be at least 6 characters and match.</div>";
     } else {
-        // Hash password if provided
+        // Hash password
         $hashed_password = !empty($password) ? password_hash($password, PASSWORD_DEFAULT) : null;
 
         // Check if email already exists
@@ -40,7 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
-
+        
+        // Display error if email already exists
         if ($result->num_rows > 0) {
             $message = "<div class='alert alert-danger'>⚠️ Email already exists.</div>";
         } else {
@@ -49,7 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
                     VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("sssssi", $first_name, $last_name, $contact, $email, $hashed_password, $is_admin);
-
+            
+            // Display success message
             if ($stmt->execute()) {
                 $message = "<div class='alert alert-success d-flex align-items-center' role='alert'><i class='fa-solid me-2'></i><div>✅ User added successfully!</div></div>";
                 
@@ -254,6 +258,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
                                                     " . strtoupper($row['first_name'][0]) . "
                                                 </div>
                                                 <h5 class='card-title fw-bold mb-1'>{$row['first_name']} {$row['last_name']}</h5>
+                                                <p class='text-muted mb-2 small'><i class='bi bi-envelope'></i> user_id: {$row['user_id']}</p>
                                                 <p class='text-muted mb-2 small'><i class='bi bi-envelope'></i> {$row['email']}</p>
                                                 <p class='text-muted mb-2 small'><i class='bi bi-envelope'></i> {$row['contact']}</p>
                                                 <span class='badge " . ($isAdmin ? "bg-gradient bg-success" : "bg-gradient bg-secondary") . " px-3 py-2 mb-3'>" . ($isAdmin ? 'Admin' : 'User') . "</span>
