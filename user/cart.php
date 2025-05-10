@@ -112,7 +112,7 @@ if (isset($_SESSION['email'])) {
                 $user_id = $_SESSION['user_id']; // Make sure you have session_start() at the top of your file
                 
                 $sql = "SELECT c.cart_id, c.user_id, c.course_id, 
-                            cs.course_title, cs.price, cs.image
+                            cs.course_title, cs.price, cs.image, cs.description, cs.instructor
                         FROM cart c
                         JOIN courses cs ON c.course_id = cs.course_id
                         WHERE c.user_id = $user_id";
@@ -125,11 +125,13 @@ if (isset($_SESSION['email'])) {
                             <div class='card h-100'>
                                 <img src='../img/courses/{$row['image']}' alt='{$row['course_title']}' class='card-img-top' style='height: 200px; object-fit: cover;'>
                                 <div class='card-body'>
-                                    <h5 class='card-title'>{$row['course_title']}</h5>
-                                    <p class='card-text'>₱" . number_format($row['price'], 2) . "</p>
+                                    <h5 class='card-title text-primary fw-bold'>{$row['course_title']}</h5>
+                                    <p class='card-text text-muted'>{$row['description']}</p>
+                                    <p class='card-text text-muted'><i class='fa-solid fa-user-tie me-2'></i>Instructor: {$row['instructor']}</p>
+                                    <p class='card-text text-black fw-bold'>₱" . number_format($row['price'], 2) . "</p>
                                     <div class='d-flex justify-content-between'>
-                                        <a href='../func/user/delete-cart-item.php?course_id={$row['course_id']}' class='btn btn-sm btn-outline-danger' 
-                                            onclick=\"return confirm('Are you sure you want to delete this course?');\">🗑 Delete
+                                        <a href='./func/user/delete-cart-item.php?course_id={$row['course_id']}' class='btn btn-sm btn-outline-danger'
+                                            onclick='return confirm('Are you sure you want to delete this course?');'><i class='fa-solid fa-trash-can me-1'></i>Delete
                                         </a>
                                     </div>
                                 </div>
