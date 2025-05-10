@@ -100,7 +100,7 @@ if (isset($_SESSION['email'])) {
     <div class="container-fluid bg-black pt-5 pb-5 mt-6">
         <div class="row justify-content-center">
             <div class="col-12 text-center">
-                <h1 class="text-white">Welcome back, <?php echo isset($_SESSION["first_name"]) ? htmlspecialchars($_SESSION["first_name"]) : ''; ?>!</h1>
+                <h1 class="text-white">Welcome <?php echo isset($_SESSION["first_name"]) ? htmlspecialchars($_SESSION["first_name"]) : ''; ?>!</h1>
             </div>
         </div>
     </div>
@@ -618,7 +618,7 @@ function showToast(type, message) {
         const newContainer = document.createElement('div');
         newContainer.id = 'toastContainer';
         newContainer.style.position = 'fixed';
-        newContainer.style.bottom = '20px';
+        newContainer.style.bottom = '60px';
         newContainer.style.right = '20px';
         newContainer.style.zIndex = '9999';
         document.body.appendChild(newContainer);
@@ -659,7 +659,7 @@ function showToast(type, message) {
     toast.style.color = textColor;
     toast.style.borderRadius = '4px';
     toast.style.padding = '15px';
-    toast.style.marginBottom = '50px';
+    toast.style.marginBottom = '10px';
     toast.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
     toast.style.display = 'flex';
     toast.style.alignItems = 'center';
