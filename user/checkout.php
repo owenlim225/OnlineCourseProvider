@@ -287,7 +287,7 @@ echo '];</script>';
                             echo '<div class="mb-3">';
                             while ($row = $result->fetch_assoc()) {  
                                 echo '<div class="d-flex justify-content-between mb-2">
-                                    <span>' . $row['course_title'] . '</span>
+                                    <span class="text-truncate" style="max-width: 280px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">' . htmlspecialchars($row['course_title'], ENT_QUOTES, 'UTF-8') . '</span>
                                     <span class="fw-bold">
                                         &#8369;' . number_format($row['price'], 2) . '
                                         <a href="../func/user/delete-orderSum-item.php?course_id=' . $row['course_id'] . '" class="btn btn-sm btn-outline-danger ms-2"

@@ -122,21 +122,25 @@ if (isset($_SESSION['email'])) {
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {  
                         echo "<div class='col'>
-                            <div class='card h-100'>
-                                <img src='../img/courses/{$row['image']}' alt='{$row['course_title']}' class='card-img-top' style='height: 200px; object-fit: cover;'>
-                                <div class='card-body'>
-                                    <h5 class='card-title text-primary fw-bold'>{$row['course_title']}</h5>
-                                    <p class='card-text text-muted'>{$row['description']}</p>
-                                    <p class='card-text text-muted'><i class='fa-solid fa-user-tie me-2'></i>Instructor: {$row['instructor']}</p>
-                                    <p class='card-text text-black fw-bold'>₱" . number_format($row['price'], 2) . "</p>
-                                    <div class='d-flex justify-content-between'>
-                                        <a href='./func/user/delete-cart-item.php?course_id={$row['course_id']}' class='btn btn-sm btn-outline-danger'
-                                            onclick='return confirm('Are you sure you want to delete this course?');'><i class='fa-solid fa-trash-can me-1'></i>Delete
-                                        </a>
+                                <div class='card h-100 d-flex flex-column'>
+                                    <img src='../img/courses/{$row['image']}' alt='{$row['course_title']}' class='card-img-top' style='height: 200px; object-fit: cover;'>
+                                    <div class='card-body d-flex flex-column'>
+                                        <h5 class='card-title text-primary fw-bold'>{$row['course_title']}</h5>
+                                        <p class='card-text text-muted'>{$row['description']}</p>
+                                        <p class='card-text text-muted'><i class='fa-solid fa-user-tie me-2'></i>Instructor: {$row['instructor']}</p>
+                                        <p class='card-text text-black fw-bold'>₱" . number_format($row['price'], 2) . "</p>
+                                        
+                                        <!-- Centered and bottom-aligned button -->
+                                        <div class='mt-auto text-center border-top pt-3'>
+                                            <a href='../func/user/delete-cart-item.php?course_id={$row['course_id']}' 
+                                            class='btn btn-sm btn-outline-danger'
+                                            onclick='return confirm('Are you sure you want to delete this course?');'>
+                                                <i class='fa-solid fa-trash-can me-1'></i>Delete
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>";
+                            </div>";
                     }
                 } else {
                     echo "<div class='col-md-6 col-lg-4 offset-md-3 offset-lg-4 d-flex justify-content-center text-center text-muted'>No courses in your cart.</div>";
