@@ -146,7 +146,7 @@ include("func/connections.php");
     </section>
 
     <!-- Mga picture ng tropa para maangas CTO -->
-    <section id="aboutus" class="container section" style="background-color: #0e0f0f">
+    <section id="learnmore" class="container section" style="background-color: #0e0f0f">
       <div class="row ">
 
           <!-- #1 -->
