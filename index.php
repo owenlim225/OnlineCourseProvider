@@ -10,7 +10,7 @@ include("func/connections.php");
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Sherwin P. Limosnero">
-    <title>Sherwin Limosnero</title>
+    <title>GameDev Master</title>
     
     <!-- css file -->
     <link rel="stylesheet" href="src/style.css">
@@ -146,7 +146,7 @@ include("func/connections.php");
     </section>
 
     <!-- Mga picture ng tropa para maangas CTO -->
-    <section id="aboutus" class="container section" style="background-color: #0e0f0f">
+    <section id="learnmore" class="container section" style="background-color: #0e0f0f">
       <div class="row ">
 
           <!-- #1 -->
@@ -279,30 +279,32 @@ include("func/connections.php");
               if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {  
                   echo "<div class='col-lg-4 col-md-6' data-aos='fade-up' data-aos-delay='100'>
-                          <div class='service-item position-relative'>
+                          <div class='service-item position-relative d-flex flex-column h-100'>
                               <div class='mb-3'>
                                   <img src='img/courses/{$row['image']}' alt='{$row['course_title']}' class='img-fluid rounded' style='width: 100%; height: 200px; object-fit: cover;'>
                               </div>
 
-                              <div class='card-body text-center'>
+                              <div class='card-body text-center d-flex flex-column flex-grow-1'>
                                   <h5 class='card-title fw-bold'>{$row['course_title']}</h5>
                                   <p class='card-text text-muted fw-bold m-2' style='font-size: 12px;'>{$row['instructor']}</p>
-                                  <p class='card-text text-muted m-2' style='font-size: 16px;'>
-                                      {$row['description']}
-                                  </p>
-                                  <p class='card-text fw-bold' style='font-size: 18px;'>₱" . number_format($row['price'], 2) . "</p>
 
-                                  <div class='m-4'>
-                                    <a href='login.php' class='btn btn-sm btn-success py-2 px-5'>Buy</a>
-                                    <a href='login.php' class='btn btn-sm btn-outline-danger py-2 px-3'>
-                                        <i class='fa-solid fa-cart-shopping'></i>
-                                    </a>
-                                    
+                                  <div class='description-container' style='height: 80px; overflow: hidden; margin-bottom: 10px;'>
+                                      <p class='card-text text-muted m-2' style='font-size: 16px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;'>
+                                          {$row['description']}
+                                      </p>
+                                  </div>
 
+                                  <p class='card-text fw-bold mt-auto m-3 p-2' style='font-size: 18px;'>₱" . number_format($row['price'], 2) . "</p>
+
+                                  <div class='button-container p-3 mt-auto border-top'>
+                                      <a href='login.php' class='btn btn-sm btn-success py-2 px-5'>Buy</a>
+                                      <a href='login.php' class='btn btn-sm btn-outline-danger py-2 px-3'>
+                                          <i class='fa-solid fa-cart-shopping'></i>
+                                      </a>
                                   </div>
                               </div>
                           </div>
-                        </div>";
+                      </div>";
                   }
               } else {
                   echo "<p class='text-center text-muted'>No courses found.</p>";
