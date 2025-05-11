@@ -7,6 +7,12 @@ if (isset($_SESSION['user_id'])) {
     updateCartBadge($conn);
 }
 
+// Redirect non-logged in users
+if (!isset($_SESSION["email"])) {
+    header("Location: ../login.php");
+    exit();
+}
+
 function updateCartBadge($conn) {
     if (isset($_SESSION['user_id'])) {
         $user_id = $_SESSION['user_id'];
