@@ -279,26 +279,25 @@ include("func/connections.php");
               if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {  
                   echo "<div class='col-lg-4 col-md-6' data-aos='fade-up' data-aos-delay='100'>
-                          <div class='service-item position-relative'>
+                          <div class='service-item position-relative d-flex flex-column' style='height: 100%;'>
                               <div class='mb-3'>
                                   <img src='img/courses/{$row['image']}' alt='{$row['course_title']}' class='img-fluid rounded' style='width: 100%; height: 200px; object-fit: cover;'>
                               </div>
 
-                              <div class='card-body text-center'>
+                              <div class='card-body text-center d-flex flex-column' style='flex: 1;'>
                                   <h5 class='card-title fw-bold'>{$row['course_title']}</h5>
                                   <p class='card-text text-muted fw-bold m-2' style='font-size: 12px;'>{$row['instructor']}</p>
                                   <p class='card-text text-muted m-2' style='font-size: 16px;'>
                                       {$row['description']}
                                   </p>
                                   <p class='card-text fw-bold' style='font-size: 18px;'>₱" . number_format($row['price'], 2) . "</p>
+                                  <br>
 
-                                  <div class='m-4'>
+                                  <div class='m-4 mt-auto'>
                                     <a href='login.php' class='btn btn-sm btn-success py-2 px-5'>Buy</a>
                                     <a href='login.php' class='btn btn-sm btn-outline-danger py-2 px-3'>
                                         <i class='fa-solid fa-cart-shopping'></i>
                                     </a>
-                                    
-
                                   </div>
                               </div>
                           </div>
