@@ -188,7 +188,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
                                 <select name="account_type" class="form-select rounded-3 shadow-sm" required>
                                     <option value="" disabled selected>Select account type</option>
                                     <option value="1">Admin</option>
-                                    <option value="2">User</option>
+                                    <option value="0">User</option>
                                 </select>
                             </div>
 
