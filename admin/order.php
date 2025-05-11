@@ -150,12 +150,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_user"])) {
                                         <div class='card-body'>
                                             <h5 class='card-title fw-bold mb-1'>Order #{$row['order_id']}</h5>
                                             <p class='card-text'>User ID: {$row['user_id']}<br>
-                                            Full Name: {$row['full_name']}<br>
-                                            Email: {$row['email']}<br>
-                                            Contact: {$row['mobile']}<br>
-                                            Country: {$row['country']}<br>
-                                            MOP: {$row['payment_method']}<br>
-                                            Total Amount: ₱" . number_format($row['total_amount'], 2) . "</p>
+                                            <ul class='list-unstyled'>
+                                                <li><strong>Full Name:</strong> {$row['full_name']}</li>
+                                                <li><strong>Email:</strong> {$row['email']}</li>
+                                                <li><strong>Contact:</strong> {$row['mobile']}</li>
+                                                <li><strong>Country:</strong> {$row['country']}</li>
+                                                <li><strong>MOP:</strong> {$row['payment_method']}</li>
+                                            </ul>
+                                            <p class='fw-bold'>Total Amount: <span class='text-success'>₱" . number_format($row['total_amount'], 2) . "</span></p>
                                             <span class='badge {$statusClass} px-3 py-2 rounded-pill'>{$row['order_status']}</span>
                                         </div>
                                     </div>

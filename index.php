@@ -10,7 +10,7 @@ include("func/connections.php");
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Sherwin P. Limosnero">
-    <title>Sherwin Limosnero</title>
+    <title>GameDev Master</title>
     
     <!-- css file -->
     <link rel="stylesheet" href="src/style.css">

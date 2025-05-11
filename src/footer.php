@@ -13,7 +13,7 @@
         <p class="fw-bold text-uppercase small mb-3">All Rights Reserved</p>
 
         <!-- Social Media Links -->
-        <div class="d-flex justify-content-center gap-3 mt-3">
+        <!-- <div class="d-flex justify-content-center gap-3 mt-3">
             <a href="#" class="d-flex justify-content-center align-items-center rounded-circle bg-light text-dark fs-4" style="width: 50px; height: 50px;">
                 <i class="bi bi-twitter-x"></i>
             </a>
@@ -26,7 +26,7 @@
             <a href="#" class="d-flex justify-content-center align-items-center rounded-circle bg-light text-dark fs-4" style="width: 50px; height: 50px;">
                 <i class="bi bi-linkedin"></i>
             </a>
-        </div>
+        </div> -->
     </div>
 </footer>
 

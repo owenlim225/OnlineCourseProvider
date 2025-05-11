@@ -310,7 +310,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
     </div>
 </main>
 
-<?php include 'footer.php'; ?>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
