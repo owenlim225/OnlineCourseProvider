@@ -1,6 +1,10 @@
 <?php
 session_start();
 include("func/connections.php");
+
+if (isset($_SESSION['user_id'])) {
+    header("Location: func/logout.php");
+}
 ?>
 
 
