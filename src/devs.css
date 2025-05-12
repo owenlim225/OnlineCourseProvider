@@ -1,0 +1,93 @@
+.image-frame {
+  display: inline-block;
+  position: relative;
+  max-width: 50%; /* match image's size */
+}
+
+.border-line.vertical {
+  width: 2px;
+  height: 100%;
+  background-color: #686868;
+}
+.border-line.horizontal {
+  height: 2px;
+  width: 100%;
+  background-color: #686868;
+}
+.corner {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+}
+
+
+
+
+
+.dev-container {
+  position: relative;
+}
+
+.hover-area {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 2;
+}
+
+.left-area {
+  left: 0;
+}
+
+.right-area {
+  right: 0;
+}
+
+.info {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  width: 100%;
+  height: auto;
+}
+
+.left-area:hover .info,
+.right-area:hover .info {
+  opacity: 1;
+}
+
+/* Dark overlays */
+.dark-overlay {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.left-overlay {
+  left: 0;
+}
+
+.right-overlay {
+  right: 0;
+}
+
+/* When hovering left, darken right */
+.left-area:hover ~ .right-overlay {
+  opacity: 1;
+}
+
+/* When hovering right, darken left */
+.right-area:hover ~ .left-overlay {
+  opacity: 1;
+}
