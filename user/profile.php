@@ -203,16 +203,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
                 <!-- Edit mode (initially hidden) -->
                 <div id="editProfileMode" style="display: none;">
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-                        <div class="mb-3">
-                            <!-- First Name -->
+                        <div class="mb-3 d-flex flex-column gap-2">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="first_name" name="first_name" required value="<?php echo isset($_SESSION["first_name"]) ? htmlspecialchars($_SESSION["first_name"]) : ''; ?>">
                                 <label for="first_name">First Name</label>
                             </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <!-- Last Name -->
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="last_name" name="last_name" required value="<?php echo isset($_SESSION["last_name"]) ? htmlspecialchars($_SESSION["last_name"]) : ''; ?>">
                                 <label for="last_name">Last Name</label>
@@ -240,20 +235,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
                             <label for="confirm_password">Confirm Password</label>
                         </div>
 
-                        <!-- Buttons -->
-                        <div class="d-flex flex-column flex-md-row gap-3 flex-wrap">
-                            <button type="submit" name="update_user" class="btn btn-primary w-100 w-md-auto">
-                                <i class="fas fa-save me-1"></i> Save Changes
-                            </button>
-                            <button type="button" id="cancelEditBtn" class="btn btn-outline-secondary w-100 w-md-auto">
-                                Cancel
-                            </button>
-                        </div>
+                        <button type="submit" name="update_user" class="btn btn-primary w-100 mb-2">
+                            <i class="fas fa-save me-1"></i> Save Changes
+                        </button>
+                        <button type="button" id="cancelEditBtn" class="btn btn-outline-secondary w-100">
+                            Cancel
+                        </button>
                     </form>
                 </div>
             </div>
-
-
 
             <!-- Right column: User courses -->
             <div class="col-12 col-md-8 bg-white p-4 rounded shadow-lg mt-4 text-center">
@@ -278,10 +268,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
 
                                 if ($result && $result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {  
-                                        echo "<div class='service-item col-12 col-sm-6 col-md-4 mb-4'>
-                                                <div class='course-card h-100'>
+                                        echo "<div class='service-item col-md-4 mb-4'>
+                                                <div class='course-card'>
                                                     <div class='course-image-container'>
-                                                        <img src='../img/courses/{$row['image']}' alt='{$row['course_title']}' class='course-image img-fluid'>
+                                                        <img src='../img/courses/{$row['image']}' alt='{$row['course_title']}' class='course-image'>
                                                     </div>
 
                                                     <div class='course-info p-3'>
