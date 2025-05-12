@@ -124,7 +124,7 @@ $total_orders = $order_result->fetch_assoc()['total_orders'];
                     </div>
                     <div class="col-12 col-sm-6 col-md-6">
                         <div class="bg-danger p-4 rounded shadow text-white text-center">
-                            <span class="fs-2 fw-bold">₱<?php echo number_format($total_orders, 2); ?></span>
+                            <span class="fs-2 fw-bold">₱<?php echo number_format($total_price, 2); ?></span>
                             <h4 class="fw-bold">Total Revenue</h4>
                         </div>
                     </div>
