@@ -39,7 +39,7 @@ include("func/connections.php");
 <body class="body-color index-page">
     
 <!-- navbar -->
-<div class="container-fluid p-0">
+  <div class="container-fluid p-0">
     <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-black bg-opacity-95 fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#"><img src="img/gdc-logo.png" alt="logo" class="fa-custom-logo"></a>
@@ -49,18 +49,51 @@ include("func/connections.php");
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 me-5">
                     <li class="nav-item ms-4">
-                        <a class="nav-link " aria-current="page" href="index.php"></i>Home</a>
+                        <a class="nav-link active" aria-current="page" href="index.php"></i>Home</a>
                     </li>
                     <li class="nav-item ms-4">
-                        <a class="nav-link active" href="aboutus.php">About us</a>
+                        <a class="nav-link" href="index.php#learnmore">Learn More</a>
                     </li>
+                    <li class="nav-item ms-4">
+                        <a class="nav-link" href="aboutus.php">About us</a>
+                    </li>
+                    <!-- <li class="nav-item ms-4">
+                        <a class="nav-link" href="#stats">Stats</a>
+                    </li> -->
+                    <li class="nav-item ms-4">
+                        <a class="nav-link" href="index.php#courses">Courses</a>
+                    </li>
+                    
                 </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-       
+                <!-- If the user is logged in -->
+                <?php if (isset($_SESSION["user_id"])): ?>
+                    <!-- cart button -->
+                    <li class="nav-item me-4">
+                        <a class="nav-link active" aria-current="page" href="../user/cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
+                    </li>
+                    <!-- profile button -->
+                    <li class="nav-item me-4">
+                        <a class="nav-link active" aria-current="page" href="../user/profile.php"><i class="fa-solid fa-house"></i></a>
+                    </li>
+                    <!-- profile button -->
+                    <li class="nav-item me-4">
+                    <a class="nav-link active text-danger" aria-current="page" href="func/logout.php">Logout</a>
+                    </li>
+
+                <!-- If the user is not logged in -->
+                <?php else: ?>
+                    <li class="nav-item me-4">
+                        <a class="nav-link" href="login.php">Login</a>
+                    </li>
+                    <li class="nav-item me-4">
+                        <a class="nav-link" href="register.php">Register</a>
+                    </li>
+                <?php endif; ?>
+                </ul>
         </div>
     </nav>
 </div>
-
 
 
 <!-- main content -->
@@ -124,16 +157,16 @@ include("func/connections.php");
                 <!-- Left Overlay - Sherwin -->
                 <div class="dark-overlay left-overlay d-flex flex-column justify-content-center align-items-center text-center p-4">
                   <div>
-                    <h3 class="text-warning fw-bold mb-2 fs-3 fs-md-2">Sherwin Limosnero</h3>
-                    <p class="text-light fs-5 mb-0">Front-end Developer</p>
+                    <h3 class="text-warning fw-bold mb-2 fs-4 fs-md-2">Sherwin Limosnero</h3>
+                    <p class="text-light fs-6 fs-md-5 mb-0">Front-end Developer</p>
                   </div>
                 </div>
 
                 <!-- Right Overlay - Christian -->
                 <div class="dark-overlay right-overlay d-flex flex-column justify-content-center align-items-center text-center p-4">
                   <div>
-                    <h3 class="text-warning fw-bold mb-2 fs-3 fs-md-2">Christian Jude Villaber</h3>
-                    <p class="text-light fs-5 mb-0">Back-end Developer</p>
+                    <h3 class="text-warning fw-bold mb-2 fs-4 fs-md-2">Christian Jude Villaber</h3>
+                    <p class="text-light fs-6 fs-md-5 mb-0">Back-end Developer</p>
                   </div>
                 </div>
               </div>
