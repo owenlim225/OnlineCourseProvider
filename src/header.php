@@ -22,7 +22,7 @@ if (session_status() == PHP_SESSION_NONE) {
                         <a class="nav-link" href="#learnmore">Learn More</a>
                     </li>
                     <li class="nav-item ms-4">
-                        <a class="nav-link" href="about-us.php">About us</a>
+                        <a class="nav-link" href="aboutus.php">About us</a>
                     </li>
                     <!-- <li class="nav-item ms-4">
                         <a class="nav-link" href="#stats">Stats</a>
