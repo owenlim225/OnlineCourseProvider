@@ -167,7 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
         <div class="row justify-content-center">
 
             <!-- Left column: User profile -->
-            <div class="col-md-3 bg-white p-4 rounded shadow-lg mt-4 text-center">
+            <div class="col-12 col-md-3 bg-white p-4 rounded shadow-lg mt-4 text-center mb-4 mb-md-0 me-md-4">
                 <div class="profile-header d-flex justify-content-between align-items-center mb-3">
                     <h5 class="m-0 fw-bold">User Profile</h5>
                     <button id="editProfileBtn" class="btn btn-sm btn-outline-primary">
@@ -188,7 +188,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
                 <div id="viewProfileMode">
                     <h3 class="mb-1"><?php echo isset($_SESSION["first_name"]) ? htmlspecialchars($_SESSION["first_name"] . ' ' . $_SESSION["last_name"]) : ''; ?></h3>
 
-                    <div class="profile-info mb-4 p-5">
+                    <div class="profile-info mb-4 p-3">
                         <div class="d-flex align-items-center mb-2">
                             <i class="fas fa-phone text-primary me-2"></i>
                             <div><?php echo isset($_SESSION["contact"]) ? htmlspecialchars($_SESSION["contact"]) : ''; ?></div>
@@ -203,11 +203,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
                 <!-- Edit mode (initially hidden) -->
                 <div id="editProfileMode" style="display: none;">
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-                        <div class="mb-3 d-flex gap-2">
+                        <div class="mb-3">
+                            <!-- First Name -->
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="first_name" name="first_name" required value="<?php echo isset($_SESSION["first_name"]) ? htmlspecialchars($_SESSION["first_name"]) : ''; ?>">
                                 <label for="first_name">First Name</label>
                             </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <!-- Last Name -->
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="last_name" name="last_name" required value="<?php echo isset($_SESSION["last_name"]) ? htmlspecialchars($_SESSION["last_name"]) : ''; ?>">
                                 <label for="last_name">Last Name</label>
@@ -235,11 +240,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
                             <label for="confirm_password">Confirm Password</label>
                         </div>
 
-                        <div class="d-flex gap-2">
-                            <button type="submit" name="update_user" class="btn btn-primary flex-grow-1">
+                        <!-- Buttons -->
+                        <div class="d-flex flex-column flex-md-row gap-3 flex-wrap">
+                            <button type="submit" name="update_user" class="btn btn-primary w-100 w-md-auto">
                                 <i class="fas fa-save me-1"></i> Save Changes
                             </button>
-                            <button type="button" id="cancelEditBtn" class="btn btn-outline-secondary">
+                            <button type="button" id="cancelEditBtn" class="btn btn-outline-secondary w-100 w-md-auto">
                                 Cancel
                             </button>
                         </div>
@@ -247,40 +253,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
                 </div>
             </div>
 
-            <div class="col-md-1"></div> <!-- Add space between columns -->
 
-            <!-- for right column fetch data -->
-            <?php
-                // Fetch purchased courses for the logged-in user
-                // This should go in the same place as your original code
-                if ($user_id > 0) {
-                    $sql = "SELECT c.* FROM purchased_courses pc 
-                            JOIN courses c ON pc.course_id = c.course_id 
-                            WHERE pc.user_id = ?";
-                    
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("i", $user_id);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-                } else {
-                    // No user is logged in or user_id is not set
-                    $result = false;
-                }
-                ?>
 
             <!-- Right column: User courses -->
-            <div class="col-md-8 bg-white p-4 rounded shadow-lg mt-4 text-center">
+            <div class="col-12 col-md-8 bg-white p-4 rounded shadow-lg mt-4 text-center">
                 <h2 class="mb-3 text-primary fw-bold">My courses</h2>
                 <div class="row justify-content-center">
                     <div class="col-lg-10">
                         <div class="row">
                             <?php
-                                if ($result->num_rows > 0) {
+                                // Fetch purchased courses for the logged-in user
+                                if ($user_id > 0) {
+                                    $sql = "SELECT c.* FROM purchased_courses pc 
+                                            JOIN courses c ON pc.course_id = c.course_id 
+                                            WHERE pc.user_id = ?";
+                                    
+                                    $stmt = $conn->prepare($sql);
+                                    $stmt->bind_param("i", $user_id);
+                                    $stmt->execute();
+                                    $result = $stmt->get_result();
+                                } else {
+                                    $result = false;
+                                }
+
+                                if ($result && $result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {  
-                                        echo "<div class='service-item col-md-4 mb-4'>
-                                                <div class='course-card'>
+                                        echo "<div class='service-item col-12 col-sm-6 col-md-4 mb-4'>
+                                                <div class='course-card h-100'>
                                                     <div class='course-image-container'>
-                                                        <img src='../img/courses/{$row['image']}' alt='{$row['course_title']}' class='course-image'>
+                                                        <img src='../img/courses/{$row['image']}' alt='{$row['course_title']}' class='course-image img-fluid'>
                                                     </div>
 
                                                     <div class='course-info p-3'>
@@ -306,9 +307,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </main>
+
 
 
 
