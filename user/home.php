@@ -395,7 +395,7 @@ if (isset($_SESSION['email'])) {
                                     } else {
                                         // If not purchased, show normal buttons
                                         echo "<button type='button' class='btn btn-sm btn-success py-2 px-5' ";
-                                        echo ($already_purchased) ? "data-bs-toggle='modal' data-bs-target='#alreadyPurchasedModal{$row['course_id']}'" : "onclick=\"window.location.href='checkout.php?course_id={$row['course_id']}'\"";
+                                        echo ($already_purchased) ? "data-bs-toggle='modal' data-bs-target='#alreadyPurchasedModal{$row['course_id']}'" : "onclick=\"window.location.href='checkout.php?course_id={$row['course_id']}&is_buying=true'\"";
                                         echo ">Buy</button>";
                                         
                                         echo "<form class='add-to-cart-form'>

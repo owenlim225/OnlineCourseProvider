@@ -7,27 +7,44 @@ $user_id = $_SESSION['user_id'];
 $message = "";
 $user = null; // Ensure $user is defined
 
-if (isset($_GET['course_id'])) {
-    $course_id = $_GET['course_id'];
-
-    // Prevent duplicate cart entries
-    $check_query = "SELECT * FROM cart WHERE user_id = ? AND course_id = ? AND is_purchased = 0";
-    $stmt = $conn->prepare($check_query);
-    $stmt->bind_param("ii", $user_id, $course_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows == 0) {
-        // Insert new cart item
-        $query = "INSERT INTO cart (user_id, course_id, is_purchased, added_at) VALUES (?, ?, 0, NOW())";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("ii", $user_id, $course_id);
-        $stmt->execute();
-    }
+if (isset($_GET['is_buying'])) {
+    $is_buying = $_GET['is_buying'];
 } else {
-    $response['message'] = 'Invalid request method.';
-    echo json_encode($response);
+    $is_buying = false;
 }
+
+if ($is_buying) {
+    echo "<script>console.log('is_buying: true');</script>";
+    if (isset($_GET['course_id'])) {
+        $course_id = $_GET['course_id'];
+    } else {
+        $course_id = 0;
+        $response['message'] = 'Invalid request method.';
+        echo json_encode($response);
+    }
+}
+
+// if (isset($_GET['course_id'])) {
+//     $course_id = $_GET['course_id'];
+
+//     // Prevent duplicate cart entries
+//     $check_query = "SELECT * FROM cart WHERE user_id = ? AND course_id = ? AND is_purchased = 0";
+//     $stmt = $conn->prepare($check_query);
+//     $stmt->bind_param("ii", $user_id, $course_id);
+//     $stmt->execute();
+//     $result = $stmt->get_result();
+
+//     if ($result->num_rows == 0) {
+//         // Insert new cart item
+//         $query = "INSERT INTO cart (user_id, course_id, is_purchased, added_at) VALUES (?, ?, 0, NOW())";
+//         $stmt = $conn->prepare($query);
+//         $stmt->bind_param("ii", $user_id, $course_id);
+//         $stmt->execute();
+//     }
+// } else {
+//     $response['message'] = 'Invalid request method.';
+//     echo json_encode($response);
+// }
 
 // Return JSON response
 
@@ -55,18 +72,24 @@ if (isset($_SESSION['email'])) {
 $current_user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 0;
 
 // Fetch Total Sum of Product Prices for the current user only
-$purchase_query = "SELECT COALESCE(SUM(c.price), 0) AS total_price 
-                  FROM cart ct
-                  JOIN courses c ON ct.course_id = c.course_id
-                  WHERE ct.user_id = ?";
-                  
-$stmt = $conn->prepare($purchase_query);
-$stmt->bind_param("i", $current_user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$total_price = $result->fetch_assoc()['total_price'];
-
-
+if (!$is_buying) {
+    $purchase_query = "SELECT COALESCE(SUM(c.price), 0) AS total_price 
+                      FROM cart ct
+                      JOIN courses c ON ct.course_id = c.course_id
+                      WHERE ct.user_id = ?";
+                      
+    $stmt = $conn->prepare($purchase_query);
+    $stmt->bind_param("i", $current_user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $total_price = $result->fetch_assoc()['total_price'];
+} else {
+    $stmt = $conn->prepare("SELECT price FROM courses WHERE course_id = ?");
+    $stmt->bind_param("i", $course_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $total_price = $result->fetch_assoc()['price'];
+}
 
 // Load carousel slides data
 $preload_count = 3; // Number of slides to preload
@@ -178,14 +201,20 @@ echo '];</script>';
                     
                     <?php
                         // Fetch cart items count - we only need the count initially
-                        $user_id = $_SESSION['user_id'];
-                        $count_sql = "SELECT COUNT(*) as total_courses 
-                                    FROM cart c
-                                    JOIN courses cs ON c.course_id = cs.course_id
-                                    WHERE c.user_id = $user_id";
-                        $count_result = $conn->query($count_sql);
-                        $count_row = $count_result->fetch_assoc();
-                        $total_courses = $count_row['total_courses'];
+                        if (!$is_buying) {  
+                            $user_id = $_SESSION['user_id'];
+                            $count_sql = "SELECT COUNT(*) as total_courses 
+                                        FROM cart c
+                                        JOIN courses cs ON c.course_id = cs.course_id
+                                        WHERE c.user_id = $user_id";
+                            $count_result = $conn->query($count_sql);
+                            $count_row = $count_result->fetch_assoc();
+                            $total_courses = $count_row['total_courses'];
+                        } else {
+                            $total_courses = 1;
+                        }
+
+                        
                     ?>
                     
                     <div class="d-flex justify-content-between">
@@ -212,13 +241,24 @@ echo '];</script>';
                             <?php if ($total_courses > 0): ?>
                                 <?php 
                                 // Get all courses for this user
-                                $sql = "SELECT c.cart_id, c.user_id, c.course_id, 
-                                            cs.course_title, cs.price, cs.image
-                                        FROM cart c
-                                        JOIN courses cs ON c.course_id = cs.course_id
-                                        WHERE c.user_id = $user_id";
-                                        
-                                $result = $conn->query($sql);
+                                if (!$is_buying) {
+                                    $stmt = $conn->prepare("SELECT c.cart_id, c.user_id, c.course_id, 
+                                                            cs.course_title, cs.price, cs.image
+                                                        FROM cart c
+                                                        JOIN courses cs ON c.course_id = cs.course_id
+                                                        WHERE c.user_id = ?");
+                                    $stmt->bind_param("i", $user_id);
+                                    $stmt->execute();
+                                    $result = $stmt->get_result(); 
+                                } else {
+                                    $stmt = $conn->prepare("SELECT cs.course_title, cs.price, cs.image
+                                                        FROM courses cs
+                                                        WHERE cs.course_id = ?");
+                                    $stmt->bind_param("i", $course_id);
+                                    $stmt->execute();
+                                    $result = $stmt->get_result(); 
+                                }
+                                            
                                 $index = 0;
                                 
                                 // Create carousel items for each course
@@ -274,14 +314,25 @@ echo '];</script>';
                         <?php
                         // Fetch cart items with course details using JOIN
                         $user_id = $_SESSION['user_id'];
-                        
-                        $sql = "SELECT c.cart_id, c.user_id, c.course_id, 
-                                    cs.course_title, cs.price, cs.image
-                                FROM cart c
-                                JOIN courses cs ON c.course_id = cs.course_id
-                                WHERE c.user_id = $user_id";
+
+                        if (!$is_buying) {
+                            $stmt = $conn->prepare("SELECT c.cart_id, c.user_id, c.course_id, 
+                                                    cs.course_title, cs.price, cs.image
+                                                FROM cart c
+                                                JOIN courses cs ON c.course_id = cs.course_id
+                                                WHERE c.user_id = ?");
+                            $stmt->bind_param("i", $user_id);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+                        } else {
+                            $stmt = $conn->prepare("SELECT cs.course_title, cs.price, cs.image, cs.course_id
+                                                FROM courses cs
+                                                WHERE cs.course_id = ?");
+                            $stmt->bind_param("i", $course_id);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+                        }
                                 
-                        $result = $conn->query($sql);
                         
                         if ($result->num_rows > 0) {
                             echo '<div class="mb-3">';
@@ -320,7 +371,9 @@ echo '];</script>';
                     <?php endif; ?>
                     <div class="col-12 bg-white p-4 rounded shadow mt-4">
                         <h3 class="mb-3 fw-bold mb-5">Customer Details</h3>
-                        <form method="POST" action="../func/user/process_order.php" class="d-flex flex-column gap-3">
+                        <form method="POST" action="../func/user/process_order.php?" class="d-flex flex-column gap-3">
+                            <input type="hidden" name="is_buying" value="<?php echo $is_buying; ?>">
+                            <input type="hidden" name="course_id" value="<?php echo $course_id; ?>">
                             <!-- Customer Details -->
                             <div>
                                 <div class="mb-3">
