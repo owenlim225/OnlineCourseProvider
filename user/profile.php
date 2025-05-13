@@ -167,7 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
         <div class="row justify-content-center">
 
             <!-- Left column: User profile -->
-            <div class="col-12 col-md-3 bg-white p-4 rounded shadow-lg mt-4 text-center mb-4 mb-md-0 me-md-4">
+            <div class="col-12 col-md-3 bg-white p-4 rounded shadow-lg mt-4 text-center mb-4 mb-md-0 me-md-4" style="max-height: fit-content;">
                 <div class="profile-header d-flex justify-content-between align-items-center mb-3">
                     <h5 class="m-0 fw-bold">User Profile</h5>
                     <button id="editProfileBtn" class="btn btn-sm btn-outline-primary">
@@ -186,7 +186,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
 
                 <!-- View mode -->
                 <div id="viewProfileMode">
-                    <h3 class="mb-1"><?php echo isset($_SESSION["first_name"]) ? htmlspecialchars($_SESSION["first_name"] . ' ' . $_SESSION["last_name"]) : ''; ?></h3>
+                    <h3 class="mb-4"><?php echo isset($_SESSION["first_name"]) ? htmlspecialchars($_SESSION["first_name"] . ' ' . $_SESSION["last_name"]) : ''; ?></h3>
 
                     <div class="profile-info mb-4 p-3">
                         <div class="d-flex align-items-center mb-2">
@@ -323,6 +323,41 @@ document.addEventListener('DOMContentLoaded', function() {
         editProfileMode.style.display = 'none';
         viewProfileMode.style.display = 'block';
     });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Get the main profile container
+  const profileContainer = document.querySelector('.profile-container');
+  
+  // Get the edit and view mode divs
+  const viewMode = document.getElementById('viewProfileMode');
+  const editMode = document.getElementById('editProfileMode');
+  
+  // Get the buttons
+  const editProfileBtn = document.getElementById('editProfileBtn');
+  const cancelEditBtn = document.getElementById('cancelEditBtn');
+  
+  // Add event listener to edit button
+  editProfileBtn.addEventListener('click', function() {
+    // Hide view mode, show edit mode
+    viewMode.style.display = 'none';
+    editMode.style.display = 'block';
+    
+    // Change container height for edit mode
+    profileContainer.classList.remove('profile-container-small');
+    profileContainer.classList.add('profile-container-large');
+  });
+  
+  // Add event listener to cancel button
+  cancelEditBtn.addEventListener('click', function() {
+    // Hide edit mode, show view mode
+    editMode.style.display = 'none';
+    viewMode.style.display = 'block';
+    
+    // Change container height for view mode
+    profileContainer.classList.remove('profile-container-large');
+    profileContainer.classList.add('profile-container-small');
+  });
 });
 </script>
 
