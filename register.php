@@ -127,69 +127,70 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
 </div>
 
 <!-- Register Form -->
-<div class="row justify-content-center align-items-center vh-100 mt-5">
-    <div class="col-md-8 col-lg-5 col-xl-4 bg-white p-5 rounded-4 shadow-lg text-center">
-        <h2 class="mb-4 text-black fw-bold">
-            <i class="bi bi-person-plus me-2"></i> Register
-        </h2>
+<!-- Register Form -->
+<div class="container pt-5 mt-5">
+    <div class="row justify-content-center align-items-start min-vh-100">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4 bg-white p-4 p-sm-5 rounded-4 shadow-lg text-center mt-4">
+            <h3 class="mb-4 text-black fw-bold">
+                <i class="bi bi-person-plus me-2"></i> Register
+            </h3>
 
-        <?php echo $message; ?>
+            <?php echo $message; ?>
 
-        <form action="register.php" method="POST">
-            <!-- First and Last Name -->
-            <div class="mb-3 d-flex gap-2 text-start">
-                <div class="w-100">
-                    <label class="form-label text-black">First Name</label>
-                    <input type="text" name="first_name" class="form-control rounded-3 shadow-sm" required placeholder="First Name">
+            <form action="register.php" method="POST">
+                <!-- First and Last Name -->
+                <div class="row mb-2 text-start">
+                    <div class="col-12 col-sm-6 mb-2 mb-sm-0">
+                        <label class="form-label text-black">First Name</label>
+                        <input type="text" name="first_name" class="form-control rounded-3 shadow-sm" required placeholder="First Name">
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <label class="form-label text-black">Last Name</label>
+                        <input type="text" name="last_name" class="form-control rounded-3 shadow-sm" required placeholder="Last Name">
+                    </div>
                 </div>
-                <div class="w-100">
-                    <label class="form-label text-black">Last Name</label>
-                    <input type="text" name="last_name" class="form-control rounded-3 shadow-sm" required placeholder="Last Name">
+
+                <!-- Contact -->
+                <div class="mb-2 text-start">
+                    <label class="form-label text-black">Contact Number</label>
+                    <input type="text" name="contact" class="form-control rounded-3 shadow-sm" required placeholder="e.g. 09XXXXXXXXX" pattern="[0-9]{11}" title="Please enter a valid 11-digit contact number">
                 </div>
-            </div>
 
-            <!-- Contact -->
-            <div class="mb-3 text-start">
-                <label class="form-label text-black">Contact Number</label>
-                <input type="text" name="contact" class="form-control rounded-3 shadow-sm" required placeholder="e.g. 09XXXXXXXXX" pattern="[0-9]{11}" title="Please enter a valid 11-digit contact number">
-            </div>
+                <!-- Email -->
+                <div class="mb-2 text-start">
+                    <label class="form-label text-black">Email</label>
+                    <input type="email" name="email" class="form-control rounded-3 shadow-sm" required placeholder="example@mail.com">
+                </div>
 
-            <!-- Email -->
-            <div class="mb-3 text-start">
-                <label class="form-label text-black">Email</label>
-                <input type="email" name="email" class="form-control rounded-3 shadow-sm" required placeholder="example@mail.com">
-            </div>
+                <!-- Password -->
+                <div class="mb-2 text-start">
+                    <label class="form-label text-black">Password</label>
+                    <input type="password" name="password" class="form-control rounded-3 shadow-sm" required placeholder="Password" minlength="6">
+                </div>
 
-            <!-- Password -->
-            <div class="mb-3 text-start">
-                <label class="form-label text-black">Password</label>
-                <input type="password" name="password" class="form-control rounded-3 shadow-sm" required placeholder="Password" minlength="6">
-            </div>
+                <!-- Confirm Password -->
+                <div class="mb-4 text-start">
+                    <label class="form-label text-black">Confirm Password</label>
+                    <input type="password" name="confirm_password" class="form-control rounded-3 shadow-sm" required placeholder="Retype Password">
+                </div>
 
-            <!-- Confirm Password -->
-            <div class="mb-4 text-start">
-                <label class="form-label text-black">Confirm Password</label>
-                <input type="password" name="confirm_password" class="form-control rounded-3 shadow-sm" required placeholder="Retype Password">
-            </div>
+                <!-- Hidden account type -->
+                <input type="hidden" name="account_type" value="0">
 
-            <!-- Hidden account type -->
-            <input type="hidden" name="account_type" value="0">
+                <!-- Submit -->
+                <button type="submit" name="register" class="btn btn-dark w-100 fw-bold rounded-pill py-2">
+                    <i class="bi bi-check2-circle me-1"></i> Register
+                </button>
+            </form>
 
-            <!-- Submit -->
-            <button type="submit" name="register" class="btn btn-dark w-100 fw-bold rounded-pill py-2">
-                <i class="bi bi-check2-circle me-1"></i> Register
-            </button>
-        </form>
-
-        <p class="mt-4 text-black">
-            Already have an account? <br>
-            <a href="login.php" class="fw-semibold text-decoration-none">Login</a>
-        </p>
+            <p class="mt-4 text-black">
+                Already have an account? <br>
+                <a href="login.php" class="fw-semibold text-decoration-none">Login</a>
+            </p>
+        </div>
     </div>
 </div>
 
-<!-- footer-->
- <?php include 'src/footer.php'; ?>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

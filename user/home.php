@@ -485,7 +485,7 @@ if (isset($_SESSION['email'])) {
 
           <!-- Stats -->
           <div class="row text-center text-warning">
-            <div class="col-md-12 mb-4 mb-md-0">
+            <div class="col-md-12 mb-2 mb-md-0 p-4">
               <div class="fw-bold display-4">What are you waiting for?</div>
             </div>
           </div>

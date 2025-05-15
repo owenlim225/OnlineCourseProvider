@@ -145,6 +145,7 @@ include("func/connections.php");
             <!-- Image -->
             <div class="container my-5">
               <div class="position-relative mx-auto dev-container" style="max-width: 800px;">
+
                 <!-- Base Image -->
                 <img src="img/devs.jpg" alt="Developers" class="img-fluid w-100">
 
