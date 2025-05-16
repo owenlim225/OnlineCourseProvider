@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 me-5">
                         <li class="nav-item ms-4">
-                            <a class="nav-link active" aria-current="page" href="index.php#home"></i>Home</a>
+                            <a class="nav-link" aria-current="page" href="index.php#home"></i>Home</a>
                         </li>
                         <li class="nav-item ms-4">
                             <a class="nav-link" href="index.php#learnmore">Learn More</a>
@@ -98,10 +98,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item me-4">
-                            <a class="nav-link" href="login.php">Login</a>
+                        <li class="nav-item ms-4">
+                            <a class="nav-link active" href="login.php">Login</a>
                         </li>
-                        <li class="nav-item me-4">
+                        <li class="nav-item ms-4">
                             <a class="nav-link" href="register.php">Register</a>
                         </li>
                     </ul>

@@ -49,13 +49,13 @@ include("func/connections.php");
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 me-5">
                     <li class="nav-item ms-4">
-                        <a class="nav-link active" aria-current="page" href="index.php"></i>Home</a>
+                        <a class="nav-link" aria-current="page" href="index.php"></i>Home</a>
                     </li>
                     <li class="nav-item ms-4">
                         <a class="nav-link" href="index.php#learnmore">Learn More</a>
                     </li>
                     <li class="nav-item ms-4">
-                        <a class="nav-link" href="aboutus.php">About us</a>
+                        <a class="nav-link active" href="aboutus.php">About us</a>
                     </li>
                     <!-- <li class="nav-item ms-4">
                         <a class="nav-link" href="#stats">Stats</a>
@@ -69,24 +69,24 @@ include("func/connections.php");
                 <!-- If the user is logged in -->
                 <?php if (isset($_SESSION["user_id"])): ?>
                     <!-- cart button -->
-                    <li class="nav-item me-4">
+                    <li class="nav-item ms-4">
                         <a class="nav-link active" aria-current="page" href="../user/cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
                     </li>
                     <!-- profile button -->
-                    <li class="nav-item me-4">
+                    <li class="nav-item ms-4">
                         <a class="nav-link active" aria-current="page" href="../user/profile.php"><i class="fa-solid fa-house"></i></a>
                     </li>
                     <!-- profile button -->
-                    <li class="nav-item me-4">
+                    <li class="nav-item ms-4">
                     <a class="nav-link active text-danger" aria-current="page" href="func/logout.php">Logout</a>
                     </li>
 
                 <!-- If the user is not logged in -->
                 <?php else: ?>
-                    <li class="nav-item me-4">
+                    <li class="nav-item ms-4">
                         <a class="nav-link" href="login.php">Login</a>
                     </li>
-                    <li class="nav-item me-4">
+                    <li class="nav-item ms-4">
                         <a class="nav-link" href="register.php">Register</a>
                     </li>
                 <?php endif; ?>

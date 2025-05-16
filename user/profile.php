@@ -120,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 me-5">
                     <li class="nav-item ms-4">
-                        <a class="nav-link active" aria-current="page" href="home.php"></i>Home</a>
+                        <a class="nav-link" aria-current="page" href="home.php"></i>Home</a>
                     </li>
                     <li class="nav-item ms-4">
                         <a class="nav-link" href="home.php#courses">Courses</a>
@@ -132,7 +132,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
                 <!-- If the user is logged in -->
                 <?php if (isset($_SESSION["email"])): ?>
                     <!-- profile button -->
-                    <li class="nav-item">
+                    <li class="nav-item ms-4">
                         <a class="nav-link active text-warning" aria-current="page" href="profile.php">
                             <i>
                                 <?php echo isset($_SESSION["first_name"]) ? htmlspecialchars($_SESSION["first_name"]) : 'Profile'; ?>
@@ -140,20 +140,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
                         </a>
                     </li>
                     <!-- cart button -->
-                    <li class="nav-item">
+                    <li class="nav-item ms-4">
                         <a class="nav-link active" aria-current="page" href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
                     </li>
                     <!-- Logout button -->
-                    <li class="nav-item">
+                    <li class="nav-item ms-4">
                     <a class="nav-link active text-danger" aria-current="page" href="../func/logout.php">Logout</a>
                     </li>
 
                 <!-- If the user is not logged in -->
                 <?php else: ?>
-                    <li class="nav-item">
+                    <li class="nav-item ms-4">
                         <a class="nav-link" href="login.php">Login</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item ms-4">
                         <a class="nav-link" href="register.php">Register</a>
                     </li>
                 <?php endif; ?>
