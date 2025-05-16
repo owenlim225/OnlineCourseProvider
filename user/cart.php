@@ -18,6 +18,14 @@ if (isset($_SESSION['email'])) {
 
 
 
+// Check if Cart is empty to hide the checkout button
+$cart_sql = "SELECT COUNT(*) as total FROM cart WHERE user_id = ?";
+$stmt = $conn->prepare($cart_sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$cart_count = $result->fetch_assoc()['total'] ?? 0;
+
 ?>
 
 
@@ -155,12 +163,41 @@ if (isset($_SESSION['email'])) {
 <!-- purchase button -->
 <div class="container-fluid p-0">
     <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-black bg-opacity-95 fixed-bottom">
-          <div class="container d-flex justify-content-center p-4">
-            <a href='checkout.php' class='btn btn-success p-3 px-5 fs-5'>Checkout</a>
-          </div>
-</div>
+        <div class="container d-flex justify-content-center p-2">
+            <div id="checkout-button">
+                <button class='btn btn-secondary p-3 px-5 fs-2 w-100' disabled>Checking cart...</button>
+            </div>
+        </div>
+    </nav>
+</div>  
+
 
 <!-- bootstrap js link -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script>
+function updateCheckoutButton() {
+    fetch('check-cart.php')
+        .then(res => res.json())
+        .then(data => {
+            const btnContainer = document.getElementById('checkout-button');
+            if (!data.success || data.count === 0) {
+                btnContainer.innerHTML = `
+                    <button class='btn btn-secondary p-3 px-5 fs-5' disabled>Cart is empty</button>
+                `;
+            } else {
+                btnContainer.innerHTML = `
+                    <a href='checkout.php' class='btn btn-success p-3 px-5 fs-5'>Checkout</a>
+                `;
+            }
+        })
+        .catch(err => console.error('Error fetching cart data:', err));
+}
+
+// Update immediately and every 3 seconds
+updateCheckoutButton();
+setInterval(updateCheckoutButton, 3000);
+</script>
+
 </body>
 </html>

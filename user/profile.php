@@ -162,138 +162,131 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
     </nav>
 </div>
 
-<main class="main pt-5 mt-3 flex-grow-1">
+<main class="main pt-5 mt-5 flex-grow-1">
     <div class="container py-4">
-        <div class="row justify-content-center">
+        <div class="row gx-4 gy-4">
 
             <!-- Left column: User profile -->
-            <div class="col-12 col-md-3 bg-white p-4 rounded shadow-lg mt-4 text-center mb-4 mb-md-0 me-md-4" style="max-height: fit-content;">
-                <div class="profile-header d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="m-0 fw-bold">User Profile</h5>
-                    <button id="editProfileBtn" class="btn btn-sm btn-outline-primary">
-                        <i class="fas fa-pencil-alt me-1"></i> Edit Profile
-                    </button>
-                </div>
-
-                <!-- Profile picture -->
-                <div class="profile-image-container mb-3">
-                    <div class="profile-image mx-auto rounded-circle bg-light d-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
-                        <span class="display-4 text-muted d-flex justify-content-center"><?php echo substr(isset($_SESSION["first_name"]) ? htmlspecialchars($_SESSION["first_name"]) : '', 0, 1); ?></span>
+            <div class="col-12 col-lg-4">
+                <div class="bg-white p-4 rounded shadow-lg text-center h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="m-0 fw-bold">User Profile</h5>
+                        <button id="editProfileBtn" class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-pencil-alt me-1"></i> Edit Profile
+                        </button>
                     </div>
-                </div>
 
-                <?php echo $message; ?>
-
-                <!-- View mode -->
-                <div id="viewProfileMode">
-                    <h3 class="mb-4"><?php echo isset($_SESSION["first_name"]) ? htmlspecialchars($_SESSION["first_name"] . ' ' . $_SESSION["last_name"]) : ''; ?></h3>
-
-                    <div class="profile-info mb-4 p-3">
-                        <div class="d-flex align-items-center mb-2">
-                            <i class="fas fa-phone text-primary me-2"></i>
-                            <div><?php echo isset($_SESSION["contact"]) ? htmlspecialchars($_SESSION["contact"]) : ''; ?></div>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-envelope text-primary me-2"></i>
-                            <div><?php echo isset($_SESSION["email"]) ? htmlspecialchars($_SESSION["email"]) : ''; ?></div>
+                    <!-- Profile picture -->
+                    <div class="profile-image-container mb-3">
+                        <div class="profile-image mx-auto rounded-circle bg-light d-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
+                            <span class="display-4 text-muted"><?php echo substr(isset($_SESSION["first_name"]) ? htmlspecialchars($_SESSION["first_name"]) : '', 0, 1); ?></span>
                         </div>
                     </div>
-                </div>
 
-                <!-- Edit mode (initially hidden) -->
-                <div id="editProfileMode" style="display: none;">
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-                        <div class="mb-3 d-flex flex-column gap-2">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="first_name" name="first_name" required value="<?php echo isset($_SESSION["first_name"]) ? htmlspecialchars($_SESSION["first_name"]) : ''; ?>">
-                                <label for="first_name">First Name</label>
+                    <?php echo $message; ?>
+
+                    <!-- View mode -->
+                    <div id="viewProfileMode">
+                        <h3 class="mb-4"><?php echo isset($_SESSION["first_name"]) ? htmlspecialchars($_SESSION["first_name"] . ' ' . $_SESSION["last_name"]) : ''; ?></h3>
+
+                        <div class="profile-info mb-4 p-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fas fa-phone text-primary me-2"></i>
+                                <div><?php echo isset($_SESSION["contact"]) ? htmlspecialchars($_SESSION["contact"]) : ''; ?></div>
                             </div>
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="last_name" name="last_name" required value="<?php echo isset($_SESSION["last_name"]) ? htmlspecialchars($_SESSION["last_name"]) : ''; ?>">
-                                <label for="last_name">Last Name</label>
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-envelope text-primary me-2"></i>
+                                <div><?php echo isset($_SESSION["email"]) ? htmlspecialchars($_SESSION["email"]) : ''; ?></div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="form-floating mb-3">
-                            <input type="text" name="contact" id="contact" class="form-control" required value="<?php echo isset($_SESSION["contact"]) ? htmlspecialchars($_SESSION["contact"]) : ''; ?>" pattern="[0-9]{11}" maxlength="11" title="Please enter a valid 11-digit contact number">
-                            <label for="contact">Contact Number</label>
-                            <div class="invalid-feedback">Please enter a valid 11-digit contact number</div>
-                        </div>
+                    <!-- Edit mode -->
+                    <div id="editProfileMode" style="display: none;">
+                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                            <div class="mb-3 d-flex flex-column gap-2">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="first_name" name="first_name" required value="<?php echo isset($_SESSION["first_name"]) ? htmlspecialchars($_SESSION["first_name"]) : ''; ?>">
+                                    <label for="first_name">First Name</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="last_name" name="last_name" required value="<?php echo isset($_SESSION["last_name"]) ? htmlspecialchars($_SESSION["last_name"]) : ''; ?>">
+                                    <label for="last_name">Last Name</label>
+                                </div>
+                            </div>
 
-                        <div class="form-floating mb-3">
-                            <input type="email" name="email" id="email" class="form-control" readonly disabled value="<?php echo isset($_SESSION["email"]) ? htmlspecialchars($_SESSION["email"]) : ''; ?>">
-                            <label for="email">Email Address</label>
-                        </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="contact" id="contact" class="form-control" required value="<?php echo isset($_SESSION["contact"]) ? htmlspecialchars($_SESSION["contact"]) : ''; ?>" pattern="[0-9]{11}" maxlength="11" title="Please enter a valid 11-digit contact number">
+                                <label for="contact">Contact Number</label>
+                                <div class="invalid-feedback">Please enter a valid 11-digit contact number</div>
+                            </div>
 
-                        <div class="form-floating mb-3">
-                            <input type="password" name="password" id="password" class="form-control" placeholder="New Password">
-                            <label for="password">New Password</label>
-                        </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" name="email" id="email" class="form-control" readonly disabled value="<?php echo isset($_SESSION["email"]) ? htmlspecialchars($_SESSION["email"]) : ''; ?>">
+                                <label for="email">Email Address</label>
+                            </div>
 
-                        <div class="form-floating mb-3">
-                            <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Retype Password">
-                            <label for="confirm_password">Confirm Password</label>
-                        </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" name="password" id="password" class="form-control" placeholder="New Password">
+                                <label for="password">New Password</label>
+                            </div>
 
-                        <button type="submit" name="update_user" class="btn btn-primary w-100 mb-2">
-                            <i class="fas fa-save me-1"></i> Save Changes
-                        </button>
-                        <button type="button" id="cancelEditBtn" class="btn btn-outline-secondary w-100">
-                            Cancel
-                        </button>
-                    </form>
+                            <div class="form-floating mb-3">
+                                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Retype Password">
+                                <label for="confirm_password">Confirm Password</label>
+                            </div>
+
+                            <button type="submit" name="update_user" class="btn btn-primary w-100 mb-2">
+                                <i class="fas fa-save me-1"></i> Save Changes
+                            </button>
+                            <button type="button" id="cancelEditBtn" class="btn btn-outline-secondary w-100">
+                                Cancel
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
 
             <!-- Right column: User courses -->
-            <div class="col-12 col-md-8 bg-white p-4 rounded shadow-lg mt-4 text-center">
-                <h2 class="mb-3 text-primary fw-bold">My courses</h2>
-                <div class="row justify-content-center">
-                    <div class="col-lg-10">
-                        <div class="row">
-                            <?php
-                                // Fetch purchased courses for the logged-in user
-                                if ($user_id > 0) {
-                                    $sql = "SELECT c.* FROM purchased_courses pc 
-                                            JOIN courses c ON pc.course_id = c.course_id 
-                                            WHERE pc.user_id = ?";
-                                    
-                                    $stmt = $conn->prepare($sql);
-                                    $stmt->bind_param("i", $user_id);
-                                    $stmt->execute();
-                                    $result = $stmt->get_result();
-                                } else {
-                                    $result = false;
-                                }
+            <div class="col-12 col-lg-8">
+                <div class="bg-white p-4 rounded shadow-lg h-100">
+                    <h2 class="mb-3 text-primary fw-bold text-center">My Courses</h2>
 
-                                if ($result && $result->num_rows > 0) {
-                                    while ($row = $result->fetch_assoc()) {  
-                                        echo "<div class='service-item col-md-4 mb-4'>
-                                                <div class='course-card'>
-                                                    <div class='course-image-container'>
-                                                        <img src='../img/courses/{$row['image']}' alt='{$row['course_title']}' class='course-image'>
-                                                    </div>
+                    <div class="row g-4">
+                        <?php
+                            if ($user_id > 0) {
+                                $sql = "SELECT c.* FROM purchased_courses pc 
+                                        JOIN courses c ON pc.course_id = c.course_id 
+                                        WHERE pc.user_id = ?";
+                                $stmt = $conn->prepare($sql);
+                                $stmt->bind_param("i", $user_id);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+                            } else {
+                                $result = false;
+                            }
 
-                                                    <div class='course-info p-3'>
-                                                        <h5 class='mb-2 text-truncate'>{$row['course_title']}</h5>
-                                                        <p class='mb-0 text-muted small'><i class='fas fa-user-tie me-2'></i>{$row['instructor']}</p>
-                                                    </div>
-                                                    
-                                                    <div class='course-card-body'>
-                                                        <h5 class='course-title'>{$row['course_title']}</h5>
-                                                        <p class='course-instructor'>{$row['instructor']}</p>
-                                                        <a href='profile.php' class='edit-button'>
-                                                            <span class='edit-icon'>✏️</span> Start Course
-                                                        </a>
-                                                    </div>
+                            if ($result && $result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {  
+                                    echo "<div class='col-sm-6 col-md-4'>
+                                            <div class='course-card h-100 d-flex flex-column justify-content-between shadow-sm rounded p-2'>
+                                                <div class='course-image-container'>
+                                                    <img src='../img/courses/{$row['image']}' alt='{$row['course_title']}' class='img-fluid rounded'>
                                                 </div>
-                                            </div>";
-                                    }
-                                } else {
-                                    echo "<p class='text-center text-muted'>No courses found.</p>";
+                                                <div class='course-info mt-2'>
+                                                    <h6 class='mb-1 text-truncate fw-bold'>{$row['course_title']}</h6>
+                                                    <p class='mb-2 small text-muted'><i class='fas fa-user-tie me-1'></i>{$row['instructor']}</p>
+                                                </div>
+                                                <a href='profile.php' class='btn btn-outline-primary w-100 mt-auto'>
+                                                    <i class='fas fa-play me-1'></i> Start Course
+                                                </a>
+                                            </div>
+                                          </div>";
                                 }
-                            ?>
-                        </div>
+                            } else {
+                                echo "<p class='text-center text-muted'>No courses found.</p>";
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -301,6 +294,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_user"])) {
         </div>
     </div>
 </main>
+
 
 
 
