@@ -2,7 +2,7 @@
 include("func/connections.php");
 session_start();
 
-// Retrieve session message if existss
+// Retrieve session message if exists
 $message = isset($_SESSION['message']) ? $_SESSION['message'] : "";
 unset($_SESSION['message']); // Clear after displaying
 
